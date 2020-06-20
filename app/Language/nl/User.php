@@ -1,0 +1,20 @@
+<?php
+return [
+	'name' => 'Naam',
+	'birthday' => 'Geboortedatum',
+	'email' => 'Emailadres',
+	'membership' => 'Lidmaatschap',
+	'title' => 'Profiel van',
+	'password' => 'Wachtwoord',
+	'passwordHelp' => 'Laat dit veld leeg als je het wachtwoord niet wilt aanpassen.',
+	'visible' => 'Zichtbaar in profiel',
+	'showEmail' => 'Laat mijn email zien',
+	'newsletter' => 'Nieuwsbrief',
+	'newsletterHelp' => 'Ik wil graag de nieuwsbrief ontvangen',
+	'hidden' => 'Verborgen',
+	'waterpoloRecreation' => 'Waterpolo (recreatief)',
+	'waterpoloCompetition' => 'Waterpolo (competitief)',
+	'swimmer' => 'Zwemmer',
+	'traininer' => 'Trainer',
+	'profileSaved' => 'Je profiel is opgeslagen',
+];

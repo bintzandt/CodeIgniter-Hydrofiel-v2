@@ -1,0 +1,20 @@
+<?php
+return [
+	'name' => 'Name',
+	'birthday' => 'Birthday',
+	'email' => 'Email',
+	'membership' => 'Membership',
+	'title' => 'Profile of',
+	'password' => 'Password',
+	'passwordHelp' => 'Leave this field empty if you don\'t want to change the password.',
+	'visible' => 'Visible in profile',
+	'showEmail' => 'Show my email',
+	'newsletter' => 'Newsletter',
+	'newsletterHelp' => 'I would like to receive the newsletter',
+	'hidden' => 'Hidden',
+	'waterpoloRecreation' => 'Waterpolo (recreation)',
+	'waterpoloCompetition' => 'Waterpolo (competition)',
+	'swimmer' => 'Swimmer',
+	'traininer' => 'Trainer',
+	'profileSaved' => 'Profile is saved',
+];
