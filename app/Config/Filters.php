@@ -17,7 +17,7 @@ class Filters extends BaseConfig
 		],
 		'isAdminOrRequestedUser' => [
 			\App\Filters\IsLoggedIn::class,
-			\App\Filters\isAdminOrRequestedUser::class,
+			\App\Filters\IsAdminOrRequestedUser::class,
 		],
 	];
 

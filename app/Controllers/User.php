@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class User extends BaseController {
 	/**
@@ -11,7 +12,7 @@ class User extends BaseController {
 	protected UserModel $users;
 
 	public function __construct(){
-		helper('user');
+		helper(['user','form','email']);
 		$this->users = new UserModel();
 	}
 
@@ -38,16 +39,24 @@ class User extends BaseController {
 
 	/**
 	 * Loads the edit page for a given user.
-	 * 
+	 *
+	 * @Filter: IsAdminOrRequestedUser Make sure that the save action is allowed.
+	 *
 	 * @return string The edit profile page.
 	 */
-	public function edit( int $id ){
-		helper('form');
+	public function edit( int $id ): string {
 		$user = $this->users->find($id);
 		return view('user/edit', ['user' => $user]);
 	}
 
-	public function save( int $id ){
+	/**
+	 * Saves a user.
+	 * 
+	 * @Filter: IsAdminOrRequestedUser Make sure that the save action is allowed.
+	 * 
+	 * @return RedirectResponse Redirect back to the edit page. 
+	 */
+	public function save( int $id ): RedirectResponse {
 		$data = $this->request->getPost();
 		
 		$rules = [
@@ -60,16 +69,20 @@ class User extends BaseController {
 
 		$user = $this->users->find($id);
 
-		if ( $data['wachtwoord1'] !== ''){
-			
+		if ( $data['wachtwoord1'] !== ''){	
 			$user->password = $data['wachtwoord1'];
 		}
+
 		// Unset password data.
 		unset($data['wachtwoord1']);
 		unset($data['wachtwoord2']);
-
 		$user->fill($data);
-		
+
+		// Send an email to the secretary if the email changed.
+		if ($user->hasChanged('email')){
+			sendUserUpdateEmail($user);
+		}
+
 		if ($user->hasChanged()){
 			$this->users->save($user);
 		}
