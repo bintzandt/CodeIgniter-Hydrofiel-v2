@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -11,8 +12,8 @@ class User extends BaseController {
 	 */
 	protected UserModel $users;
 
-	public function __construct(){
-		helper(['user','form','email']);
+	public function __construct() {
+		helper(['user', 'form', 'email']);
 		$this->users = new UserModel();
 	}
 
@@ -23,14 +24,14 @@ class User extends BaseController {
 	 * 
 	 * @return string The page.
 	 */
-	public function index( int $id = null ): string {
-		if (! $id){
+	public function index(int $id = null): string {
+		if (!$id) {
 			$id = currentUserId();
 		}
 
 		$user = $this->users->find($id);
 
-		if (!$user){
+		if (!$user) {
 			throw new PageNotFoundException();
 		}
 
@@ -44,7 +45,7 @@ class User extends BaseController {
 	 *
 	 * @return string The edit profile page.
 	 */
-	public function edit( int $id ): string {
+	public function edit(int $id): string {
 		$user = $this->users->find($id);
 		return view('user/edit', ['user' => $user]);
 	}
@@ -56,34 +57,32 @@ class User extends BaseController {
 	 * 
 	 * @return RedirectResponse Redirect back to the edit page. 
 	 */
-	public function save( int $id ): RedirectResponse {
+	public function save(int $id): RedirectResponse {
 		$data = $this->request->getPost();
-		
+
 		$rules = [
 			'email' => 'required|valid_email',
+			'wachtwoord2' => 'matches[wachtwoord1]',
 		];
 
-		if (!$this->validate($rules)){
+		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput();
 		}
 
 		$user = $this->users->find($id);
 
-		if ( $data['wachtwoord1'] !== ''){	
+		if ($data['wachtwoord1'] !== '') {
 			$user->password = $data['wachtwoord1'];
 		}
 
-		// Unset password data.
-		unset($data['wachtwoord1']);
-		unset($data['wachtwoord2']);
 		$user->fill($data);
 
 		// Send an email to the secretary if the email changed.
-		if ($user->hasChanged('email')){
+		if ($user->hasChanged('email')) {
 			sendUserUpdateEmail($user);
 		}
 
-		if ($user->hasChanged()){
+		if ($user->hasChanged()) {
 			$this->users->save($user);
 		}
 
