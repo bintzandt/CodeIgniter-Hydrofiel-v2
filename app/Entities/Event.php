@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Models\RegistrationDetailsModel;
 use App\Models\RegistrationModel;
 use CodeIgniter\Entity;
 use CodeIgniter\I18n\Time;
@@ -9,6 +10,7 @@ use Error;
 
 class Event extends Entity {
 	protected RegistrationModel $registrationModel;
+	protected array $registrationArray;
 
 	// Map non-english names to English for consistency across the codebase.
 	protected $datamap = [
@@ -73,9 +75,15 @@ class Event extends Entity {
 	 * Query the Database for all the registrations for the current event.
 	 */
 	public function getNrOfRegistrations() {
-		$registrations = $this->registrationModel->where('event_id', $this->event_id)->findAll();
+		return sizeof($this->registrations);
+	}
 
-		return sizeof($registrations);
+	public function getRegistrations(){
+		if (!isset($this->registrationArray)){
+			$this->registrationArray = $this->registrationModel->where('event_id', $this->event_id)->findAll();
+		}
+
+		return $this->registrationArray;
 	}
 
 	/**
@@ -102,7 +110,7 @@ class Event extends Entity {
 	 * 
 	 * @throws Error Error when the registration did not succeed.
 	 */
-	public function attemptRegistration(?string $remark = null): void {
+	public function attemptRegistration(?string $remark = null, ?string $strokes = null): void {
 		if ($this->registrationDeadlinePassed()) {
 			throw new Error(lang('Event.registrationClosed'));
 		}
@@ -112,7 +120,7 @@ class Event extends Entity {
 		}
 
 		// Create new registration.
-		$this->registrationModel->registerUserForEvent(currentUserId(), $this->event_id, $remark);
+		$this->registrationModel->registerUserForEvent(currentUserId(), $this->event_id, $remark, $strokes);
 	}
 
 	/**
@@ -124,7 +132,14 @@ class Event extends Entity {
 		if ($this->cancellationDeadlinePassed()){
 			throw new Error(lang('Event.noCancel'));
 		}
+		
+		// Remove registration details for nszk's.
+		if ($this->kind === 'nszk'){
+			$registrationDetailsModel = new RegistrationDetailsModel();
+			$registrationDetailsModel->removeUserDetailsForEvent(currentUserId(), $this->event_id);
+		}
 
+		// Remove the registration.
 		$this->registrationModel->cancelUserForEvent(currentUserId(), $this->event_id);
 	}
 }

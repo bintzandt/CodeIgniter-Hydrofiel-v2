@@ -3,15 +3,15 @@ foreach ($registrations as $registration) {
 	$i++;
 	if ($i <= 5) { ?>
 		<tr>
-			<td><?= $registration->naam ?></td>
-			<?php if ($registration->opmerking !== "") { ?>
-				<td><?= $registration->opmerking ?></td> <?php } ?>
+			<td><?= $registration->name ?></td>
+			<?php if ($registration->remark !== "") { ?>
+				<td><?= $registration->remark ?></td> <?php } ?>
 		</tr>
 	<?php } else { ?>
 		<tr class="inschrijving d-none">
-			<td><?= $registration->naam ?></td>
-			<?php if ($registration->opmerking !== "") { ?>
-				<td><?= $registration->opmerking ?></td> <?php } ?>
+			<td><?= $registration->name ?></td>
+			<?php if ($registration->remark !== "") { ?>
+				<td><?= $registration->remark ?></td> <?php } ?>
 		</tr>
 	<?php }
 } ?>

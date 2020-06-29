@@ -8,7 +8,7 @@ class RegistrationModel extends Model {
 	protected $table = 'inschrijvingen';
 	protected $primaryKey = 'event_id';
 
-	protected $returnType = 'array';
+	protected $returnType = 'App\Entities\Registration';
 	protected $useTimeStamps = true;
 	protected $createdFields = 'datum';
 
@@ -18,15 +18,16 @@ class RegistrationModel extends Model {
 		return sizeof($this->where('event_id', $eventId)->where('member_id', $userId)->find()) === 1;
 	}
 
-	public function registerUserForEvent(int $userId, int $eventId, ?string $remark = null): void {
+	public function registerUserForEvent(int $userId, int $eventId, ?string $remark = null, ?string $strokes): void {
 		$this->insert([
 			'event_id' => $eventId,
 			'member_id' => $userId,
 			'opmerking' => $remark,
+			'slagen' => $strokes,
 		]);
 	}
 
-	public function cancelUserForEvent(int $userId, int $eventId){
+	public function cancelUserForEvent(int $userId, int $eventId) {
 		$this->where('event_id', $eventId)->where('member_id', $userId)->delete();
 	}
 }

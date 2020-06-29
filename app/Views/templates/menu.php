@@ -59,7 +59,7 @@ function generate_icon($name)
                         }
                     }
                     if (isLoggedIn()) { ?>
-                        <li class="nav-item"><a href="/agenda" class="nav-link"><span
+                        <li class="nav-item"><a href="/event" class="nav-link"><span
                                         class="fa fa-calendar"></span> <?= lang('General.generalCalendar') ?></a></li>
                         <li class="nav-item"><a href="/user" class="nav-link"><span
                                         class="fa fa-user"></span> <?= lang('General.generalProfile') ?> </a></li>
