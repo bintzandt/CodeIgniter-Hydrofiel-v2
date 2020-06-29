@@ -22,7 +22,9 @@ class Event extends BaseController {
 	}
 
 	public function index(){
-		return "hey";
+		$upcomingEvents = $this->events->getUpcomingEvents();
+
+		return view('event/overview', ['events' => $upcomingEvents]);
 	}
 
 	public function id(int $eventId): string {

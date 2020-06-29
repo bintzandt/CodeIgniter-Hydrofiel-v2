@@ -13,7 +13,7 @@
 	</div>
 	<div class="col-md-6">
 		<h4>Details</h4>
-		<table style="width:100%;">
+		<table>
 			<tr>
 				<td><b><?= lang('Event.from') ?></b></td>
 				<td><?= $event->van->format('d-m-Y H:i') ?></td>

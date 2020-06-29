@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\I18n\Time;
 
 class EventModel extends Model {
 	protected $table = 'agenda';
@@ -27,4 +28,16 @@ class EventModel extends Model {
 		'soort',
 		'slagen',
 	];
+
+	/**
+	 * Returns a list of upcoming events.
+	 * 
+	 * @param int $limit An optional parameter that defines how many events we want.
+	 */
+	public function getUpcomingEvents( ?int $limit = null ): array {
+		return $this
+			->where('van >=', Time::now())
+			->limit($limit)
+			->find();
+	}
 }
