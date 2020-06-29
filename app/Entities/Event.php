@@ -59,7 +59,7 @@ class Event extends Entity {
 	 * @return bool
 	 */
 	public function cancellationDeadlinePassed(): bool {
-		return $this->afmelddeadline->isAfter(Time::now());
+		return $this->afmelddeadline->isBefore(Time::now());
 	}
 
 	/**
@@ -68,7 +68,7 @@ class Event extends Entity {
 	 * @return bool
 	 */
 	public function registrationDeadlinePassed(): bool {
-		return $this->inschrijfdeadline->isAfter(Time::now());
+		return $this->inschrijfdeadline->isBefore(Time::now());
 	}
 
 	/**
