@@ -1,5 +1,6 @@
 <?php namespace Config;
 
+use App\Models\EventModel;
 use App\Models\PageModel;
 
 // Create a new instance of our RouteCollection class.
@@ -53,6 +54,9 @@ $routes->group('', function($routes){
 
 $routes->get('page/(:num)', 'Page::index/$1');
 $routes->post('user/edit/(:num)', 'User::save/$1');
+
+$routes->get('event/(:num)', 'Event::id/$1');
+$routes->post('event/(:num)', 'Event::handleFormSubmission/$1');
 
 /**
  * --------------------------------------------------------------------

@@ -5,5 +5,4 @@ namespace App\Entities;
 use CodeIgniter\Entity;
 
 class Post extends Entity {
-
 }

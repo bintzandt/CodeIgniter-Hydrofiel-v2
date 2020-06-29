@@ -24,7 +24,7 @@ class User extends Entity
 		'preferEnglish' => 'boolean',
 	];
 
-	protected $dates = ['birthday', 'recovery_valid'];
+	protected $dates = ['geboortedatum', 'recovery_valid'];
 
 	/**
 	 * Function to update the password from an user.

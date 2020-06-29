@@ -27,7 +27,7 @@
             </strong>
         </td>
         <td>
-            <?= $user->birthday ?>
+            <?= $user->birthday->format('d-m-Y') ?>
         </td>
     </tr>
     <tr>

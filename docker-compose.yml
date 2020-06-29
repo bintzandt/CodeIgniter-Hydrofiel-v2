@@ -3,14 +3,6 @@
 ###############################################################################
 version: "3.1"
 services:
-
-    mail:
-      image: mailhog/mailhog:latest
-      container_name: mail
-      ports:
-        - "127.0.0.1:1025:1025"
-        - "127.0.0.1:8025:8025"
-
     mysql:
       image: mysql:8.0
       container_name: db
@@ -41,4 +33,3 @@ services:
       - "80:80"
       links:
         - mysql
-        - mail
