@@ -26,8 +26,20 @@ class Event {
 				// User cannot cancel the registration.
 				return warning(lang('Event.noCancel'));
 			}
-		
-			return sprintf('<div class="form-group"><button type="submit" class="btn btn-primary form-control">%s</a></div>', lang('Event.cancel'));
+
+			if ($event->kind !== 'nszk'){
+				return sprintf('<div class="form-group"><button type="submit" class="btn btn-primary form-control">%s</button></div>', lang('Event.cancel'));
+			}
+
+			return sprintf(
+				'<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block">%s</button>
+					<a type="button" class="btn btn-warning btn-block" href="/event/displayDetailsForm/%d">%s</a>
+				</div>',
+				lang('Event.cancel'),
+				$event->event_id,
+				lang('Event.changeRegistration'),
+			);
 		}
 		
 		if ($event->isFull()) {

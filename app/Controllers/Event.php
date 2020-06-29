@@ -21,7 +21,7 @@ class Event extends BaseController {
 		helper(['form', 'notification']);
 	}
 
-	public function index(){
+	public function index() {
 		$upcomingEvents = $this->events->getUpcomingEvents();
 
 		return view('event/overview', ['events' => $upcomingEvents]);
@@ -102,14 +102,20 @@ class Event extends BaseController {
 		}
 
 		$event->attemptRegistration($remark, $strokes);
-		return $this->displayDetailsForm($event);
+		return $this->displayDetailsForm($event->event_id);
 	}
 
 	/**
 	 * Display a form where additional details can be filled in.
 	 */
-	private function displayDetailsForm(\App\Entities\Event $event) {
-		return view('event/detailsForm', ['eventId' => $event->event_id, 'edit_mode' => false]);
+	public function displayDetailsForm(int $eventId) {
+		$registrationDetailsModel = new RegistrationDetailsModel();
+		$details = $registrationDetailsModel->getUserDetailsForEvent(currentUserId(), $eventId);
+		return view('event/detailsForm', [
+			'eventId' => $eventId,
+			'edit_mode' => !!$details,
+			'details' => $details,
+		]);
 	}
 
 	public function handleDetailsForm(int $eventId) {
@@ -118,6 +124,6 @@ class Event extends BaseController {
 
 		$registrationDetailsModel->removeUserDetailsForEvent(currentUserId(), $eventId);
 		$registrationDetailsModel->addUserDetailsForEvent(currentUserId(), $eventId, $data);
-		return redirect()->back()->with('success', lang('Event.registrationSuccess'));
+		return redirect()->to('/event/' . $eventId)->with('success', lang('Event.registrationSuccess'));
 	}
 }

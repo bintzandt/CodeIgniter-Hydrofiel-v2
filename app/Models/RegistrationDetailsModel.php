@@ -13,7 +13,7 @@ class RegistrationDetailsModel extends Model {
 	 */
 	protected $primaryKey = 'nszk_id';
 
-	protected $returnType = 'array';
+	protected $returnType = 'object';
 	protected $useTimeStamps = false;
 
 	protected $allowedFields = [
@@ -42,6 +42,10 @@ class RegistrationDetailsModel extends Model {
 				$details,
 			)
 		);
+	}
+
+	public function getUserDetailsForEvent(int $userId, int $eventId){
+		return $this->where('nszk_id', $eventId)->where('member_id', $userId)->first();
 	}
 
 	public function removeUserDetailsForEvent(int $userId, int $eventId) {
