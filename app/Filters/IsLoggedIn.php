@@ -17,7 +17,7 @@ class IsLoggedIn implements FilterInterface {
 
 		// Redirect to the sign in page.
 		if ( ! isLoggedIn() ){
-			redirect()->route('login');
+			return redirect()->route('login');
 		}
 	}
 
