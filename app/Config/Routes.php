@@ -58,6 +58,8 @@ $routes->post('user/edit/(:num)', 'User::save/$1');
 $routes->get('event/(:num)', 'Event::id/$1');
 $routes->post('event/(:num)', 'Event::handleFormSubmission/$1');
 
+$routes->post('admin/mail/', 'Admin\Mail::handleEmailFormSubmission');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
