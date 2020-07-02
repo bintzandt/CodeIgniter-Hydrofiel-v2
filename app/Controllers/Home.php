@@ -1,22 +1,32 @@
-<?php namespace App\Controllers;
+<?php
 
+namespace App\Controllers;
+
+use App\Models\EventModel;
+use App\Models\PostModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
-class Home extends BaseController
-{
+class Home extends BaseController {
 	/**
 	 * Displays the home page.
 	 */
-	public function index()
-	{
+	public function index() {
+		// Required model for providing all details shown on the homepage.
+		$events = new EventModel();
+		$users = new UserModel();
+		$posts = new PostModel();
+
+		$numberOfEventsAndBirthdays = 5;
+
 		$data = [
 			'engels' => isEnglish(),
-			'events' => [],
-			'verjaardagen' => [],
-			'posts' => [],
+			'events' => $events->getUpcomingEvents($numberOfEventsAndBirthdays),
+			'verjaardagen' => $users->getUpcomingBirthdays($numberOfEventsAndBirthdays),
+			'posts' => $posts->orderBy('post_timestamp', 'DESC')->findAll(5),
 			'session' => $this->session,
 		];
-		return view('templates/home', $data );
+		return view('templates/home', $data);
 	}
 
 	/**
