@@ -45,7 +45,7 @@ class Filters extends BaseConfig
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
 		'isLoggedIn' => ['before' => ['user', 'user/*', 'event', 'event/*']],
-		'isAdmin' => ['before' => ['beheer/*']],
+		'isAdmin' => ['before' => ['admin/*']],
 		'isAdminOrRequestedUser' => ['before' => ['user/edit/*']]
 	];
 }

@@ -15,6 +15,6 @@ class Menu {
 		$data = [
 			'hoofdmenus' => $menuModel->getMenu(),
 		];
-		return view('templates/menu', $data);
+		return view('templates/menu/default', $data);
 	}
 }

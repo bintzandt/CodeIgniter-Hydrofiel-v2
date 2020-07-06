@@ -1,4 +1,4 @@
-IsAdminOrRequestedUser<?php
+<?php
 namespace App\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
