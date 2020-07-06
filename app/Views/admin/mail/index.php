@@ -6,7 +6,7 @@
 	</div>
 <?php } ?>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/mail/history"><b>Geschiedenis</b></a></div>
-<?= form_open('', ['id' => 'mailForm']); ?>
+<?= form_open_multipart('', ['id' => 'mailForm']); ?>
 <?= \Config\Services::validation()->listErrors() ?>
 <div class="form-group">
 	<label for="aan" class="col-md-2 col-form-label">Aan</label>
@@ -15,15 +15,15 @@
 			<option value="bestuur" <?php echo set_select('aan', 'bestuur', true); ?>>Bestuur</option>
 			<option value="nieuwsbrief" <?php echo set_select('aan', 'nieuwsbrief'); ?>>Nieuwsbrief</option>
 			<option value="iedereen" <?php echo set_select('aan', 'iedereen'); ?>>Iedereen</option>
-			<option value="zwemmers" <?php echo set_select('aan', 'zwemmers'); ?>>Zwemmers</option>
+			<option value="zwemmer" <?php echo set_select('aan', 'zwemmer'); ?>>Zwemmers</option>
 			<option value="waterpolo" <?php echo set_select('aan', 'waterpolo'); ?>>Waterpolo</option>
-			<option value="waterpoloscompetitie" <?php echo set_select('aan', 'waterpoloscompetitie'); ?>>Waterpolo
+			<option value="waterpolo_competitie" <?php echo set_select('aan', 'waterpolo_competitie'); ?>>Waterpolo
 				(competitie)
 			</option>
-			<option value="waterpolosrecreatief" <?php echo set_select('aan', 'waterpolosrecreatief'); ?>>Waterpolo
+			<option value="waterpolo_recreatief" <?php echo set_select('aan', 'waterpolo_recreatief'); ?>>Waterpolo
 				(recreatief)
 			</option>
-			<option value="trainers" <?php echo set_select('aan', 'trainers'); ?>>Trainers</option>
+			<option value="trainer" <?php echo set_select('aan', 'trainer'); ?>>Trainers</option>
 			<option value="select" <?php echo set_select('aan', 'select'); ?>>Losse personen</option>
 		</select>
 	</div>
@@ -56,7 +56,7 @@
 	<div class="col-md-10">
 		<select multiple class="form-control" id="los" name="los[]">
 			<?php foreach ($leden as $lid) { ?>
-				<option value="<?= $lid->email ?>" <?php echo set_select('los[]', $lid->email) ?>><?= $lid->naam ?></option>
+				<option value="<?= $lid->id ?>" <?php echo set_select('los[]', $lid->id) ?>><?= $lid->naam ?></option>
 			<?php } ?>
 		</select>
 	</div>
@@ -86,7 +86,7 @@
 <div class="form-group">
 	<label for="file" class="col-md-2 col-form-label">Bijlage (NL)</label>
 	<div class="col-md-10">
-		<input type="file" name="userfile_nl[]" size="20" multiple>
+		<input type="file" name="attachments_nl[]" size="10" multiple />
 	</div>
 </div>
 <div class="form-group">
@@ -104,11 +104,11 @@
 <div class="form-group">
 	<label for="file" class="col-md-2 col-form-label">Bijlage (EN)</label>
 	<div class="col-md-10">
-		<input type="file" name="userfile_en[]" size="20" multiple>
+		<input type="file" name="attachments_en[]" size="10" multiple>
 		<input id="send" onclick="showModal()" type="button" class="btn btn-primary center-block" value="Versturen">
 	</div>
 </div>
-</form>
+<?= form_close() ?>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/mail/vrienden"><b>Vrienden van
 			Hydrofiel</b></a></div>
 <?= $this->endSection() ?>
