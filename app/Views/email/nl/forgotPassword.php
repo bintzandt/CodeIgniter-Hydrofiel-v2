@@ -19,7 +19,7 @@ $date = $valid->toDateTime();
                     link kun je je wachtwoord opnieuw instellen.<br>
                     <br>
                     <b>Let op: Deze link vervalt automatisch op <?= $date->format('d-m-Y') ?>
-                        om <?= $date->format('d-m-Y') ?>.</b><br>
+                        om <?= $date->format('H:i') ?>.</b><br>
                     <br>
                     Of kopieër de volgende token naar het reset formulier: <?= $recovery ?></br>
                     </br>
