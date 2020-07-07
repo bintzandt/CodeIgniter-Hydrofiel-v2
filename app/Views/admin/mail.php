@@ -1,10 +1,5 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<?php if (isset($fail) && $fail) { ?>
-	<div class="alert alert-danger">
-		<strong><?= $fail ?></strong>
-	</div>
-<?php } ?>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/mail/history"><b>Geschiedenis</b></a></div>
 <?= form_open_multipart('', ['id' => 'mailForm']); ?>
 <?= \Config\Services::validation()->listErrors() ?>

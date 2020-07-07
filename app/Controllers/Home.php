@@ -17,14 +17,10 @@ class Home extends BaseController {
 		$users = new UserModel();
 		$posts = new PostModel();
 
-		$numberOfEventsAndBirthdays = 5;
-
 		$data = [
-			'engels' => isEnglish(),
-			'events' => $events->getUpcomingEvents($numberOfEventsAndBirthdays),
-			'verjaardagen' => $users->getUpcomingBirthdays($numberOfEventsAndBirthdays),
-			'posts' => $posts->orderBy('post_timestamp', 'DESC')->findAll(5),
-			'session' => $this->session,
+			'upcomingEvents' => $events->getUpcomingEvents(5),
+			'upcomingBirthdays' => $users->getUpcomingBirthdays(5),
+			'recentPosts' => $posts->orderBy('post_timestamp', 'DESC')->findAll(5),
 		];
 		return view('templates/home', $data);
 	}
