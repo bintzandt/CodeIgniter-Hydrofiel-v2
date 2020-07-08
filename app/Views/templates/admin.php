@@ -1,5 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="<?= isEnglish() ? 'en' : 'nl' ?>">
 <head>
     <base href="<?= base_url() ?>">
 

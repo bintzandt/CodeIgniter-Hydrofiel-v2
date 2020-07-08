@@ -38,6 +38,20 @@ class EventModel extends Model {
 		return $this
 			->where('van >=', Time::now())
 			->limit($limit)
+			->orderBy('van', 'ASC')
+			->find();
+	}
+
+	/**
+	 * Returns a list of passed events.
+	 * 
+	 * @param int $limit An optional parameter that defines how many events we want.
+	 */
+	public function getPassedEvents(?int $limit = null){
+		return $this
+			->where('van <', Time::now())
+			->limit($limit)
+			->orderBy('van', 'DESC')
 			->find();
 	}
 }
