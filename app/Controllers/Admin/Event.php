@@ -65,4 +65,29 @@ class Event extends BaseController {
 		}
 		return redirect()->back()->with('error', 'Er is iets fout gegaan');
 	}
+
+	/**
+	 * Display an overview of all the registrations for an event.
+	 */
+	public function registrations(int $eventId): string {
+		$event = $this->events->find($eventId);
+		return view('admin/event/registrations', ['registrations' => $event->registrations]);
+	}
+
+	/**
+	 * Removes the registration for a user.
+	 * 
+	 * @param int $eventId The ID of the event.
+	 * @param int $memberId The ID of the member.
+	 * 
+	 * @return RedirectResponse Redirects back to the previous page.
+	 */
+	public function cancelRegistration(int $eventId, int $memberId): RedirectResponse {
+		/**
+		 * @var EventEntity $event
+		 */
+		$event = $this->events->find($eventId);
+		$event->attemptCancellation($memberId);
+		return redirect()->back()->with('success', 'Registration is deleted');
+	}
 }

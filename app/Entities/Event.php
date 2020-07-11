@@ -37,7 +37,7 @@ class Event extends Entity {
 	 * 
 	 * Sets up the RegistrationModel.
 	 */
-	public function __construct(?array $data = null): void {
+	public function __construct(?array $data = null) {
 		parent::__construct($data);
 		$this->registrationModel = new RegistrationModel();
 	}
@@ -213,21 +213,24 @@ class Event extends Entity {
 	/**
 	 * Attempts to cancel the registration of the current user.
 	 * 
+	 * @param int $memberId An optional ID of a member.
+	 * 
 	 * @throws Error Error when the cancelation deadline has passed.
 	 */
-	public function attemptCancellation() {
-		if ($this->cancellationDeadlinePassed()) {
+	public function attemptCancellation(?int $memberId = null) {
+		// Admins can cancel a registration after the deadline has passed.
+		if ($this->cancellationDeadlinePassed() && !isAdmin()) {
 			throw new Error(lang('Event.noCancel'));
 		}
 
 		// Remove registration details for nszk's.
 		if ($this->kind === 'nszk') {
 			$registrationDetailsModel = new RegistrationDetailsModel();
-			$registrationDetailsModel->removeUserDetailsForEvent(currentUserId(), $this->event_id);
+			$registrationDetailsModel->removeUserDetailsForEvent($memberId ?? currentUserId(), $this->event_id);
 		}
 
 		// Remove the registration.
-		$this->registrationModel->cancelUserForEvent(currentUserId(), $this->event_id);
+		$this->registrationModel->cancelUserForEvent($memberId ?? currentUserId(), $this->event_id);
 	}
 
 	/**
