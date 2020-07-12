@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Registration;
 use CodeIgniter\Model;
 
 class RegistrationModel extends Model {
@@ -27,7 +28,11 @@ class RegistrationModel extends Model {
 		]);
 	}
 
-	public function cancelUserForEvent(int $userId, int $eventId) {
+	public function cancelUserForEvent(int $userId, int $eventId): void {
 		$this->where('event_id', $eventId)->where('member_id', $userId)->delete();
+	}
+
+	public function getUserRegistrationForEvent(int $userId, int $eventId): Registration {
+		return $this->where('event_id', $eventId)->where('member_id', $userId)->first();
 	}
 }

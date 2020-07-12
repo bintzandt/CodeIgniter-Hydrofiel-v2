@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use \App\Controllers\BaseController;
 use \App\Models\EventModel;
 use \App\Entities\Event as EventEntity;
+use App\Models\RegistrationDetailsModel;
+use App\Models\RegistrationModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class Event extends BaseController {
@@ -89,5 +91,23 @@ class Event extends BaseController {
 		$event = $this->events->find($eventId);
 		$event->attemptCancellation($memberId);
 		return redirect()->back()->with('success', 'Registration is deleted');
+	}
+
+	public function registrationDetails( int $eventId, int $memberId ){
+		$registrationDetails = new RegistrationDetailsModel();
+		$registrations = new RegistrationModel();
+		
+		$event = $this->events->find($eventId);
+		$registration = $registrations->getUserRegistrationForEvent($memberId, $eventId);
+
+		$data = [
+			'event_id' => $event->event_id,
+			'details' => $registrationDetails->getUserDetailsForEvent($memberId, $eventId),
+			'nszk' => $event->kind === 'nszk',
+			'inschrijving' => $registration,
+			'slagen' => json_decode( $registration->slagen ?? '[]' ),
+		];
+		
+		return view('admin/event/registrationDetails', $data);
 	}
 }
