@@ -132,3 +132,5 @@ public/fotos/
 public/images/
 public/uploads/
 public/assets/
+node_modules/
+yarn-error.log

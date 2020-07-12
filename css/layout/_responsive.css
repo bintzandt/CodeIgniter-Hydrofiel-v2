@@ -1,0 +1,79 @@
+@media (max-width: 1080px) {
+	.banner-info {
+		margin-top: 10px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.banner {
+		height: 24em;
+	}
+}
+
+@media (min-width: 908px), (max-width: 1000px) {
+	.banner-info {
+		margin-top: 0;
+	}
+}
+@media (min-width: 1200px) {
+	.banner-info {
+		margin-top: 7em;
+	}
+}
+
+@media (max-width: 640px) {
+	.banner-info h2 {
+		font-size: 2em;
+	}
+	.banner {
+		height: 15em;
+	}
+}
+
+@media (max-width: 520px) {
+	.banner {
+		height: 10em !important;
+	}
+
+	.banner-info h2 {
+		font-size: 1.2em;
+		width: 55%;
+	}
+
+	.banner-info p {
+		display: none;
+	}
+}
+@media (max-width: 480px) {
+	.fa-facebook, .fa-snapchat-ghost, .fa-envelope, .fa-instagram {
+		height: 30px;
+		width: 30px;
+		line-height: 30px;
+	}
+	
+	.fa-facebook:hover, .fa-snapchat-ghost:hover, .fa-envelope:hover, .fa-instagram:hover {
+		height: 30px;
+		width: 30px;
+		line-height: 30px;
+	}
+}
+
+@media (max-width: 320px) {
+	.banner-info h2 {
+		width: 76%;
+	}
+
+	.footer {
+		padding: 1em 0;
+	}
+}
+
+@media (max-width: 216px){
+	.banner-info h2 {
+		font-size: 0.6em;
+	}
+
+	.banner {
+		height: 7em !important;
+	}
+}

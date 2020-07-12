@@ -1,0 +1,108 @@
+html, body {
+	background-color: var(--background-color);
+	color: var(--secondary-color);
+}
+
+hr {
+	overflow: visible;
+	height: 10px;
+	border-style: solid;
+	border-color: var(--primary-color);
+	border-width: 4px 0 0 0;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+td {
+	background-color: var(--background-color);
+}
+
+.banner-info {
+	cursor: pointer;
+}
+
+th {
+	color: var(--secondary-color);
+}
+
+i {
+	transition: 0.2s all;
+}
+
+i:hover {
+	transform: scale(1.2);
+}
+
+tbody, .text-primary {
+	color: var(--secondary-color);
+}
+
+.clickable-row {
+	cursor: pointer;
+	background-color: var(--background-color);
+	color: var(--secondary-color);
+}
+
+.clickable-row:hover {
+	color: var(--primary-color);
+	text-decoration: underline;
+}
+
+a:not([type^="button"]) {
+	color: var(--primary-color);
+	cursor: pointer;
+	transition: 0.2s all;
+}
+
+a:not([type^="button"]):hover {
+	text-decoration: underline;
+	color: var(--primary-color);
+}
+
+.footer-link {
+	color: var(--secondary-color);
+}
+
+.footer-link:hover {
+	color: var(--primary-color)
+}
+
+[hidden] {
+	display: none !important;
+}
+
+.oranje_tekst, h1, h2, h3, h4, h5, h6 {
+	color: var(--primary-color);
+}
+
+.form-signin {
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-control {
+	position: relative;
+	font-size: 100%;
+	height: auto;
+	padding: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-signin input {
+	margin-bottom: 10px;
+}
+
+.button--icon {
+	background-attachment: none;
+	border: 0;
+	padding: 0;
+	color: var(--primary-color);
+	cursor: pointer;
+}
+.button--icon:hover {
+	transform: scale(1.2);
+	transition: 0.2s all;
+	text-decoration: underline;
+}
