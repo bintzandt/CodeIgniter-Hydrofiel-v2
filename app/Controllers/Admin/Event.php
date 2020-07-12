@@ -47,6 +47,29 @@ class Event extends BaseController {
 	 */
 	public function saveEvent(): RedirectResponse {
 		$eventData = $this->request->getPost();
+		
+		$rules = [
+			'event_id' => 'if_exist|integer',
+			'nl_naam' => 'required|string',
+			'nl_omschrijving' => 'required|string',
+			'en_naam' => 'required|string',
+			'en_omschrijving' => 'required|string',
+			'kind' => 'required|in_list[nszk,algemeen,toernooi]',
+			'from' => 'required|valid_date[d-m-Y H:i]',
+			'until' => 'required|valid_date[d-m-Y H:i]',
+			'link' => 'if_exist|string',
+			'location' => 'if_exist|string',
+			'needsRegistration' => 'required|in_list[0,1]',
+			'inschrijfdeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+			'afmelddeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+			'needsPayment' => 'if_exist|in_list[0,1]',
+			'maximumRegistrations' => 'if_exist|integer',
+		];
+		
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput();
+		}
+
 		$event = new EventEntity($eventData);
 		if ($this->events->save($event)) {
 			return redirect()->to('/admin/event')->with('success', 'Het evenement is opgeslagen');
@@ -80,34 +103,37 @@ class Event extends BaseController {
 	 * Removes the registration for a user.
 	 * 
 	 * @param int $eventId The ID of the event.
-	 * @param int $memberId The ID of the member.
+	 * @param int $userId The ID of the user.
 	 * 
 	 * @return RedirectResponse Redirects back to the previous page.
 	 */
-	public function cancelRegistration(int $eventId, int $memberId): RedirectResponse {
+	public function cancelRegistration(int $eventId, int $userId): RedirectResponse {
 		/**
 		 * @var EventEntity $event
 		 */
 		$event = $this->events->find($eventId);
-		$event->attemptCancellation($memberId);
+		$event->attemptCancellation($userId);
 		return redirect()->back()->with('success', 'Registration is deleted');
 	}
 
-	public function registrationDetails( int $eventId, int $memberId ){
+	/**
+	 * Display the details for a certain registration
+	 */
+	public function registrationDetails(int $eventId, int $userId) {
 		$registrationDetails = new RegistrationDetailsModel();
 		$registrations = new RegistrationModel();
-		
+
 		$event = $this->events->find($eventId);
-		$registration = $registrations->getUserRegistrationForEvent($memberId, $eventId);
+		$registration = $registrations->getUserRegistrationForEvent($userId, $eventId);
 
 		$data = [
 			'event_id' => $event->event_id,
-			'details' => $registrationDetails->getUserDetailsForEvent($memberId, $eventId),
+			'details' => $registrationDetails->getUserDetailsForEvent($userId, $eventId),
 			'nszk' => $event->kind === 'nszk',
 			'inschrijving' => $registration,
-			'slagen' => json_decode( $registration->slagen ?? '[]' ),
+			'slagen' => json_decode($registration->slagen ?? '[]'),
 		];
-		
+
 		return view('admin/event/registrationDetails', $data);
 	}
 }

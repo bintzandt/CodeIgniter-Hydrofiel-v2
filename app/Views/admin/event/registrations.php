@@ -18,7 +18,7 @@
 					<td class="clickable-row" data-href="/admin/event/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->name ?></td>
 					<td class="clickable-row" data-href="/admin/event/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->datum->format('d-m-Y H:i') ?></td>
 					<td>
-						<button aria-label="Delete registration"  class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->event_id ?>" data-memberId="<?= $registration->member_id ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
+						<button aria-label="Delete registration"  class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->event_id ?>" data-userId="<?= $registration->member_id ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
 					</td>
 				</tr>
 			<?php } ?>
@@ -36,7 +36,7 @@
 	function showDeleteRegistrationModal() {
 		const name = this.getAttribute('data-memberName');
 		const eventId = this.getAttribute('data-eventId');
-		const memberId = this.getAttribute('data-memberId');
+		const userId = this.getAttribute('data-userId');
 		showBSModal({
 			title: "Weet je het zeker?",
 			body: `De inschrijving van ${ name } zal verwijderd worden!`,
@@ -44,7 +44,7 @@
 				label: "Ja",
 				cssClass: "btn-danger",
 				onClick: function() {
-					window.location.assign(`/admin/event/cancelRegistration/${ eventId }/${ memberId }`);
+					window.location.assign(`/admin/event/cancelRegistration/${ eventId }/${ userId }`);
 				},
 			}, {
 				label: "Nee",

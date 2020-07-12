@@ -213,11 +213,11 @@ class Event extends Entity {
 	/**
 	 * Attempts to cancel the registration of the current user.
 	 * 
-	 * @param int $memberId An optional ID of a member.
+	 * @param int $userId An optional ID of a user.
 	 * 
 	 * @throws Error Error when the cancelation deadline has passed.
 	 */
-	public function attemptCancellation(?int $memberId = null) {
+	public function attemptCancellation(?int $userId = null) {
 		// Admins can cancel a registration after the deadline has passed.
 		if ($this->cancellationDeadlinePassed() && !isAdmin()) {
 			throw new Error(lang('Event.noCancel'));
@@ -226,11 +226,11 @@ class Event extends Entity {
 		// Remove registration details for nszk's.
 		if ($this->kind === 'nszk') {
 			$registrationDetailsModel = new RegistrationDetailsModel();
-			$registrationDetailsModel->removeUserDetailsForEvent($memberId ?? currentUserId(), $this->event_id);
+			$registrationDetailsModel->removeUserDetailsForEvent($userId ?? currentUserId(), $this->event_id);
 		}
 
 		// Remove the registration.
-		$this->registrationModel->cancelUserForEvent($memberId ?? currentUserId(), $this->event_id);
+		$this->registrationModel->cancelUserForEvent($userId ?? currentUserId(), $this->event_id);
 	}
 
 	/**

@@ -46,7 +46,7 @@ class Auth extends BaseController {
 		];
 
 		if (!$this->validate($rules)){
-			return redirect()->back()->withInput()->with('validator', $this->validator);
+			return redirect()->back()->withInput();
 		}
 
 		$email = $this->request->getPost('email');
