@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "grunt": "^1.2.1",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-tasks": "^1.0.0",
+    "grunt-terser": "^1.0.0"
+  }
+}

@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use \App\Controllers\BaseController;
+use \App\Entities\Post as PostEntity;
 use App\Models\PostModel;
 
 /**
@@ -14,7 +15,7 @@ class Post extends BaseController {
 	/**
 	 * Sets up the PostModel.
 	 */
-	public function __construct() {
+	public function __construct( $data = null ) {
 		helper('form');
 		$this->posts = new PostModel();
 	}
@@ -32,10 +33,10 @@ class Post extends BaseController {
 	/**
 	 * Adds a post to the DB.
 	 */
-	public function addPost() {
+	public function createPost() {
 		$data = $this->request->getPost();
-		$post = new Post($data);
-		if ($this->posts->save($data)){
+		$post = new PostEntity($data);
+		if ($this->posts->save($post)){
 			return redirect()->back()->with('success', 'Post is toegevoegd');
 		}
 

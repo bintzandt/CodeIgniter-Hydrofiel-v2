@@ -1,5 +1,4 @@
 <?= $this->extend('templates/default'); ?>
-
 <?= $this->section('body') ?>
 <div class="row">
 	<div class="col-md-2 d-none d-md-block">
@@ -22,7 +21,7 @@
 		<a href="/agenda">
 			<h3><?= lang('Home.homeEvents') ?></h3>
 		</a>
-		<?php if (!empty($events)) {
+		<?php if (!empty($upcomingEvents)) {
 			foreach ($upcomingEvents as $event) { ?>
 				<div>
 					<span class="far fa-calendar"></span><a href="/event/<?= $event->event_id ?>"> <?= $event->name ?></a><br>
