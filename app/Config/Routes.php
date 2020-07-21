@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use App\Models\EventModel;
 use App\Models\PageModel;
@@ -8,8 +10,7 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 	require SYSTEMPATH . 'Config/Routes.php';
 }
 
@@ -39,7 +40,7 @@ $routes->get('switchLanguage', 'Home::switchLanguage', ['as' => 'switchLanguage'
 /**
  * Authentication routes
  */
-$routes->group('', function($routes){
+$routes->group('', function ($routes) {
 	// Login / logout
 	$routes->get('login', 'Auth::login', ['as' => 'login']);
 	$routes->post('login', 'Auth::attemptLogin');
@@ -53,6 +54,7 @@ $routes->group('', function($routes){
 });
 
 $routes->get('page/(:num)', 'Page::index/$1');
+$routes->get('user/(:num)', 'User::index/$1');
 $routes->post('user/edit/(:num)', 'User::save/$1');
 
 $routes->get('event/(:num)', 'Event::id/$1');
@@ -61,6 +63,8 @@ $routes->post('event/(:num)', 'Event::handleFormSubmission/$1');
 $routes->post('admin/mail/', 'Admin\Mail::handleEmailFormSubmission');
 $routes->post('admin/post', 'Admin\Post::createPost');
 $routes->post('admin/event', 'Admin\Event::saveEvent');
+
+$routes->post('admin/user/import', 'Admin\User::handleImport');
 
 /**
  * --------------------------------------------------------------------
@@ -75,7 +79,6 @@ $routes->post('admin/event', 'Admin\Event::saveEvent');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
