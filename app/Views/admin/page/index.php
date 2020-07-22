@@ -1,15 +1,20 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
 <?php
-function get_status($bereikbaar, $zichtbaar) {
+function get_status($bereikbaar, $zichtbaar, $ingelogd) {
 	$status = '';
+	if ($bereikbaar == 'nee') {
+		return '<i class="fa fa-exclamation-circle">';
+	}
+
 	if ($zichtbaar == 'ja') {
 		$status .= '<i class="fa fa-check">';
 	} else {
 		$status .= '<i class="fa fa-eye-slash">';
 	}
-	if ($bereikbaar == 'nee') {
-		$status .= '<i class="fa fa-exclamation-circle">';
+
+	if ($ingelogd) {
+		$status .= '<i class="fa fa-key">';
 	}
 
 	return $status;
@@ -29,10 +34,10 @@ function get_status($bereikbaar, $zichtbaar) {
 		<?php foreach ($pages as $hoofd) { ?>
 			<tr>
 				<td class="clickable-row" data-href="/admin/pages/edit/<?= $hoofd->id ?>" style="padding-right: 0;"><?= $hoofd->naam ?></td>
-				<td class="d-xs-none"><?= get_status($hoofd->bereikbaar, $hoofd->zichtbaar) ?></td>
+				<td class="d-xs-none"><?= get_status($hoofd->bereikbaar, $hoofd->zichtbaar, $hoofd->ingelogd) ?></td>
 				<td><?= form_open(''); ?>
-					<a href="/admin/pages/up/<?= $hoofd->id ?>"><i class="fa fa-arrow-up"></i></a>
-					<a href="/admin/pages/down/<?= $hoofd->id ?>"><i class="fa fa-arrow-down"></i></a>
+					<!-- <a href="/admin/pages/up/<?= $hoofd->id ?>"><i class="fa fa-arrow-up"></i></a> -->
+					<!-- <a href="/admin/pages/down/<?= $hoofd->id ?>"><i class="fa fa-arrow-down"></i></a> -->
 					<a href="/admin/pages/edit/<?= $hoofd->id ?>"><i class="fa fa-pencil-alt"></i></a>
 					<button type="button" class="delete button--icon" data-pageName="<?= $hoofd->naam ?>" data-pageId="<?= $hoofd->id ?>"><i class="fa fa-trash"></i></button>
 					<?= form_close() ?>
@@ -42,10 +47,10 @@ function get_status($bereikbaar, $zichtbaar) {
 				foreach ($hoofd->subPages as $sub) { ?>
 					<tr>
 						<td class="clickable-row pl-4" data-href="/admin/pages/edit/<?= $sub->id ?>"><?= $sub->naam ?></td>
-						<td class="d-xs-none"><?= get_status($sub->bereikbaar, $sub->zichtbaar) ?></td>
+						<td class="d-xs-none"><?= get_status($sub->bereikbaar, $sub->zichtbaar, $sub->ingelogd) ?></td>
 						<td><?= form_open(''); ?>
-							<a href="/admin/pages/up/<?= $sub->id ?>"><i class="fa fa-arrow-up"></i></a>
-							<a href="/admin/pages/down/<?= $sub->id ?>"><i class="fa fa-arrow-down"></i></a>
+							<!-- <a href="/admin/pages/up/<?= $sub->id ?>"><i class="fa fa-arrow-up"></i></a> -->
+							<!-- <a href="/admin/pages/down/<?= $sub->id ?>"><i class="fa fa-arrow-down"></i></a> -->
 							<a href="/admin/pages/edit/<?= $sub->id ?>"><i class="fa fa-pencil-alt"></i></a>
 							<button type="button" class="delete button--icon" data-pageName="<?= $sub->naam ?>" data-pageId="<?= $sub->id ?>"><i class="fa fa-trash"></i></button>
 							<?= form_close(); ?>
@@ -71,20 +76,16 @@ function get_status($bereikbaar, $zichtbaar) {
 					<td>Pagina zichtbaar in menu</td>
 				</tr>
 				<tr>
+					<td><i class="fa fa-key"></i></td>
+					<td>Je moet ingelogd zijn om pagina te bereiken</td>
+				</tr>
+				<tr>
 					<td><i class="fa fa-eye-slash"></i></td>
 					<td>Pagina niet zichtbaar in menu</td>
 				</tr>
 				<tr>
 					<td><i class="fa fa-exclamation-circle"></i></td>
 					<td>Deze pagina kan niet gezien worden</td>
-				</tr>
-				<tr>
-					<td><i class="fa fa-arrow-down"></i></td>
-					<td>Pagina omlaag verplaatsen</td>
-				</tr>
-				<tr>
-					<td width="50"><i class="fa fa-arrow-up"></i></td>
-					<td>Pagina omhoog verplaatsen</td>
 				</tr>
 				<tr>
 					<td><i class="fa fa-pencil-alt"></i></td>
@@ -109,7 +110,7 @@ function get_status($bereikbaar, $zichtbaar) {
 
 		showBSModal({
 			title: "Weet je het zeker?",
-			body: `De pagina ${ name } wordt verwijderd`,
+			body: `De pagina ${ name } wordt verwijderd. Alle pagina's die onder deze pagina hangen zijn dan ook niet meer toegankelijk.`,
 			actions: [{
 				label: "Ja",
 				cssClass: "btn-danger",

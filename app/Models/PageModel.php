@@ -10,7 +10,7 @@ class PageModel extends Model {
 	protected $returnType = 'App\Entities\Page';
 	protected $useTimeStamps = false;
 
-	protected $allowedFields = ['tekst','engels','zichtbaar','bereikbaar','ingelogd'];
+	protected $allowedFields = ['tekst','engels','zichtbaar','bereikbaar','ingelogd', 'submenu'];
 
 	/**
 	 * Builds a list of all the pages with their hierarchy. Some pages are subpages of a main item.

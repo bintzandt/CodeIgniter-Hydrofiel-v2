@@ -19,7 +19,7 @@ class Mail extends BaseController {
 	 */
 	public function index() {
 		$users = new UserModel();
-		return view('admin/mail/index', ['leden' => $users->findAll()]);
+		return view('admin/mail', ['leden' => $users->findAll()]);
 	}
 
 	/**

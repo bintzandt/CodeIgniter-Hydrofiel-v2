@@ -1,7 +1,7 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
 <?php $eventRoute = '/admin/events'; ?>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="<?= $eventRoute ?>/addOrEdit"><b>Activiteit
+<div class="navigation-link"><a href="<?= $eventRoute ?>/addOrEdit"><b>Activiteit
 			toevoegen</b></a></div>
 <?php if (empty($upcomingEvents)) { ?>
 	<b>Er zijn geen aankomende evenementen.</b>

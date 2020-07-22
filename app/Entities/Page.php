@@ -8,6 +8,10 @@ class Page extends Entity {
 		'requiresLogIn' => 'ingelogd',
 	];
 
+	protected $casts = [
+		'ingelogd' => 'boolean',
+	];
+
 	public function getText(): string {
 		return isEnglish() ? $this->engels : $this->tekst;
 	}

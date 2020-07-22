@@ -17,7 +17,7 @@
 		});
 	});
 </script>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/agenda"><b>Terug</b></a></div>
+<div class="navigation-link"><a href="/beheer/agenda"><b>Terug</b></a></div>
 <?= \Config\Services::validation()->listErrors() ?>
 <?= form_open_multipart('/admin/events') ?>
 <?php if ($edit_mode) { ?>
