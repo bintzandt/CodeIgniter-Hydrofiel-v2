@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<?php $eventRoute = '/admin/event'; ?>
+<?php $eventRoute = '/admin/events'; ?>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a href="<?= $eventRoute ?>/addOrEdit"><b>Activiteit
 			toevoegen</b></a></div>
 <?php if (empty($upcomingEvents)) { ?>
@@ -70,7 +70,7 @@ if (empty($passedEvents)) { ?>
 				label: "Ja",
 				cssClass: "btn-danger",
 				onClick: () => {
-					window.location.assign(`/admin/event/delete/${ this.getAttribute("data-id") }`);
+					window.location.assign(`/admin/events/delete/${ this.getAttribute("data-id") }`);
 				},
 			}, {
 				label: "Nee",

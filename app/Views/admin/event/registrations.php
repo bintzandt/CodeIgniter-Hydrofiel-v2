@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/admin/event"><b>Terug</b></a></div>
+<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/admin/events"><b>Terug</b></a></div>
 <?php if (isset($error)) { ?>
 	<b>Er zijn geen inschrijvingen voor dit evenement of voor dit evenement kan niet worden ingeschreven.</b>
 <?php } else { ?>
@@ -15,8 +15,8 @@
 		<tbody>
 			<?php foreach ($registrations as $registration) { ?>
 				<tr>
-					<td class="clickable-row" data-href="/admin/event/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->name ?></td>
-					<td class="clickable-row" data-href="/admin/event/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->datum->format('d-m-Y H:i') ?></td>
+					<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->name ?></td>
+					<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->datum->format('d-m-Y H:i') ?></td>
 					<td>
 						<button aria-label="Delete registration"  class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->event_id ?>" data-userId="<?= $registration->member_id ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
 					</td>
@@ -44,7 +44,7 @@
 				label: "Ja",
 				cssClass: "btn-danger",
 				onClick: function() {
-					window.location.assign(`/admin/event/cancelRegistration/${ eventId }/${ userId }`);
+					window.location.assign(`/admin/events/cancelRegistration/${ eventId }/${ userId }`);
 				},
 			}, {
 				label: "Nee",

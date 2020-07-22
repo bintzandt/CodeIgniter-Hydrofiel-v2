@@ -1,7 +1,7 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a
-            href="/admin/event/registrations/<?= $event_id ?>"><b>Terug</b></a></div>
+            href="/admin/events/registrations/<?= $event_id ?>"><b>Terug</b></a></div>
 <?= form_open(); ?>
 <div class="form-group">
     <div class="col-md-4">

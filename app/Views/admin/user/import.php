@@ -1,7 +1,7 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
 
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/admin/user"><b>Terug</b></a></div>
+<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/admin/users"><b>Terug</b></a></div>
 <?= form_open_multipart(); ?>
 <input type="file" name="users" size="20" />
 <br /><br />

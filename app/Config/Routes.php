@@ -61,10 +61,10 @@ $routes->get('event/(:num)', 'Event::id/$1');
 $routes->post('event/(:num)', 'Event::handleFormSubmission/$1');
 
 $routes->post('admin/mail/', 'Admin\Mail::handleEmailFormSubmission');
-$routes->post('admin/post', 'Admin\Post::createPost');
-$routes->post('admin/event', 'Admin\Event::saveEvent');
+$routes->post('admin/posts', 'Admin\Posts::createPost');
+$routes->post('admin/events', 'Admin\Events::saveEvent');
 
-$routes->post('admin/user/import', 'Admin\User::handleImport');
+$routes->post('admin/users/import', 'Admin\Users::handleImport');
 
 /**
  * --------------------------------------------------------------------

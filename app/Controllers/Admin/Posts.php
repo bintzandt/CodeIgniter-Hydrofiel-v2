@@ -3,13 +3,13 @@
 namespace App\Controllers\Admin;
 
 use \App\Controllers\BaseController;
-use \App\Entities\Post as PostEntity;
+use \App\Entities\Post;
 use App\Models\PostModel;
 
 /**
  * Class for handling the creation and deletion of posts.
  */
-class Post extends BaseController {
+class Posts extends BaseController {
 	protected PostModel $posts;
 
 	/**
@@ -35,7 +35,7 @@ class Post extends BaseController {
 	 */
 	public function createPost() {
 		$data = $this->request->getPost();
-		$post = new PostEntity($data);
+		$post = new Post($data);
 		if ($this->posts->save($post)){
 			return redirect()->back()->with('success', 'Post is toegevoegd');
 		}

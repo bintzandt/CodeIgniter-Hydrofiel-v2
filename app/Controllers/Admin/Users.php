@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Entities\User as UserEntity;
+use App\Entities\User;
 use App\Models\EventModel;
 use App\Models\UserModel;
 use CodeIgniter\I18n\Time;
@@ -11,7 +11,7 @@ use CodeIgniter\I18n\Time;
 /**
  * Class for importing users.
  */
-class User extends BaseController {
+class Users extends BaseController {
 	protected UserModel $users;
 	protected EventModel $events;
 
@@ -73,9 +73,9 @@ class User extends BaseController {
 			// Add the ID to the array of IDs.
 			array_push($ids, $id);
 
-			$user = new UserEntity([
+			$user = new User([
 				'id' => $id,
-				'name' => UserEntity::createName($row[self::FIRST_NAME], $row[self::MIDDLE_NAME], $row[self::LAST_NAME]),
+				'name' => User::createName($row[self::FIRST_NAME], $row[self::MIDDLE_NAME], $row[self::LAST_NAME]),
 				'email' => $row[self::EMAIL],
 				'birthday' => $row[self::BIRTHDAY],
 				'preferEnglish' => $row[self::IS_ENGLISH],
@@ -93,7 +93,7 @@ class User extends BaseController {
 		// Remove old users.
 		$this->users->where('lidmaatschap !=', 'friend')->whereNotIn('id', $ids)->delete();
 
-		return redirect()->to('/admin/user')->with('success', 'De leden zijn bijgewerkt');
+		return redirect()->to('/admin/users')->with('success', 'De leden zijn bijgewerkt');
 	}
 
 	/**
@@ -128,7 +128,7 @@ class User extends BaseController {
 	private function createNewUsers(array $newUsers) {
 		$events = $this->events->getUpcomingEvents(3);
 		/**
-		 * @var UserEntity $user
+		 * @var User $user
 		 */
 		foreach ($newUsers as &$user) {
 			// Create a new recovery token for the user

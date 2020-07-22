@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div align="right" style="padding: 20px"><a href="/admin/user/import"><b>Leden importeren</b></a></div>
+<div align="right" style="padding: 20px"><a href="/admin/users/import"><b>Leden importeren</b></a></div>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-6">
@@ -73,7 +73,7 @@
 
 	function deleteUser(){
 		const id = this.getAttribute('data-userId');
-		window.location.replace(`/admin/user/delete/${ id }`);
+		window.location.replace(`/admin/users/delete/${ id }`);
 	}
 </script>
 <?= $this->endSection() ?>

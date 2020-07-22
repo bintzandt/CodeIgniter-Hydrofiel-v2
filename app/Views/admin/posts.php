@@ -77,7 +77,7 @@
 				label: "Ja",
 				cssClass: "btn-danger",
 				onClick: function(e) {
-					window.location.replace("/admin/post/deletePost/" + post_id);
+					window.location.replace("/admin/posts/deletePost/" + post_id);
 				},
 			}, {
 				label: "Nee",

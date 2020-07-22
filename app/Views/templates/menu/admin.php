@@ -27,19 +27,19 @@
                         <a href="/admin" class="nav-link">Pagina</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/post" class="nav-link">Posts</a>
+                        <a href="/admin/posts" class="nav-link">Posts</a>
                     </li>
                     <li class="nav-item">
                         <a href="/admin/upload" class="nav-link">Uploaden</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/event" class="nav-link">Agenda</a>
+                        <a href="/admin/events" class="nav-link">Agenda</a>
                     </li>
                     <li class="nav-item">
                         <a href="/admin/mail" class="nav-link">Mail</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/user" class="nav-link">Leden</a>
+                        <a href="/admin/users" class="nav-link">Leden</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Terug</a>

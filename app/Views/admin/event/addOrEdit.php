@@ -19,7 +19,7 @@
 </script>
 <div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/agenda"><b>Terug</b></a></div>
 <?= \Config\Services::validation()->listErrors() ?>
-<?= form_open_multipart('/admin/event') ?>
+<?= form_open_multipart('/admin/events') ?>
 <?php if ($edit_mode) { ?>
 	<input type="hidden" name="event_id" value="<?= $event->event_id ?>">
 <?php } ?>

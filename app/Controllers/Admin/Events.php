@@ -4,12 +4,12 @@ namespace App\Controllers\Admin;
 
 use \App\Controllers\BaseController;
 use \App\Models\EventModel;
-use \App\Entities\Event as EventEntity;
+use \App\Entities\Event;
 use App\Models\RegistrationDetailsModel;
 use App\Models\RegistrationModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
-class Event extends BaseController {
+class Events extends BaseController {
 	protected EventModel $events;
 
 	public function __construct() {
@@ -70,11 +70,11 @@ class Event extends BaseController {
 			return redirect()->back()->withInput();
 		}
 
-		$event = new EventEntity($eventData);
+		$event = new Event($eventData);
 		if ($this->events->save($event)) {
-			return redirect()->to('/admin/event')->with('success', 'Het evenement is opgeslagen');
+			return redirect()->to('/admin/events')->with('success', 'Het evenement is opgeslagen');
 		}
-		return redirect()->to('/admin/event')->with('error', 'Er ging iets fout bij het opslaan van het evenement');
+		return redirect()->to('/admin/events')->with('error', 'Er ging iets fout bij het opslaan van het evenement');
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Event extends BaseController {
 	 */
 	public function registrations(int $eventId): string {
 		$event = $this->events->find($eventId);
-		return view('admin/event/registrations', ['registrations' => $event->registrations]);
+		return view('admin/events/registrations', ['registrations' => $event->registrations]);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class Event extends BaseController {
 	 */
 	public function cancelRegistration(int $eventId, int $userId): RedirectResponse {
 		/**
-		 * @var EventEntity $event
+		 * @var Event $event
 		 */
 		$event = $this->events->find($eventId);
 		$event->attemptCancellation($userId);
@@ -134,6 +134,6 @@ class Event extends BaseController {
 			'slagen' => json_decode($registration->slagen ?? '[]'),
 		];
 
-		return view('admin/event/registrationDetails', $data);
+		return view('admin/events/registrationDetails', $data);
 	}
 }
