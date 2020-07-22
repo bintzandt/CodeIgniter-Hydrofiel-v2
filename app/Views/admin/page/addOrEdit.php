@@ -39,7 +39,7 @@
 	<div class="form-check form-check-inline">
 		<label class="form-check-label"><input class="form-check-input" required <?= ($edit_mode && $page->submenu !== 'A') ? 'checked' : '' ?> type="radio" onchange="update(this.value)" name="mainMenuItem" value="0">Nee</label>
 	</div>
-	<?php if ($page->submenu === 'A') { ?>
+	<?php if ($edit_mode && $page->submenu === 'A') { ?>
 		<small class="form-text text-muted">
 			Het veranderen van een hoofdmenu naar een submenu zorgt ervoor dat alle pagina's die er onder hangen niet meer toegankelijk zullen zijn. Zorg ervoor dat je deze pagina's eerst onder een ander menu item hangt.
 		</small>
@@ -54,7 +54,7 @@
 		<label class="form-check-label"><input class="form-check-input" required <?= ($edit_mode && !$page->ingelogd) ? 'checked' : '' ?> type="radio" name="ingelogd" value="0">Nee</label>
 	</div>
 </div>
-<div id="menu" class="<?= $page->submenu === 'A' ? 'd-none' : '' ?>">
+<div id="menu" class="<?= ( $edit_mode && $page->submenu === 'A' ) ? 'd-none' : ( ! $edit_mode ? 'd-none' : '' ) ?>">
 	<div class="form-group">
 		<label id="labelna" for="na">Onder welk menu</label>
 		<select class="form-control" id="na" name="na">
