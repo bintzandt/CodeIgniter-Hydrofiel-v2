@@ -71,6 +71,8 @@ $routes->get('admin/pages/add', 'Admin\Pages::addOrEdit');
 $routes->get('admin/pages/edit/(:num)', 'Admin\Pages::addOrEdit/$1');
 $routes->post('admin/pages', 'Admin\Pages::save');
 
+$routes->post('admin/uploads', 'Admin\Uploads::handleUpload');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

@@ -30,7 +30,7 @@
                         <a href="/admin/posts" class="nav-link">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/upload" class="nav-link">Uploaden</a>
+                        <a href="/admin/uploads" class="nav-link">Uploaden</a>
                     </li>
                     <li class="nav-item">
                         <a href="/admin/events" class="nav-link">Agenda</a>

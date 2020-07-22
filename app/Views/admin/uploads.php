@@ -2,10 +2,11 @@
 <?= $this->section('body') ?>
 <div style="padding-bottom: 15px">
 	<h3>Bestanden uploaden</h3><br>
-	<?= form_open_multipart("/beheer/upload/files") ?>
-	<input name="userfile[]" type="file" multiple><br><br>
-	<button class="btn btn-primary" type="submit">Uploaden</button>
-	<br>
+	<?= form_open_multipart() ?>
+	<div class="form-group">
+		<input name="userfile[]" type="file" multiple>
+		<button class="btn btn-primary" type="submit">Uploaden</button>
+	</div>
 	<?= form_close() ?>
 </div>
 <hr>
