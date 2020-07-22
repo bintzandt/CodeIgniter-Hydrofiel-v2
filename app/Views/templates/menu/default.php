@@ -64,7 +64,7 @@ function generate_icon($name)
                         <li class="nav-item"><a href="/user" class="nav-link"><span
                                         class="fa fa-user"></span> <?= lang('General.generalProfile') ?> </a></li>
                         <?php if (isAdmin()) { ?>
-                            <li class="nav-item"><a href="/beheer" class="nav-link"><span
+                            <li class="nav-item"><a href="/admin" class="nav-link"><span
                                             class="fa fa-cogs"></span> <?= lang('General.generalControlPanel') ?></a></li>
                         <?php } ?>
                         <li class="nav-item"><a href="<?= route_to('logout') ?>" class="nav-link"><span

@@ -26,6 +26,7 @@ class MenuModel extends Model {
 			->select( 'id, naam, engelse_naam, ingelogd' )
 			->where('submenu', 'A')
 			->where('bereikbaar', 'ja')
+			->orderBy('id')
 			->orderBy('plaats')
 			->get()
 			->getCustomResultObject('App\Entities\MenuItem');
@@ -50,6 +51,7 @@ class MenuModel extends Model {
 			->select('id, naam, engelse_naam, ingelogd')
 			->where('submenu', $mainMenuId)
 			->where('bereikbaar', 'ja')
+			->orderBy('id')
 			->orderBy('plaats')
 			->get()
 			->getCustomResultObject('App\Entities\MenuItem');

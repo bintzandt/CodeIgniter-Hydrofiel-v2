@@ -106,3 +106,9 @@ a:not([type^="button"]):hover {
 	transition: 0.2s all;
 	text-decoration: underline;
 }
+
+.navigation-link {
+	text-align:right;
+	vertical-align: top;
+	padding: 20px;
+}

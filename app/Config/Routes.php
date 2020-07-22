@@ -66,6 +66,11 @@ $routes->post('admin/events', 'Admin\Events::saveEvent');
 
 $routes->post('admin/users/import', 'Admin\Users::handleImport');
 
+$routes->get('admin', 'Admin\Pages::index');
+$routes->get('admin/pages/add', 'Admin\Pages::addOrEdit');
+$routes->get('admin/pages/edit/(:num)', 'Admin\Pages::addOrEdit/$1');
+$routes->post('admin/pages', 'Admin\Pages::save');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

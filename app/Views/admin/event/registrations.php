@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/admin/events"><b>Terug</b></a></div>
+<div class="navigation-link"><a href="/admin/events"><b>Terug</b></a></div>
 <?php if (isset($error)) { ?>
 	<b>Er zijn geen inschrijvingen voor dit evenement of voor dit evenement kan niet worden ingeschreven.</b>
 <?php } else { ?>

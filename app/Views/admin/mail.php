@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/mail/history"><b>Geschiedenis</b></a></div>
+<div class="navigation-link"><a href="/beheer/mail/history"><b>Geschiedenis</b></a></div>
 <?= form_open_multipart('', ['id' => 'mailForm']); ?>
 <?= \Config\Services::validation()->listErrors() ?>
 <div class="form-group">
@@ -104,6 +104,6 @@
 	</div>
 </div>
 <?= form_close() ?>
-<div style="text-align:right; vertical-align: top; padding: 20px;"><a href="/beheer/mail/vrienden"><b>Vrienden van
+<div class="navigation-link"><a href="/beheer/mail/vrienden"><b>Vrienden van
 			Hydrofiel</b></a></div>
 <?= $this->endSection() ?>
