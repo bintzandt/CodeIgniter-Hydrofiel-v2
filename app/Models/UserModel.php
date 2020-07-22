@@ -10,7 +10,19 @@ class UserModel extends Model {
 	protected $returnType = 'App\Entities\User';
 	protected $useTimeStamps = false;
 
-	protected $allowedFields = ['recovery', 'recovery_valid', 'email', 'wachtwoord', 'engels', 'nieuwsbrief', 'zichtbaar_email'];
+	protected $allowedFields = [
+		'id',
+		'naam',
+		'recovery',
+		'geboortedatum',
+		'recovery_valid',
+		'email', 
+		'wachtwoord',
+		'engels',
+		'nieuwsbrief',
+		'lidmaatschap',
+		'zichtbaar_email',
+	];
 
 	/**
 	 * Get a list of upcoming birthdays.

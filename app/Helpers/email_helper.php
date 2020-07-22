@@ -19,12 +19,33 @@ if (!function_exists('sendResetEmail')) {
 			$from,
 			$user->email,
 			[],
-			lang('Email.passwordResetSubject'),
-			view(lang('Email.passwordResetPath'), [
+			lang('Email.passwordResetSubject', [], $user),
+			view(lang('Email.passwordResetPath', [], $user), [
 				'recovery' => $user->recovery,
 				'valid' => $user->recovery_valid,
 			]),
 		);
+	}
+}
+
+if (!function_exists('sendWelcomeEmail')) {
+	/**
+	 * Send a welcome email for a new user.
+	 * 
+	 * @return bool Indicates whether the email was send succesfully.
+	 */
+	function sendWelcomeEmail(User $user, array $events): bool {
+		$email = Services::email();
+		$email->clear(true);
+
+		return $email
+			->setFrom('bestuur@hydrofiel.nl', 'Bestuur N.S.Z.&W.V. Hydrofiel')
+			->setTo($user->email)
+			->setSubject(lang('Email.welcomeSubject', [], $user))
+			->setMessage(view(lang('Email.welcomeView', [], $user), ['user' => $user, 'events' => $events]))
+			->setMailType('html')
+			->attach( APPPATH . lang('Email.welcomeAttachment', [], $user))
+			->send();
 	}
 }
 

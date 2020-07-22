@@ -1,9 +1,10 @@
 <?php
+
 use Config\Services;
 use App\Models\UserModel;
 use App\Entities\User;
 
-if (! function_exists('isLoggedIn')){
+if (!function_exists('isLoggedIn')) {
 	/**
 	 * Checks whether an user is signed in.
 	 * 
@@ -11,18 +12,18 @@ if (! function_exists('isLoggedIn')){
 	 */
 	function isLoggedIn(): bool {
 		$session = Services::session();
-		return !! $session->loggedIn;
+		return !!$session->loggedIn;
 	}
 }
 
-if (! function_exists('currentUserId')){
+if (!function_exists('currentUserId')) {
 	/**
 	 * Retrieves the current userId from the session.
 	 * 
 	 * @return int|null The signed-in userId or null.
 	 */
 	function currentUserId(): ?int {
-		if (!isLoggedIn()){
+		if (!isLoggedIn()) {
 			return null;
 		}
 
@@ -31,14 +32,14 @@ if (! function_exists('currentUserId')){
 	}
 }
 
-if (! function_exists('currentUser')){
+if (!function_exists('currentUser')) {
 	/**
 	 * Retrieves the current user from the session.
 	 * 
 	 * @return User|null The signed-in user or null.
 	 */
 	function currentUser(): ?User {
-		if (!isLoggedIn()){
+		if (!isLoggedIn()) {
 			return null;
 		}
 
@@ -48,14 +49,17 @@ if (! function_exists('currentUser')){
 	}
 }
 
-if (! function_exists('isAdmin')){
+if (!function_exists('isAdmin')) {
 	/**
 	 * Checks if the current user is an admin.
 	 * 
 	 * @return bool true if the current user is admin, false otherwise.
 	 */
 	function isAdmin(): bool {
+		if (!currentUser()) {
+			return false;
+		}
+
 		return currentUser()->isAdmin();
 	}
 }
-

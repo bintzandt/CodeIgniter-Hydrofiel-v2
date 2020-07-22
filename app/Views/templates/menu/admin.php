@@ -24,22 +24,22 @@
             <div class="collapse navbar-collapse justify-content-end" id="hydrofiel-nav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="/beheer" class="nav-link">Pagina</a>
+                        <a href="/admin" class="nav-link">Pagina</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/beheer/posts" class="nav-link">Posts</a>
+                        <a href="/admin/post" class="nav-link">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/beheer/upload" class="nav-link">Uploaden</a>
+                        <a href="/admin/upload" class="nav-link">Uploaden</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/beheer/agenda" class="nav-link">Agenda</a>
+                        <a href="/admin/event" class="nav-link">Agenda</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/beheer/mail" class="nav-link">Mail</a>
+                        <a href="/admin/mail" class="nav-link">Mail</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/beheer/leden" class="nav-link">Leden</a>
+                        <a href="/admin/user" class="nav-link">Leden</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Terug</a>

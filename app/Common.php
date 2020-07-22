@@ -1,5 +1,8 @@
 <?php
+
+use App\Entities\User;
 use Config\Services;
+
 /**
  * The goal of this file is to allow developers a location
  * where they can overwrite core procedural functions and
@@ -14,8 +17,7 @@ use Config\Services;
  * @link: https://codeigniter4.github.io/CodeIgniter4/
  */
 
-if (! function_exists('lang'))
-{
+if (!function_exists('lang')) {
 	/**
 	 * We overwrite the default lang function because we want to be able to overwrite the language in the session.
 	 *
@@ -25,16 +27,20 @@ if (! function_exists('lang'))
 	 *
 	 * @return string
 	 */
-	function lang(string $line, array $args = [])
-	{
-		if (!function_exists('isEnglish')){
+	function lang(string $line, array $args = [], ?User $user = null) {
+		if (!function_exists('isEnglish')) {
 			helper('language');
 		}
-		
+
 		$locale = 'nl';
-		if (isEnglish()){
-			$locale = 'en';
+		if ($user) {
+			$locale = $user->locale;
+		} else {
+			if (isEnglish()) {
+				$locale = 'en';
+			}
 		}
+
 		return Services::language($locale)
 			->getLine($line, $args);
 	}
