@@ -65,6 +65,7 @@ $routes->post('admin/posts', 'Admin\Posts::createPost');
 $routes->post('admin/events', 'Admin\Events::saveEvent');
 
 $routes->post('admin/users/import', 'Admin\Users::handleImport');
+$routes->post('admin/users/addFriend', 'Admin\Users::handleAddFriend');
 
 $routes->get('admin', 'Admin\Pages::index');
 $routes->get('admin/pages/add', 'Admin\Pages::addOrEdit');

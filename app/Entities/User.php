@@ -58,7 +58,9 @@ class User extends Entity {
 			case 'waterpolo_recreatief':
 				return lang('User.waterpoloRecreation');
 			case 'trainer':
-				return lang('User.traininer');
+				return lang('User.trainer');
+			case 'vriend':
+				return lang('User.friend');
 			case 'zwemmer':
 			default:
 				return lang('User.swimmer');
@@ -173,6 +175,8 @@ class User extends Entity {
 				return 'trainer';
 			case 'Overige':
 				return 'overig';
+			case 'Friend':
+				return 'vriend';
 			default:
 				return 'zwemmer';
 		}

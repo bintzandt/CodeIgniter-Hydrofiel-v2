@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -6,7 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model {
 	protected $table = 'gebruikers';
 	protected $primaryKey = 'id';
-	
+
 	protected $returnType = 'App\Entities\User';
 	protected $useTimeStamps = false;
 
@@ -16,7 +17,7 @@ class UserModel extends Model {
 		'recovery',
 		'geboortedatum',
 		'recovery_valid',
-		'email', 
+		'email',
 		'wachtwoord',
 		'engels',
 		'nieuwsbrief',
@@ -27,7 +28,7 @@ class UserModel extends Model {
 	/**
 	 * Get a list of upcoming birthdays.
 	 */
-	public function getUpcomingBirthdays(int $limit = 3){
+	public function getUpcomingBirthdays(int $limit = 3) {
 		$db = db_connect();
 		$query  = $db->query(
 			"
@@ -44,26 +45,39 @@ class UserModel extends Model {
 	/**
 	 * Gets a list of recipients belonging to a certain group.
 	 */
-	public function getGroupRecipients( string $group, bool $english): array {
-		switch($group){
-			// This group consists of both recreative and competition players.
-			case 'waterpolo': $this->whereIn('lidmaatschap', ['waterpolo_competitie', 'waterpolo_recreatief']); break;
-			// This group consists of everyone that wants to receive the newsletter.
-			case 'nieuwsbrief': $this->where('nieuwsbrief', true);
-			// This group consists of the board, i.e. everyone with rank 2.
-			case 'bestuur': $this->where('rank', 2); break;
-			// This group consists of everyone, i.e. no constraints.
-			case 'iedereen': break;
-			// This is an empty group, meant for individual selections.
-			case 'select': return [];
-			/**
-			 * By default, filter on the provided group. This default applies to the following groups:
-			 * - trainers
-			 * - waterpolo_recreatief
-			 * - waterpolo_competitief
-			 * - zwemmers
-			 */
-			default: $this->where('lidmaatschap', $group); break;
+	public function getGroupRecipients(string $group, bool $english): array {
+		switch ($group) {
+			case 'waterpolo':
+				// This group consists of both recreative and competition players.
+				$this->whereIn('lidmaatschap', ['waterpolo_competitie', 'waterpolo_recreatief']);
+				break;
+			case 'nieuwsbrief':
+				// This group consists of everyone that wants to receive the newsletter.
+				$this->where('nieuwsbrief', true);
+			case 'bestuur':
+				// This group consists of the board, i.e. everyone with rank 2.
+				$this->where('rank', 2);
+				break;
+			case 'iedereen':
+				// This group consists of everyone, i.e. no constraints.
+				break;
+			case 'leden':
+				// This group consits of all the members, i.e. no friends of Hydrofiel
+				$this->where('lidmaatschap !=', 'vriend');
+				break;
+			case 'select':
+				// This is an empty group, meant for individual selections.
+				return [];
+				/**
+				 * By default, filter on the provided group. This default applies to the following groups:
+				 * - trainers
+				 * - waterpolo_recreatief
+				 * - waterpolo_competitief
+				 * - zwemmers
+				 */
+			default:
+				$this->where('lidmaatschap', $group);
+				break;
 		}
 		return $this
 			->select('email')

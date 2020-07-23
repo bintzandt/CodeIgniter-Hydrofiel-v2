@@ -15,6 +15,6 @@ return [
 	'waterpoloRecreation' => 'Waterpolo (recreatief)',
 	'waterpoloCompetition' => 'Waterpolo (competitief)',
 	'swimmer' => 'Zwemmer',
-	'traininer' => 'Trainer',
+	'trainer' => 'Trainer',
 	'profileSaved' => 'Je profiel is opgeslagen',
 ];

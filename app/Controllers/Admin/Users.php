@@ -41,7 +41,7 @@ class Users extends BaseController {
 			'swimmers' => $this->users->where('lidmaatschap', 'zwemmer')->findAll(),
 			'waterpoloers' => $this->users->where('lidmaatschap', 'waterpolo_competitie')->orWhere('lidmaatschap', 'waterpolo_recreatief')->findAll(),
 			'trainers' => $this->users->where('lidmaatschap', 'trainer')->findAll(),
-			'friends' => $this->users->where('lidmaatschap', 'friend')->findAll(),
+			'friends' => $this->users->where('lidmaatschap', 'vriend')->findAll(),
 		];
 		return view('admin/user/index', $data);
 	}
@@ -106,7 +106,7 @@ class Users extends BaseController {
 			return redirect()->back()->with('error', 'Gebruiker bestaat niet');
 		}
 
-		if ($user->membership !== 'friend'){
+		if ($user->membership !== lang('User.friend')){
 			return redirect()->back()->with('error', 'Gebruiker dient verwijdert te worden via conscribo');
 		}
 
@@ -115,6 +115,50 @@ class Users extends BaseController {
 		}
 		
 		return redirect()->back()->with('error', 'Gebruiker is niet verwijderd');
+	}
+
+	/**
+	 * Displays a form for adding a new friend of Hydrofiel.
+	 */
+	public function addFriend(){
+		return view('admin/user/addFriend');
+	}
+
+	/**
+	 * Handles the addFriend form submission.
+	 * 
+	 * Does the following things:
+	 * - Validate the input (see $rules)
+	 * - Sets the membership to 'Friend'
+	 * - Saves the user to the DB
+	 * - Sends a welcome email
+	 */
+	public function handleAddFriend(){
+		/**
+		 * Validates that the following are true:
+		 * - 'email' is required and must be a valid email address
+		 * - 'name' is requred and must be a string
+		 * - If 'preferEnglish' is present, it must be equal to 'Ja'
+		 */
+		$rules = [
+			'email' => 'required|valid_email',
+			'name'	=> 'required|string',
+			'preferEnglish' => 'if_exist|in_list[Ja]'
+		];
+		
+		if (! $this->validate($rules) ){
+			return redirect()->back()->withInput();
+		}
+
+		$data = $this->request->getPost();
+
+		// Set the membership to friend.
+		$data['membership'] = 'Friend';
+
+		// Create the new user and send a welcome email.
+		$this->createNewUsers([new User($data)]);
+
+		return redirect()->to('/admin/users')->with('success', 'Vriend is toegevoegd');
 	}
 
 	/**
