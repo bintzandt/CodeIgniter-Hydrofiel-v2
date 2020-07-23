@@ -53,9 +53,9 @@
 	<?php foreach ($recentPosts as $post) { ?>
 		<h4><?= $post->title ?></h4>
 		<div class="row">
-			<?php if ($post->post_image !== "") { ?>
+			<?php if ($post->image !== "") { ?>
 				<div class='col-lg pb-lg-3'>
-					<img class="img-fluid" src="<?= $post->post_image ?>">
+					<img class="img-fluid" src="<?= $post->image ?>">
 				</div>
 				<div class="col-lg-9 pt-md-2 pt-sm-2">
 					<?= $post->text ?>

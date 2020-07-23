@@ -20,7 +20,7 @@ class Home extends BaseController {
 		$data = [
 			'upcomingEvents' => $events->getUpcomingEvents(5),
 			'upcomingBirthdays' => $users->getUpcomingBirthdays(5),
-			'recentPosts' => $posts->orderBy('post_timestamp', 'DESC')->findAll(5),
+			'recentPosts' => $posts->orderBy('timestamp', 'DESC')->findAll(5),
 		];
 		return view('templates/home', $data);
 	}
