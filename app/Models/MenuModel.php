@@ -4,11 +4,11 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class MenuModel extends Model {
-	protected $table = 'pagina';
-	protected $primaryKey = 'id';
+	protected $table = 'pages';
+	protected $primaryKey = 'pageId';
 
 	protected $allowedFields = [
-		'plaats', 'zichtbaar', 'submenu', 'bereikbaar', 'cmspagina', 'ingelogd',
+		'isVisible', 'parentPageId', 'isAccessible', 'isCMSPage', 'requiresLogIn',
 	];
 
 	protected $useTimestamps = false;
@@ -23,16 +23,15 @@ class MenuModel extends Model {
 	 */
 	public function getMenu(){
 		$result = $this->builder()
-			->select( 'id, naam, engelse_naam, ingelogd' )
-			->where('submenu', 'A')
-			->where('bereikbaar', 'ja')
-			->orderBy('id')
-			->orderBy('plaats')
+			->select( 'pageId, nameNL, nameEN, requiresLogIn' )
+			->where('parentPageId', null)
+			->where('isAccessible', true)
+			->orderBy('pageId')
 			->get()
 			->getCustomResultObject('App\Entities\MenuItem');
 		
 		foreach( $result as &$mainMenuItem ){
-			$mainMenuItem->submenu = $this->getSubMenu($mainMenuItem->id);
+			$mainMenuItem->submenu = $this->getSubMenu($mainMenuItem->pageId);
 		}
 
 		// Foreach loop by reference does not unset the last item, so we do it ourselves.
@@ -48,11 +47,10 @@ class MenuModel extends Model {
 	 */
 	public function getSubMenu( int $mainMenuId ){
 		return $this->builder()
-			->select('id, naam, engelse_naam, ingelogd')
-			->where('submenu', $mainMenuId)
-			->where('bereikbaar', 'ja')
-			->orderBy('id')
-			->orderBy('plaats')
+			->select('pageId, nameNL, nameEN, requiresLogIn')
+			->where('parentPageId', $mainMenuId)
+			->where('isAccessible', true)
+			->orderBy('pageId')
 			->get()
 			->getCustomResultObject('App\Entities\MenuItem');
 	}
