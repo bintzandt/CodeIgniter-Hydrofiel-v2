@@ -24,7 +24,7 @@
 		<?php if (!empty($upcomingEvents)) {
 			foreach ($upcomingEvents as $event) { ?>
 				<div>
-					<span class="far fa-calendar"></span><a href="/event/<?= $event->event_id ?>"> <?= $event->name ?></a><br>
+					<span class="far fa-calendar"></span><a href="/event/<?= $event->eventId ?>"> <?= $event->name ?></a><br>
 					<div class="pl-3"><?= $event->from->format('d-m-Y H:i') ?></div>
 				</div>
 			<?php }

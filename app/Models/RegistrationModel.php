@@ -13,7 +13,7 @@ class RegistrationModel extends Model {
 	protected $useTimeStamps = true;
 	protected $createdFields = 'datum';
 
-	protected $allowedFields = ['event_id', 'member_id', 'opmerking', 'slagen'];
+	protected $allowedFields = ['event_id', 'member_id', 'opmerking', 'strokes'];
 
 	public function isUserRegisteredForEvent(int $userId, int $eventId): bool {
 		return sizeof($this->where('event_id', $eventId)->where('member_id', $userId)->find()) === 1;
@@ -24,7 +24,7 @@ class RegistrationModel extends Model {
 			'event_id' => $eventId,
 			'member_id' => $userId,
 			'opmerking' => $remark,
-			'slagen' => $strokes,
+			'strokes' => $strokes,
 		]);
 	}
 

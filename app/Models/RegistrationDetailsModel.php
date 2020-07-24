@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RegistrationDetailsModel extends Model {
 	protected $table = 'nszk_inschrijfsysteem';
 	/**
-	 * This is the same ID as event_id.
+	 * This is the same ID as eventId.
 	 * 
 	 * This ID is not enough to get valid results so don't use it on its own.
 	 */

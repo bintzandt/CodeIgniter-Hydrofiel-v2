@@ -37,7 +37,7 @@ class Event {
 					<a type="button" class="btn btn-warning btn-block" href="/event/displayDetailsForm/%d">%s</a>
 				</div>',
 				lang('Event.cancel'),
-				$event->event_id,
+				$event->eventId,
 				lang('Event.changeRegistration'),
 			);
 		}
@@ -52,7 +52,7 @@ class Event {
 
 		// Display a special form for the nszk.
 		if ($event->kind === 'nszk'){
-			echo view('event/partials/strokes', ['slagen' => json_decode($event->strokes)]);
+			echo view('event/partials/strokes', ['strokes' => json_decode($event->strokes)]);
 		}
 
 		// Display the registration form.

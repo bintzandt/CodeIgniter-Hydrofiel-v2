@@ -31,8 +31,8 @@
 							<b>Aankomende evenementen:</b><br>
 							<ul>
 								<?php foreach ($events as $event) { ?>
-									<li><a href="<?= site_url('event/' . $event->event_id) ?>"><?= $event->nl_naam ?>
-											op <?= $event->van->format('d-m-Y H:i') ?></a></li>
+									<li><a href="<?= site_url('event/' . $event->eventId) ?>"><?= $event->nameNL ?>
+											op <?= $event->from->format('d-m-Y H:i') ?></a></li>
 								<?php
 								} ?>
 							</ul>

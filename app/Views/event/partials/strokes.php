@@ -1,8 +1,8 @@
 <?php
-if (! isset($slagen) || ! is_array($slagen)){
+if (! isset($strokes) || ! is_array($strokes)){
 	return;
 }
-foreach ($slagen as $slag) {
+foreach ($strokes as $slag) {
 	if ($slag === ""){
 		continue;
 	} ?>

@@ -5,40 +5,37 @@
 <h3 align="center"><b><?= $event->name ?></b></h3>
 <p><?= $event->description ?></p>
 <div class="row">
-	<div class="col-md-6">
-		<br><br>
-		<table style="width: 100%;">
+	<div class="col-md-6"><br/><br/>
 			<?= view_cell('\App\Libraries\Event::displayRegistration', ['event' => $event]); ?>
-		</table>
 	</div>
 	<div class="col-md-6">
 		<h4>Details</h4>
 		<table>
 			<tr>
 				<td><b><?= lang('Event.from') ?></b></td>
-				<td><?= $event->van->format('d-m-Y H:i') ?></td>
+				<td><?= $event->from->format('d-m-Y H:i') ?></td>
 			</tr>
 			<tr>
 				<td><b><?= lang('Event.until') ?></b></td>
-				<td><?= $event->tot->format('d-m-Y H:i') ?></td>
+				<td><?= $event->until->format('d-m-Y H:i') ?></td>
 			</tr>
 			<tr>
 				<td><b><?= lang('Event.location'); ?></b></td>
-				<td><?= $event->locatie ?></td>
+				<td><?= $event->location ?></td>
 			</tr>
 			<?php if ($event->needsRegistration) { ?>
 				<tr>
 					<td><b><?= lang('Event.registrationDeadline') ?></b></td>
-					<td><?= $event->inschrijfdeadline->format('d-m-Y H:i') ?></td>
+					<td><?= $event->registrationDeadline->format('d-m-Y H:i') ?></td>
 				</tr>
 				<tr>
 					<td><b><?= lang('Event.cancelationDeadline') ?></b></td>
-					<td><?= $event->afmelddeadline->format('d-m-Y H:i') ?></td>
+					<td><?= $event->cancellationDeadline->format('d-m-Y H:i') ?></td>
 				</tr>
-				<?php if ($event->maximum > 0) { ?>
+				<?php if ($event->maximumRegistrations > 0) { ?>
 					<tr>
 						<td><b><?= lang('Event.nrMaximum') ?></b></td>
-						<td><?= $event->nrOfRegistrations . '/' . $event->maximum ?></td>
+						<td><?= $event->nrOfRegistrations . '/' . $event->maximumRegistrations ?></td>
 					</tr>
 				<?php } else { ?>
 					<tr>

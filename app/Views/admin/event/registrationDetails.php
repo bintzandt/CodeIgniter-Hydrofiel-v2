@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div class="navigation-link"><a href="/admin/events/registrations/<?= $event_id ?>"><b>Terug</b></a></div>
+<div class="navigation-link"><a href="/admin/events/registrations/<?= $eventId ?>"><b>Terug</b></a></div>
 <?= form_open(); ?>
 <div class="form-group">
     <div class="col-md-4">
@@ -19,10 +19,10 @@
     </div>
 </div>
 <div class="<?= ($nszk) ? '' : 'd-none' ?>">
-    <?php if (!empty($slagen)) { ?>
+    <?php if (!empty($strokes)) { ?>
 		<hr>
-		<h3>Slagen</h3><br>
-        <?php foreach ($slagen as $slag => $tijd) { ?>
+		<h3>strokes</h3><br>
+        <?php foreach ($strokes as $slag => $tijd) { ?>
             <div class="form-group">
                 <div class="col-md-4">
                     <label class="col-form-label"><?= $slag ?></label>

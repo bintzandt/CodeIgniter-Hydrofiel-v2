@@ -12,7 +12,7 @@ jQuery(document).ready( $ => {
 		 */
 		if ( element.id === "van" ) {
 			baseConfig.onChange = ( _, dateString ) => {
-				document.querySelector( "#tot" )._flatpickr.config.minDate = dateString;
+				document.querySelector( "#until" )._flatpickr.config.minDate = dateString;
 				[ "#afmeld", "#inschrijf" ].map( id => document.querySelector( id )._flatpickr.config.maxDate = dateString );
 			}
 		}
@@ -22,7 +22,7 @@ jQuery(document).ready( $ => {
 	
 	var slag = $( "#slag");
 
-	$( "#soort" ).change( function() {
+	$( "#kind" ).change( function() {
 		// show current
 		if ( $( this ).val() === "nszk" ) {
 			$( "#nszk" ).removeClass( "d-none" );
@@ -33,7 +33,7 @@ jQuery(document).ready( $ => {
 	} );
 
 	// Define the HTML for the additional input field.
-	const additionalInput = '<div class="input-group date"><input type="text" class="form-control" name="slagen[]"><span class="input-group-addon"><i class="glyphicon glyphicon-trash"></i></span></div>';
+	const additionalInput = '<div class="input-group date"><input type="text" class="form-control" name="strokes[]"><span class="input-group-addon"><i class="glyphicon glyphicon-trash"></i></span></div>';
 
 	$( "#add_button" ).click( function( e ) { //on add input button click
 		e.preventDefault();

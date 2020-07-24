@@ -36,8 +36,8 @@
 							<ul>
 								<?php
 								foreach ($events as $event) { ?>
-									<li><a href="<?= site_url('/event/' . $event->event_id) ?>"><?= $event->en_naam ?>
-											op <?= $event->van->format('d-m-Y H:i') ?></a></li>
+									<li><a href="<?= site_url('/event/' . $event->eventId) ?>"><?= $event->nameEN ?>
+											op <?= $event->from->format('d-m-Y H:i') ?></a></li>
 								<?php } ?>
 							</ul>
 						<?php } ?>

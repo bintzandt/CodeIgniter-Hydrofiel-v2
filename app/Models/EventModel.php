@@ -5,28 +5,28 @@ use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
 
 class EventModel extends Model {
-	protected $table = 'agenda';
-	protected $primaryKey = 'event_id';
+	protected $table = 'events';
+	protected $primaryKey = 'eventId';
 	
 	protected $returnType = 'App\Entities\Event';
 	protected $useTimeStamps = false;
 
 	protected $allowedFields = [
-		'nl_naam',
-		'en_naam',
-		'betalen',
-		'locatie',
+		'nameNL',
+		'nameEN',
+		'needsPayment',
+		'location',
 		'link',
-		'nl_omschrijving',
-		'en_omschrijving',
-		'van',
-		'tot',
-		'inschrijfsysteem',
-		'inschrijfdeadline',
-		'afmelddeadline',
-		'maximum',
-		'soort',
-		'slagen',
+		'descriptionNL',
+		'descriptionEN',
+		'from',
+		'until',
+		'needsRegistration',
+		'registrationDeadline',
+		'cancellationDeadline',
+		'maximumRegistrations',
+		'kind',
+		'strokes',
 	];
 
 	/**
@@ -36,9 +36,9 @@ class EventModel extends Model {
 	 */
 	public function getUpcomingEvents( ?int $limit = null ): array {
 		return $this
-			->where('van >=', Time::now())
+			->where('from >=', Time::now())
 			->limit($limit)
-			->orderBy('van', 'ASC')
+			->orderBy('from', 'ASC')
 			->find();
 	}
 
@@ -49,9 +49,9 @@ class EventModel extends Model {
 	 */
 	public function getPassedEvents(?int $limit = null){
 		return $this
-			->where('van <', Time::now())
+			->where('from <', Time::now())
 			->limit($limit)
-			->orderBy('van', 'DESC')
+			->orderBy('from', 'DESC')
 			->find();
 	}
 }
