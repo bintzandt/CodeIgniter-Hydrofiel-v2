@@ -48,51 +48,51 @@ class Event extends Entity {
 		return isEnglish() ? $this->descriptionEN : $this->descriptionNL;
 	}
 
-	// /**
-	//  * Setter for the start date.
-	//  * 
-	//  * Converts the input to a MySQL format.
-	//  */
-	// public function setFrom(string $from): void {
-	// 	$this->attributes['from'] = $this->formatToMySQLDate($from);
-	// }
+	/**
+	 * Setter for the start date.
+	 * 
+	 * Converts the input to a MySQL format.
+	 */
+	public function setFrom(string $from): void {
+		$this->attributes['from'] = $this->formatToMySQLDate($from);
+	}
 
-	// /**
-	//  * Setter for the end date.
-	//  * 
-	//  * Converts the input to a MySQL format.
-	//  */
-	// public function setUntil(string $until): void {
-	// 	$this->attributes['until'] = $this->formatToMySQLDate($until);
-	// }
+	/**
+	 * Setter for the end date.
+	 * 
+	 * Converts the input to a MySQL format.
+	 */
+	public function setUntil(string $until): void {
+		$this->attributes['until'] = $this->formatToMySQLDate($until);
+	}
 
-	// /**
-	//  * Setter for the registration deadline.
-	//  * 
-	//  * First checks whether the registration deadline is needed for this event.
-	//  * 
-	//  * Converts the input to a MySQL format.
-	//  */
-	// public function setRegistrationDeadline(string $registrationDeadline): void {
-	// 	if (!$this->needsRegistration) {
-	// 		return;
-	// 	}
-	// 	$this->attributes['registrationDeadline'] = $this->formatToMySQLDate($registrationDeadline);
-	// }
+	/**
+	 * Setter for the registration deadline.
+	 * 
+	 * First checks whether the registration deadline is needed for this event.
+	 * 
+	 * Converts the input to a MySQL format.
+	 */
+	public function setRegistrationDeadline(string $registrationDeadline): void {
+		if (!$this->needsRegistration) {
+			return;
+		}
+		$this->attributes['registrationDeadline'] = $this->formatToMySQLDate($registrationDeadline);
+	}
 
-	// /**
-	//  * Setter for the cancelation deadline.
-	//  * 
-	//  * First checks whether the cancelation deadline is needed for this event.
-	//  * 
-	//  * Converts the input to a MySQL format.
-	//  */
-	// public function setCancellationDeadline(string $cancelationDeadline): void {
-	// 	if (!$this->needsRegistration) {
-	// 		return;
-	// 	}
-	// 	$this->attributes['cancellationDeadline'] = $this->formatToMySQLDate($cancelationDeadline);
-	// }
+	/**
+	 * Setter for the cancelation deadline.
+	 * 
+	 * First checks whether the cancelation deadline is needed for this event.
+	 * 
+	 * Converts the input to a MySQL format.
+	 */
+	public function setCancellationDeadline(string $cancelationDeadline): void {
+		if (!$this->needsRegistration) {
+			return;
+		}
+		$this->attributes['cancellationDeadline'] = $this->formatToMySQLDate($cancelationDeadline);
+	}
 
 	/**
 	 * Setter for the strokes.
@@ -154,7 +154,7 @@ class Event extends Entity {
 	 * @return array The registrations.
 	 */
 	public function getRegistrations(): array {
-		return $this->registrationModel->where('event_id', $this->eventId)->findAll();
+		return $this->registrationModel->where('eventId', $this->eventId)->orderBy('registrationDate')->findAll();
 	}
 
 	/**

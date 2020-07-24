@@ -1,5 +1,5 @@
 <div class="form-group">
-	<input type="text" name="opmerking" maxlength="20" class="form-control" style="margin-top: 20px" placeholder="<?= lang("Event.remark"); ?>">
+	<input type="text" name="remark" maxlength="20" class="form-control" style="margin-top: 20px" placeholder="<?= lang("Event.remark"); ?>">
 </div>
 <?php if ($needsPayment) { ?>
 	<div class="form-check">

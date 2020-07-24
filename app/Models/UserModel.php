@@ -32,7 +32,7 @@ class UserModel extends Model {
 		$db = db_connect();
 		$query  = $db->query(
 			"
-			SELECT userId,name, DATE_FORMAT(birthday, '%d-%m-%Y') as geboortedatum, DATE_FORMAT(birthdat, '%Y') as geboortejaar
+			SELECT userId,name, DATE_FORMAT(birthday, '%d-%m-%Y') as geboortedatum, DATE_FORMAT(birthday, '%Y') as geboortejaar
 			FROM users 
 			WHERE DATE_FORMAT(birthday, '%m%d') >= DATE_FORMAT(now(), '%m%d')
 			ORDER BY DATE_FORMAT(birthday, '%m%d') ASC

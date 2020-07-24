@@ -1,30 +1,26 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
 <div class="navigation-link"><a href="/admin/events"><b>Terug</b></a></div>
-<?php if (isset($error)) { ?>
-	<b>Er zijn geen inschrijvingen voor dit evenement of voor dit evenement kan niet worden ingeschreven.</b>
-<?php } else { ?>
-	<table class="table table-striped">
-		<thead>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Naam</th>
+			<th>Datum</th>
+			<th>Beheer</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($registrations as $registration) { ?>
 			<tr>
-				<th>Naam</th>
-				<th>Datum</th>
-				<th>Beheer</th>
+				<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->eventId ?>/<?= $registration->userId ?>"><?= $registration->name ?></td>
+				<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->eventId ?>/<?= $registration->userId ?>"><?= $registration->registrationDate->format('d-m-Y H:i') ?></td>
+				<td>
+					<button aria-label="Delete registration" class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->eventId ?>" data-userId="<?= $registration->userId ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
+				</td>e
 			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($registrations as $registration) { ?>
-				<tr>
-					<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->name ?></td>
-					<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->datum->format('d-m-Y H:i') ?></td>
-					<td>
-						<button aria-label="Delete registration"  class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->event_id ?>" data-userId="<?= $registration->member_id ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
-					</td>e
-				</tr>
-			<?php } ?>
-		</tbody>
-	</table>
-<?php } ?>
+		<?php } ?>
+	</tbody>
+</table>
 <script>
 	// Find all delete buttons and attach an eventHandler for the click action.
 	const deleteButtons = document.querySelectorAll('.delete');

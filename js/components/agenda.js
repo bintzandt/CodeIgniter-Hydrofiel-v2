@@ -10,7 +10,7 @@ jQuery(document).ready( $ => {
 		/**
 		 * If the start of the event changes, make sure to update the min and maxDates of all other pickers accordingly.
 		 */
-		if ( element.id === "van" ) {
+		if ( element.id === "from" ) {
 			baseConfig.onChange = ( _, dateString ) => {
 				document.querySelector( "#until" )._flatpickr.config.minDate = dateString;
 				[ "#afmeld", "#inschrijf" ].map( id => document.querySelector( id )._flatpickr.config.maxDate = dateString );
