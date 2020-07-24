@@ -5,39 +5,39 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class RegistrationDetailsModel extends Model {
-	protected $table = 'nszk_inschrijfsysteem';
+	protected $table = 'registrationDetails';
 	/**
 	 * This is the same ID as eventId.
 	 * 
 	 * This ID is not enough to get valid results so don't use it on its own.
 	 */
-	protected $primaryKey = 'nszk_id';
+	protected $primaryKey = 'eventId';
 
 	protected $returnType = 'object';
 	protected $useTimeStamps = false;
 
 	protected $allowedFields = [
-		'nszk_id',
-		'member_id',
-		'preborrel',
-		'avondeten',
-		'feest',
-		'slapen',
-		'groep_heen',
-		'groep_terug',
-		'speciaal',
+		'eventId',
+		'userId',
+		'attendPredrink',
+		'attendDinner',
+		'attendParty',
+		'requiresSleepAccommodation',
+		'attendOutboundJourney',
+		'attendHomeboundJourney',
+		'requiresContactByBoard',
 	];
 
 	public function hasUserEnteredDetails(int $userId, int $eventId): bool {
-		return sizeof($this->where('nszk_id', $eventId)->where('member_id', $userId)->find()) === 1;
+		return sizeof($this->where('eventId', $eventId)->where('userId', $userId)->find()) === 1;
 	}
 
 	public function addUserDetailsForEvent(int $userId, int $eventId, $details): void {
 		$this->insert(
 			array_merge(
 				[
-					'nszk_id' => $eventId,
-					'member_id' => $userId,
+					'eventId' => $eventId,
+					'userId' => $userId,
 				],
 				$details,
 			)
@@ -45,10 +45,10 @@ class RegistrationDetailsModel extends Model {
 	}
 
 	public function getUserDetailsForEvent(int $userId, int $eventId){
-		return $this->where('nszk_id', $eventId)->where('member_id', $userId)->first();
+		return $this->where('eventId', $eventId)->where('userId', $userId)->first();
 	}
 
 	public function removeUserDetailsForEvent(int $userId, int $eventId) {
-		$this->where('nszk_id', $eventId)->where('member_id', $userId)->delete();
+		$this->where('eventId', $eventId)->where('userId', $userId)->delete();
 	}
 }
