@@ -37,7 +37,7 @@
 		<?php if (isLoggedIn()) : ?>
 			<?php foreach ($upcomingBirthdays as $verjaardag) { ?>
 				<div>
-					<span class="fa fa-birthday-cake"></span><a href="/user/<?= $verjaardag->id ?>"> <?= $verjaardag->naam ?>
+					<span class="fa fa-birthday-cake"></span><a href="/user/<?= $verjaardag->userId ?>"> <?= $verjaardag->name ?>
 						(<?= date('Y') - $verjaardag->geboortejaar ?>)</a><br>
 					<div class="pl-3"><?= $verjaardag->geboortedatum ?></div>
 				</div>

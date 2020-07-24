@@ -6,19 +6,19 @@
 <?= form_open(); ?>
 <div class="form-group">
     <div class="col-md-2">
-        <label class="col-form-label" for="naam"><?= lang("User.name") ?></label>
+        <label class="col-form-label" for="name"><?= lang("User.name") ?></label>
     </div>
     <div class="col-md-10">
-        <input style="cursor: not-allowed" id="naam" name="naam" type="text" class="form-control" disabled value="<?= $user->name ?>">
+        <input style="cursor: not-allowed" id="name" name="name" type="text" class="form-control" disabled value="<?= $user->name ?>">
     </div>
 </div>
 <div class="form-group">
     <div class="col-md-2">
-        <label class="col-form-label" for="wachtwoord"><?= lang("User.password") ?></label>
+        <label class="col-form-label" for="password"><?= lang("User.password") ?></label>
     </div>
     <div class="col-md-10">
-        <input id="wachtwoord" name="wachtwoord1" type="password" class="form-control" placeholder="<?= lang('Auth.password') ?>" autocomplete="new-password">
-        <input id="wachtwoord2" name="wachtwoord2" type="password" class="form-control" placeholder="<?= lang('Auth.confirmPassword') ?>" autocomplete="new-password">
+        <input id="password" name="password1" type="password" class="form-control" placeholder="<?= lang('Auth.password') ?>" autocomplete="new-password">
+        <input id="password2" name="password2" type="password" class="form-control" placeholder="<?= lang('Auth.confirmPassword') ?>" autocomplete="new-password">
         <span class="form-text"><?= lang("User.passwordHelp") ?></span>
     </div>
 </div>
@@ -35,9 +35,9 @@
         <label class="col-form-label"><?= lang("User.visible") ?></label>
     </div>
     <div class="col-md-10">
-        <input type="hidden" name="zichtbaar_email" value="0" />
-        <input type="checkbox" name="zichtbaar_email"
-               value="1" <?= $user->visibleEmail ?>> <?= lang("User.showEmail") ?>
+        <input type="hidden" name="showEmail" value="0" />
+        <input type="checkbox" name="showEmail"
+               value="1" <?= $user->showEmail ?>> <?= lang("User.showEmail") ?>
     </div>
 </div>
 <div class="form-group">
@@ -45,8 +45,8 @@
         <label class="col-form-label"><?= lang("User.newsletter") ?></label>
     </div>
     <div class="col-md-10">
-        <input type="hidden" name="nieuwsbrief" value="0" />
-        <input type="checkbox" name="nieuwsbrief"
+        <input type="hidden" name="receiveNewsletter" value="0" />
+        <input type="checkbox" name="receiveNewsletter"
                value="1" <?= $user->receiveNewsletter ?>> <?= lang("User.newsletterHelp") ?>
     </div>
 </div>
@@ -55,8 +55,8 @@
         <label class="col-form-label">English</label>
     </div>
     <div class="col-md-10">
-        <input type="hidden" name="engels" value="0" />
-        <input type="checkbox" name="engels" value="1" <?= $user->preferEnglish ?>> I want to receive
+        <input type="hidden" name="preferEnglish" value="0" />
+        <input type="checkbox" name="preferEnglish" value="1" <?= $user->preferEnglish ?>> I want to receive
         content in English
     </div>
 </div>

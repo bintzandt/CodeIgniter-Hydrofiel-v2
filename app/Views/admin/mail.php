@@ -45,7 +45,7 @@
 	<label for="los">Los</label>
 	<select multiple class="form-control" id="los" name="los[]">
 		<?php foreach ($leden as $lid) { ?>
-			<option value="<?= $lid->id ?>" <?php echo set_select('los[]', $lid->id) ?>><?= $lid->naam ?></option>
+			<option value="<?= $lid->id ?>" <?php echo set_select('los[]', $lid->id) ?>><?= $lid->name ?></option>
 		<?php } ?>
 	</select>
 </div>

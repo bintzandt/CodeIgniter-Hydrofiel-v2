@@ -19,7 +19,7 @@
 					<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->event_id ?>/<?= $registration->member_id ?>"><?= $registration->datum->format('d-m-Y H:i') ?></td>
 					<td>
 						<button aria-label="Delete registration"  class="delete button--icon" data-memberName="<?= $registration->name ?>" data-eventId="<?= $registration->event_id ?>" data-userId="<?= $registration->member_id ?>"><span class="fa fa-trash" aria-hidden="true"></span></button>
-					</td>
+					</td>e
 				</tr>
 			<?php } ?>
 		</tbody>

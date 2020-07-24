@@ -14,7 +14,7 @@
 						<br>
 						I've processed your application and from today you're officially a member! This means that you'll
 						have
-						access to the Hydrofiel website. With <a href="<?= site_url('/reset-password') . '?token=' . $user->recovery ?>">this</a>
+						access to the Hydrofiel website. With <a href="<?= site_url('/reset-password') . '?token=' . $user->recoveryToken ?>">this</a>
 						link you'll be able to make an account for <a href="<?= site_url('') ?>">www.hydrofiel.nl</a>.
 						Among other
 						things, you can view the calendar and sign yourself up for events/tournaments/competitions on the

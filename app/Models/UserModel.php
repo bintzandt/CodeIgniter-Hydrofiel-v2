@@ -5,24 +5,24 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class UserModel extends Model {
-	protected $table = 'gebruikers';
-	protected $primaryKey = 'id';
+	protected $table = 'users';
+	protected $primaryKey = 'userId';
 
 	protected $returnType = 'App\Entities\User';
 	protected $useTimeStamps = false;
 
 	protected $allowedFields = [
-		'id',
-		'naam',
-		'recovery',
-		'geboortedatum',
-		'recovery_valid',
+		'userId',
+		'name',
+		'recoveryToken',
+		'birthday',
+		'recoveryTokenValidUntil',
 		'email',
-		'wachtwoord',
-		'engels',
-		'nieuwsbrief',
-		'lidmaatschap',
-		'zichtbaar_email',
+		'passwordHash',
+		'preferEnglish',
+		'receiveNewsletter',
+		'membership',
+		'showEmail',
 	];
 
 	/**
@@ -32,10 +32,10 @@ class UserModel extends Model {
 		$db = db_connect();
 		$query  = $db->query(
 			"
-			SELECT id,naam, DATE_FORMAT(geboortedatum, '%d-%m-%Y') as geboortedatum, DATE_FORMAT(geboortedatum, '%Y') as geboortejaar
-			FROM gebruikers 
-			WHERE DATE_FORMAT(geboortedatum, '%m%d') >= DATE_FORMAT(now(), '%m%d')
-			ORDER BY DATE_FORMAT(geboortedatum, '%m%d') ASC
+			SELECT userId,name, DATE_FORMAT(birthday, '%d-%m-%Y') as geboortedatum, DATE_FORMAT(birthdat, '%Y') as geboortejaar
+			FROM users 
+			WHERE DATE_FORMAT(birthday, '%m%d') >= DATE_FORMAT(now(), '%m%d')
+			ORDER BY DATE_FORMAT(birthday, '%m%d') ASC
 			LIMIT $limit
 			"
 		);
@@ -49,21 +49,21 @@ class UserModel extends Model {
 		switch ($group) {
 			case 'waterpolo':
 				// This group consists of both recreative and competition players.
-				$this->whereIn('lidmaatschap', ['waterpolo_competitie', 'waterpolo_recreatief']);
+				$this->whereIn('membership', ['waterpolo_competitie', 'waterpolo_recreatief']);
 				break;
 			case 'nieuwsbrief':
 				// This group consists of everyone that wants to receive the newsletter.
-				$this->where('nieuwsbrief', true);
+				$this->where('receiveNewsletter', true);
 			case 'bestuur':
 				// This group consists of the board, i.e. everyone with rank 2.
-				$this->where('rank', 2);
+				$this->where('role', 2);
 				break;
 			case 'iedereen':
 				// This group consists of everyone, i.e. no constraints.
 				break;
 			case 'leden':
 				// This group consits of all the members, i.e. no friends of Hydrofiel
-				$this->where('lidmaatschap !=', 'vriend');
+				$this->where('membership !=', 'vriend');
 				break;
 			case 'select':
 				// This is an empty group, meant for individual selections.
@@ -76,12 +76,12 @@ class UserModel extends Model {
 				 * - zwemmers
 				 */
 			default:
-				$this->where('lidmaatschap', $group);
+				$this->where('membership', $group);
 				break;
 		}
 		return $this
 			->select('email')
-			->where('engels', $english)
+			->where('preferEnglish', $english)
 			->findAll();
 	}
 }

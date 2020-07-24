@@ -7,7 +7,7 @@
 		<?= form_open( route_to('login'), ['class' => 'form-signin']); ?>
         <input type="email" name="email" class="form-control" placeholder="<?= lang('Auth.email') ?>"
                value="<?= old('email') ?>" autofocus autocomplete="username">
-        <input type="password" name="wachtwoord" class="form-control"
+        <input type="password" name="password" class="form-control"
                placeholder="<?= lang('Auth.password') ?>" autocomplete="current-password">
         <button class="btn btn-lg btn-primary btn-block" type="submit"><?= lang('Auth.logIn') ?></button>
         <a href="<?= route_to('forgot') ?>"
