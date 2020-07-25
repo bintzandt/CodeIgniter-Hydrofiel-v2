@@ -18,10 +18,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           cd public_html
           git pull
-          yarn install
+          yarn install --check-files
           composer install --no-dev
-          ./node_modules/.bin/grunt build
-          rm -rf node_modules
+          yarn grunt build
