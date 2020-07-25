@@ -55,7 +55,7 @@ class UserModel extends Model {
 				// This group consists of everyone that wants to receive the newsletter.
 				$this->where('receiveNewsletter', true);
 			case 'bestuur':
-				// This group consists of the board, i.e. everyone with rank 2.
+				// This group consists of the board, i.e. everyone with role 2.
 				$this->where('role', 2);
 				break;
 			case 'iedereen':

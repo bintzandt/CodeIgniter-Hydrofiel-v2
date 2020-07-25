@@ -11,6 +11,8 @@ class User extends Entity {
 		'showEmail' => 'boolean',
 		'receiveNewsletter' => 'boolean',
 		'preferEnglish' => 'boolean',
+		'role' => 'int',
+		'userId' => 'int',
 	];
 
 	protected $dates = ['recoveryTokenValidUntil', 'birthday'];
@@ -62,26 +64,9 @@ class User extends Entity {
 		return $this;
 	}
 
-	public function getPreferEnglish(): string {
-		return $this->attributes['preferEnglish'] ? 'checked' : '';
-	}
-
-	public function setPreferEnglish(string $isEnglish): User {
-		$this->attributes['preferEnglish'] = $isEnglish === 'Ja';
-		return $this;
-	}
-
 	public function setBirthday(string $birthday): User {
 		$this->attributes['birthday'] = new Time($birthday);
 		return $this;
-	}
-
-	public function getReceiveNewsletter(): string {
-		return $this->attributes['receiveNewsletter'] ? 'checked' : '';
-	}
-
-	public function getShowEmail(): string {
-		return $this->attributes['showEmail'] ? 'checked' : '';
 	}
 
 	public function getLocale(): string {
@@ -102,7 +87,7 @@ class User extends Entity {
 	 * @return bool true if this user is admin, false otherwise.
 	 */
 	public function isAdmin(): bool {
-		return $this->rank <= 2;
+		return $this->role <= 2;
 	}
 
 	/**
@@ -149,7 +134,7 @@ class User extends Entity {
 	 */
 	public function generateResetHash(bool $isNewUser = false) {
 		$this->recoveryToken = bin2hex(random_bytes(16));
-		$this->recoveryValidUntil = date('Y-m-d H:i:s', time() + ($isNewUser ? 604800 : 3600));
+		$this->recoveryTokenValidUntil = date('Y-m-d H:i:s', time() + ($isNewUser ? 604800 : 3600));
 
 		return $this;
 	}
