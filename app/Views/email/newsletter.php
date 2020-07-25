@@ -20,12 +20,12 @@
                 <?php if (!empty($events)) {
                     foreach ($events as $event) { ?>
                         <div>
-							<span><a href="<?= site_url('/event/' . $event->event_id) ?>" style="color: #FFF;"><img
+							<span><a href="<?= site_url('/event/' . $event->eventId) ?>" style="color: #FFF;"><img
                                             style="padding-right: 5px" width="16px" height="16px"
                                             src="<?= site_url(
                                                 '/images/mail/calendar.png'
-                                            ) ?>"><?= $engels ? $event->en_naam : $event->nl_naam ?></a></span><br/>
-                            <?= $punt->van->format('d-m-Y H:i') ?>
+                                            ) ?>"><?= $engels ? $event->nameEN : $event->nameNL ?></a></span><br/>
+                            <?= $punt->from->format('d-m-Y H:i') ?>
                         </div><br/>
 
                     <?php }

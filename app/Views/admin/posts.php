@@ -13,10 +13,10 @@
 		<?php if (isset($posts)) {
 			foreach ($posts as $post) { ?>
 				<tr>
-					<td><?= $post->post_title_nl ?></td>
-					<td><?= $post->post_timestamp->format('d-m-Y H:i') ?></td>
+					<td><?= $post->titleNL ?></td>
+					<td><?= $post->timestamp->format('d-m-Y H:i') ?></td>
 					<td>
-						<a onclick="showModal('<?= $post->post_title_nl ?>', <?= $post->post_id ?>)"><span class="fa fa-trash"></span></a>
+						<a onclick="showModal('<?= $post->titleNL ?>', <?= $post->postId ?>)"><span class="fa fa-trash"></span></a>
 					</td>
 				</tr>
 		<?php }
@@ -28,10 +28,10 @@
 <?= form_open(); ?>
 <div class="form-group">
 	<div class="col-md-2">
-		<label class="col-form-label" for="post_title_nl">Titel (NL)</label>
+		<label class="col-form-label" for="titleNL">Titel (NL)</label>
 	</div>
 	<div class="col-md-10">
-		<input class="form-control" name="post_title_nl" id="post_title_nl" maxlength="175">
+		<input class="form-control" name="titleNL" id="titleNL" maxlength="175">
 	</div>
 </div>
 <div class="form-group">
@@ -39,15 +39,15 @@
 		<label class="col-form-label" for="summernote">Tekst (NL)</label>
 	</div>
 	<div class="col-md-10">
-		<textarea id="summernote" name="post_text_nl" id="post_text_nl"></textarea>
+		<textarea id="summernote" name="textNL" id="textNL"></textarea>
 	</div>
 </div>
 <div class="form-group">
 	<div class="col-md-2">
-		<label class="col-form-label" for="post_title_en">Titel (EN)</label>
+		<label class="col-form-label" for="titleEN">Titel (EN)</label>
 	</div>
 	<div class="col-md-10">
-		<input class="form-control" name="post_title_en" id="post_title_en" maxlength="175">
+		<input class="form-control" name="titleEN" id="titleEN" maxlength="175">
 	</div>
 </div>
 <div class="form-group">
@@ -55,29 +55,29 @@
 		<label class="col-form-label" for="engels">Tekst (EN)</label>
 	</div>
 	<div class="col-md-10">
-		<textarea class="input-block-level" id="engels" name="post_text_en"></textarea>
+		<textarea class="input-block-level" id="engels" name="textEN"></textarea>
 	</div>
 </div>
 <div class="form-group">
 	<div class="col-md-2">
-		<label class="col-form-label" for="post_image">Plaatje</label>
+		<label class="col-form-label" for="image">Plaatje</label>
 	</div>
 	<div class="col-md-10">
-		<input class="form-control" name="post_image" id="post_image" maxlength="255"><br>
+		<input class="form-control" name="image" id="image" maxlength="255"><br>
 		<button class="btn btn-primary" type="submit">Post toevoegen</button>
 	</div>
 </div>
 <?= form_close(); ?>
 <script>
-	function showModal(naam, post_id) {
+	function showModal(naam, postId) {
 		showBSModal({
 			title: "Weet je het zeker?",
-			body: "De post '" + naam + "' zal verwijderd worden! ",
+			body: `De post ${ naam } zal verwijderd worden`,
 			actions: [{
 				label: "Ja",
 				cssClass: "btn-danger",
 				onClick: function(e) {
-					window.location.replace("/admin/posts/deletePost/" + post_id);
+					window.location.assign(`/admin/posts/deletePost/${ postId }`);
 				},
 			}, {
 				label: "Nee",

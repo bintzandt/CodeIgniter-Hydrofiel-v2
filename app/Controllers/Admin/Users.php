@@ -38,10 +38,10 @@ class Users extends BaseController {
 	 */
 	public function index() {
 		$data = [
-			'swimmers' => $this->users->where('lidmaatschap', 'zwemmer')->findAll(),
-			'waterpoloers' => $this->users->where('lidmaatschap', 'waterpolo_competitie')->orWhere('lidmaatschap', 'waterpolo_recreatief')->findAll(),
-			'trainers' => $this->users->where('lidmaatschap', 'trainer')->findAll(),
-			'friends' => $this->users->where('lidmaatschap', 'vriend')->findAll(),
+			'swimmers' => $this->users->where('membership', 'zwemmer')->orderBy('name')->findAll(),
+			'waterpoloers' => $this->users->where('membership', 'waterpolo_competitie')->orWhere('membership', 'waterpolo_recreatief')->orderBy('name')->findAll(),
+			'trainers' => $this->users->where('membership', 'trainer')->orderBy('name')->findAll(),
+			'friends' => $this->users->where('membership', 'vriend')->orderBy('name')->findAll(),
 		];
 		return view('admin/user/index', $data);
 	}
@@ -91,7 +91,7 @@ class Users extends BaseController {
 		$this->createNewUsers($newUsers);
 
 		// Remove old users.
-		$this->users->where('lidmaatschap !=', 'friend')->whereNotIn('id', $ids)->delete();
+		$this->users->where('membership !=', 'friend')->whereNotIn('id', $ids)->delete();
 
 		return redirect()->to('/admin/users')->with('success', 'De leden zijn bijgewerkt');
 	}

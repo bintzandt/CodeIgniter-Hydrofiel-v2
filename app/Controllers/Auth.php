@@ -42,7 +42,7 @@ class Auth extends BaseController {
 	public function attemptLogin(){
 		$rules = [
 			'email' => 'required',
-			'wachtwoord' => 'required',
+			'password' => 'required',
 		];
 
 		if (!$this->validate($rules)){
@@ -50,7 +50,7 @@ class Auth extends BaseController {
 		}
 
 		$email = $this->request->getPost('email');
-		$password = $this->request->getpost('wachtwoord');
+		$password = $this->request->getpost('password');
 
 		$user = $this->users->where('email', $email)->first();
 
@@ -140,18 +140,18 @@ class Auth extends BaseController {
 
 		$user = $this->users
 			->where('email', $email)
-			->where('recovery', $token)
+			->where('recoveryToken', $token)
 			->first();
 		
 		if (!$user){
 			return redirect()->back()->withInput()->with('error', lang('Auth.errorNoUser'));
 		}
 
-		if (!empty($user->recovery_valid) && time() > $user->recovery_valid->getTimestamp()){
+		if (!empty($user->recoveryTokenValid) && time() > $user->recoveryTokenValid->getTimestamp()){
 			return redirect()->back()->withInput()->with('error', lang('Auth.resetTokenExpired'));
 		}
 
-		$user->password = $password;
+		$user->passwordHash = $password;
 		$this->users->save($user);
 
 		return redirect()->route('login')->with('success', lang('Auth.resetSuccess'));

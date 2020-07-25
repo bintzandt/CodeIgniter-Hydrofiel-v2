@@ -50,9 +50,9 @@ class Pages extends BaseController {
 		$pageData = $this->request->getPost();
 		
 		if ( $pageData['mainMenuItem'] === '1'){
-			$pageData['submenu'] = 'A';
+			$pageData['parentPageId'] = null;
 		} else {
-			$pageData['submenu'] = $pageData['na'];
+			$pageData['parentPageId'] = $pageData['na'];
 		}
 
 		$page = new Page($pageData);

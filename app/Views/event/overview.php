@@ -13,12 +13,12 @@
 	</thead>
 	<tbody>
 		<?php foreach ($events as $event) {
-			$eventUrl = sprintf('/event/%s', $event->event_id ); ?>
+			$eventUrl = sprintf('/event/%s', $event->eventId ); ?>
 			<tr class="clickable-row" data-href="<?= $eventUrl ?>">
 				<td><?= $event->name ?></td>
-				<td><?= $event->van->format('d-m-Y H:i') ?></td>
-				<td><?= $event->nrOfRegistrations . (($event->maximum > 0) ? '/' . $event->maximum : '') ?></td>
-				<td><?= ucwords($event->soort) ?></td>
+				<td><?= $event->from->format('d-m-Y H:i') ?></td>
+				<td><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
+				<td><?= ucwords($event->kind) ?></td>
 			</tr>
 		<?php } ?>
 	</tbody>

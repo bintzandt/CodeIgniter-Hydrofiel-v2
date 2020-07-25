@@ -62,7 +62,7 @@ class User extends BaseController {
 
 		$rules = [
 			'email' => 'required|valid_email',
-			'wachtwoord2' => 'matches[wachtwoord1]',
+			'password2' => 'matches[password1]',
 		];
 
 		if (!$this->validate($rules)) {
@@ -71,8 +71,8 @@ class User extends BaseController {
 
 		$user = $this->users->find($id);
 
-		if ($data['wachtwoord1'] !== '') {
-			$user->password = $data['wachtwoord1'];
+		if ($data['password1'] !== '') {
+			$user->passwordHash = $data['password1'];
 		}
 
 		$user->fill($data);

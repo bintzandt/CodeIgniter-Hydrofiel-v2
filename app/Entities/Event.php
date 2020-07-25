@@ -12,25 +12,13 @@ class Event extends Entity {
 	protected RegistrationModel $registrationModel;
 	protected array $registrationArray;
 
-	// Map non-english names to English for consistency across the codebase.
-	protected $datamap = [
-		'needsPayment' => 'betalen',
-		'location' => 'locatie',
-		'from' => 'van',
-		'until' => 'tot',
-		'maximumRegistrations' => 'maximum',
-		'kind' => 'soort',
-		'needsRegistration' => 'inschrijfsysteem',
-		'strokes' => 'slagen',
-	];
-
 	protected $casts = [
 		'needsPayment' => 'boolean',
 		'needsRegistration' => 'boolean',
-		'maximum' => 'int',
+		'maximumRegistrations' => 'int',
 	];
 
-	protected $dates = ['van', 'tot', 'inschrijfdeadline', 'afmelddeadline'];
+	protected $dates = ['from', 'until', 'registrationDeadline', 'cancellationDeadline'];
 
 	/**
 	 * Constructs the Event Entity.
@@ -48,7 +36,7 @@ class Event extends Entity {
 	 * Automatically switches between the Dutch and English name.
 	 */
 	public function getName(): string {
-		return isEnglish() ? $this->en_naam : $this->nl_naam;
+		return isEnglish() ? $this->nameEN : $this->nameNL;
 	}
 
 	/**
@@ -57,7 +45,7 @@ class Event extends Entity {
 	 * Automatically switches between the Dutch and English description.
 	 */
 	public function getDescription(): string {
-		return isEnglish() ? $this->en_omschrijving : $this->nl_omschrijving;
+		return isEnglish() ? $this->descriptionEN : $this->descriptionNL;
 	}
 
 	/**
@@ -65,8 +53,8 @@ class Event extends Entity {
 	 * 
 	 * Converts the input to a MySQL format.
 	 */
-	public function setVan(string $from): void {
-		$this->attributes['van'] = $this->formatToMySQLDate($from);
+	public function setFrom(string $from): void {
+		$this->attributes['from'] = $this->formatToMySQLDate($from);
 	}
 
 	/**
@@ -74,8 +62,8 @@ class Event extends Entity {
 	 * 
 	 * Converts the input to a MySQL format.
 	 */
-	public function setTot(string $until): void {
-		$this->attributes['tot'] = $this->formatToMySQLDate($until);
+	public function setUntil(string $until): void {
+		$this->attributes['until'] = $this->formatToMySQLDate($until);
 	}
 
 	/**
@@ -85,11 +73,11 @@ class Event extends Entity {
 	 * 
 	 * Converts the input to a MySQL format.
 	 */
-	public function setInschrijfdeadline(string $registrationDeadline): void {
+	public function setRegistrationDeadline(string $registrationDeadline): void {
 		if (!$this->needsRegistration) {
 			return;
 		}
-		$this->attributes['inschrijfdeadline'] = $this->formatToMySQLDate($registrationDeadline);
+		$this->attributes['registrationDeadline'] = $this->formatToMySQLDate($registrationDeadline);
 	}
 
 	/**
@@ -99,11 +87,11 @@ class Event extends Entity {
 	 * 
 	 * Converts the input to a MySQL format.
 	 */
-	public function setAfmelddeadline(string $cancelationDeadline): void {
+	public function setCancellationDeadline(string $cancelationDeadline): void {
 		if (!$this->needsRegistration) {
 			return;
 		}
-		$this->attributes['afmelddeadline'] = $this->formatToMySQLDate($cancelationDeadline);
+		$this->attributes['cancellationDeadline'] = $this->formatToMySQLDate($cancelationDeadline);
 	}
 
 	/**
@@ -113,14 +101,14 @@ class Event extends Entity {
 	 * 
 	 * Otherwise, filter out the empty strokes and json_encode the result.
 	 */
-	public function setSlagen(array $strokes): void {
+	public function setStrokes(array $strokes): void {
 		if ($this->kind !== 'nszk') {
-			$this->attributes['slagen'] = null;
+			$this->attributes['strokes'] = null;
 		} else {
 			$strokes = array_filter($strokes, function ($stroke) {
 				return $stroke !== "";
 			});
-			$this->attributes['slagen'] = json_encode($strokes);
+			$this->attributes['strokes'] = json_encode($strokes);
 		}
 	}
 
@@ -130,7 +118,7 @@ class Event extends Entity {
 	 * @return bool
 	 */
 	public function currentUserIsRegistered(): bool {
-		return $this->registrationModel->isUserRegisteredForEvent(currentUserId(), $this->event_id);
+		return $this->registrationModel->isUserRegisteredForEvent(currentUserId(), $this->eventId);
 	}
 
 	/**
@@ -139,7 +127,7 @@ class Event extends Entity {
 	 * @return bool
 	 */
 	public function cancellationDeadlinePassed(): bool {
-		return $this->afmelddeadline->isBefore(Time::now());
+		return $this->cancellationDeadline->isBefore(Time::now());
 	}
 
 	/**
@@ -148,7 +136,7 @@ class Event extends Entity {
 	 * @return bool
 	 */
 	public function registrationDeadlinePassed(): bool {
-		return $this->inschrijfdeadline->isBefore(Time::now());
+		return $this->registrationDeadline->isBefore(Time::now());
 	}
 
 	/**
@@ -166,11 +154,7 @@ class Event extends Entity {
 	 * @return array The registrations.
 	 */
 	public function getRegistrations(): array {
-		if (!isset($this->registrationArray)) {
-			$this->registrationArray = $this->registrationModel->where('event_id', $this->event_id)->findAll();
-		}
-
-		return $this->registrationArray;
+		return $this->registrationModel->where('eventId', $this->eventId)->orderBy('registrationDate')->findAll();
 	}
 
 	/**
@@ -184,12 +168,12 @@ class Event extends Entity {
 			return false;
 		}
 
-		// Event without maximum cannot be full.
-		if ($this->maximum === 0) {
+		// Event without maximumRegistrations cannot be full.
+		if ($this->maximumRegistrations === 0) {
 			return false;
 		}
 
-		return $this->nrOfRegistrations === $this->maximum;
+		return $this->nrOfRegistrations === $this->maximumRegistrations;
 	}
 
 	/**
@@ -207,7 +191,7 @@ class Event extends Entity {
 		}
 
 		// Create new registration.
-		$this->registrationModel->registerUserForEvent(currentUserId(), $this->event_id, $remark, $strokes);
+		$this->registrationModel->registerUserForEvent(currentUserId(), $this->eventId, $remark, $strokes);
 	}
 
 	/**
@@ -226,11 +210,11 @@ class Event extends Entity {
 		// Remove registration details for nszk's.
 		if ($this->kind === 'nszk') {
 			$registrationDetailsModel = new RegistrationDetailsModel();
-			$registrationDetailsModel->removeUserDetailsForEvent($userId ?? currentUserId(), $this->event_id);
+			$registrationDetailsModel->removeUserDetailsForEvent($userId ?? currentUserId(), $this->eventId);
 		}
 
 		// Remove the registration.
-		$this->registrationModel->cancelUserForEvent($userId ?? currentUserId(), $this->event_id);
+		$this->registrationModel->cancelUserForEvent($userId ?? currentUserId(), $this->eventId);
 	}
 
 	/**

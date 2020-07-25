@@ -17,128 +17,95 @@
 		});
 	});
 </script>
-<div class="navigation-link"><a href="/beheer/agenda"><b>Terug</b></a></div>
+<div class="navigation-link"><a href="/admin/events"><b>Terug</b></a></div>
 <?= \Config\Services::validation()->listErrors() ?>
 <?= form_open_multipart('/admin/events') ?>
 <?php if ($edit_mode) { ?>
-	<input type="hidden" name="event_id" value="<?= $event->event_id ?>">
+	<input type="hidden" name="eventId" value="<?= $event->eventId ?>">
 <?php } ?>
 <div class="form-group">
-	<label class="col-md-2 col-form-label" for="nl_naam">Naam (NL)</label>
-	<div class="col-md-10">
-		<input type="text" class="form-control" name="nl_naam" id="nl_naam" placeholder="Naam" value="<?= ($edit_mode) ? $event->nl_naam : '' ?>">
+	<label for="nameNL">Naam (NL)</label>
+	<input type="text" class="form-control" name="nameNL" id="nameNL" placeholder="Naam" value="<?= ($edit_mode) ? $event->nameNL : '' ?>">
+</div>
+<div class="form-group">
+	<label for="summernote">Omschrijving (NL)</label>
+	<textarea class="input-block-level" id="summernote" name="descriptionNL" required><?= ($edit_mode) ? $event->descriptionNL : '' ?></textarea>
+</div>
+<div class="form-group">
+	<label for="nameEN">Naam (EN)</label>
+	<input type="text" class="form-control" name="nameEN" id="nameEN" placeholder="Naam" value="<?= ($edit_mode) ? $event->nameEN : '' ?>">
+</div>
+<div class="form-group">
+	<label for="engels">Omschrijving (EN)</label>
+	<textarea class="input-block-level" id="engels" name="descriptionEN" required><?= ($edit_mode) ? $event->descriptionEN : '' ?></textarea>
+</div>
+<div class="form-group">
+	<label for="kind">Soort</label>
+	<select class="form-control" id="kind" name="kind">
+		<option value="algemeen" <?= ($edit_mode && $event->kind === "algemeen") ? 'selected' : '' ?>>Algemeen
+		</option>
+		<option value="toernooi" <?= ($edit_mode && $event->kind === "toernooi") ? 'selected' : '' ?>>Toernooi
+		</option>
+		<option value="nszk" <?= ($edit_mode && $event->kind === "nszk") ? 'selected' : '' ?>>NSZK</option>
+	</select>
+</div>
+<div class="form-group">
+	<label for="from">Van/Tot</label>
+	<div class="input-daterange input-group" id="datepicker">
+		<input type="text" class="form-control-sm form-control flatpickr" name="from" id="from" value="<?= ($edit_mode) ? $event->from->format('d-m-Y H:i') : '' ?>" />
+		<span class="input-group-addon">until</span>
+		<input type="text" class="form-control-sm form-control flatpickr" name="until" id="until" value="<?= ($edit_mode) ? $event->until->format('d-m-Y H:i') : '' ?>" />
 	</div>
 </div>
 <div class="form-group">
-	<label for="summernote" class="col-md-2 col-form-label">Omschrijving (NL)</label>
-	<div class="col-md-10">
-		<textarea class="input-block-level" id="summernote" name="nl_omschrijving" required><?= ($edit_mode) ? $event->nl_omschrijving : '' ?></textarea>
+	<label for="link">Link</label>
+	<input type="text" class="form-control" name="link" id="link" placeholder="Link naar het Facebook-evenement of website" value="<?= ($edit_mode) ? $event->link : '' ?>">
+</div>
+<div class="form-group">
+	<label for="location">Locatie</label>
+	<input type="text" class="form-control" name="location" id="location" placeholder="location" value="<?= ($edit_mode) ? $event->location : '' ?>">
+</div>
+<div class="form-group">
+	<label for="inschrijven">Inschrijven mogelijk</label>
+	<label><input required type="radio" name="needsRegistration" onchange="toggleInschrijf($(this).val())" id="inschrijven" value="1" <?= ($edit_mode && $event->needsRegistration) ? 'checked' : '' ?>>Ja</label>
+	<label><input required type="radio" name="needsRegistration" onchange="toggleInschrijf($(this).val())" value="0" <?= ($edit_mode && !$event->needsRegistration) ? 'checked' : '' ?>>Nee</label>
+</div>
+<div class="form-group <?= ($edit_mode && $event->needsRegistration) ? '' : 'd-none' ?>" id="registrationDeadline">
+	<label for="registrationDeadline">Aanmelddeadline</label>
+	<div class="input-group date">
+		<input type="text" class="form-control flatpickr" name="registrationDeadline" id="inschrijf" value="<?= ($edit_mode && $event->needsRegistration) ? $event->registrationDeadline->format('d-m-Y H:i') : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+	</div>
+</div>
+<div class="form-group <?= ($edit_mode && $event->needsRegistration) ? '' : 'd-none' ?>" id="cancellationDeadline">
+	<label for="cancellationDeadline">Afmelddeadline</label>
+	<div class="input-group date">
+		<input type="text" class="form-control flatpickr" name="cancellationDeadline" id="afmeld" value="<?= ($edit_mode && $event->needsRegistration && $event->cancellationDeadline) ? $event->cancellationDeadline->format('d-m-Y H:i') : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-md-2 col-form-label" for="en_naam">Naam (EN)</label>
-	<div class="col-md-10">
-		<input type="text" class="form-control" name="en_naam" id="en_naam" placeholder="Naam" value="<?= ($edit_mode) ? $event->en_naam : '' ?>">
-	</div>
+	<label for="needsPayment">Betaalde activiteit</label>
+	<label><input required type="radio" name="needsPayment" id="needsPayment" value="1" <?= ($edit_mode && $event->needsPayment) ? 'checked' : '' ?>>Ja</label>
+	<label><input required type="radio" name="needsPayment" value="0" <?= ($edit_mode && !$event->needsPayment) ? 'checked' : '' ?>>Nee</label>
 </div>
 <div class="form-group">
-	<label for="engels" class="col-md-2 col-form-label">Omschrijving (EN)</label>
-	<div class="col-md-10">
-		<textarea class="input-block-level" id="engels" name="en_omschrijving" required><?= ($edit_mode) ? $event->en_omschrijving : '' ?></textarea>
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 col-form-label" for="soort">Soort</label>
-	<div class="col-md-10">
-		<select class="form-control" id="soort" name="kind">
-			<option value="algemeen" <?= ($edit_mode && $event->soort === "algemeen") ? 'selected' : '' ?>>Algemeen
-			</option>
-			<option value="toernooi" <?= ($edit_mode && $event->soort === "toernooi") ? 'selected' : '' ?>>Toernooi
-			</option>
-			<option value="nszk" <?= ($edit_mode && $event->soort === "nszk") ? 'selected' : '' ?>>NSZK</option>
-		</select>
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 col-form-label" for="van">Van/Tot</label>
-	<div class="col-md-10">
-		<div class="input-daterange input-group" id="datepicker">
-			<input type="text" class="form-control-sm form-control flatpickr" name="from" id="van" value="<?= ($edit_mode) ? date_format(date_create($event->van), 'd-m-Y H:i') : '' ?>" />
-			<span class="input-group-addon">tot</span>
-			<input type="text" class="form-control-sm form-control flatpickr" name="until" id="tot" value="<?= ($edit_mode) ? date_format(date_create($event->tot), 'd-m-Y H:i') : '' ?>" />
-		</div>
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 col-form-label" for="link">Link</label>
-	<div class="col-md-10">
-		<input type="text" class="form-control" name="link" id="link" placeholder="Link naar het Facebook-evenement of website" value="<?= ($edit_mode) ? $event->link : '' ?>">
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 col-form-label" for="locatie">Locatie</label>
-	<div class="col-md-10">
-		<input type="text" class="form-control" name="location" id="locatie" placeholder="Locatie" value="<?= ($edit_mode) ? $event->locatie : '' ?>">
-	</div>
-</div>
-<div class="form-group">
-	<label for="inschrijven" class="col-md-2 col-form-label">Inschrijven mogelijk</label>
-	<div class="col-md-10">
-		<label><input required type="radio" name="needsRegistration" onchange="toggleInschrijf($(this).val())" id="inschrijven" value="1" <?= ($edit_mode && $event->inschrijfsysteem) ? 'checked' : '' ?>>Ja</label>
-		<label><input required type="radio" name="needsRegistration" onchange="toggleInschrijf($(this).val())" value="0" <?= ($edit_mode && !$event->inschrijfsysteem) ? 'checked' : '' ?>>Nee</label>
-	</div>
-</div>
-<div class="form-group <?= ($edit_mode && $event->inschrijfsysteem) ? '' : 'd-none' ?>" id="inschrijfdeadline">
-	<label for="inschrijfdeadline" class="col-md-2 col-form-label">Inschrijfdeadline</label>
-	<div class="col-md-10">
-		<div class="input-group date">
-			<input type="text" class="form-control flatpickr" name="inschrijfdeadline" id="inschrijf" value="<?= ($edit_mode && $event->inschrijfsysteem) ? date_format(
-																													date_create($event->inschrijfdeadline),
-																													'd-m-Y H:i'
-																												) : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-		</div>
-	</div>
-</div>
-<div class="form-group <?= ($edit_mode && $event->inschrijfsysteem) ? '' : 'd-none' ?>" id="afmelddeadline">
-	<label for="afmelddeadline" class="col-md-2 col-form-label">Afmelddeadline</label>
-	<div class="col-md-10">
-		<div class="input-group date">
-			<input type="text" class="form-control flatpickr" name="afmelddeadline" id="afmeld" value="<?= ($edit_mode && $event->inschrijfsysteem && $event->afmelddeadline) ? date_format(
-																											date_create($event->afmelddeadline),
-																											'd-m-Y H:i'
-																										) : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-		</div>
-	</div>
-</div>
-
-<div class="form-group">
-	<label for="betalen" class="col-md-2 col-form-label">Betaalde activiteit</label>
-	<div class="col-md-10">
-		<label><input required type="radio" name="needsPayment" id="betalen" value="1" <?= ($edit_mode && $event->betalen) ? 'checked' : '' ?>>Ja</label>
-		<label><input required type="radio" name="needsPayment" value="0" <?= ($edit_mode && !$event->betalen) ? 'checked' : '' ?>>Nee</label>
-	</div>
-</div>
-<div class="form-group">
-	<label for="maximum" class="col-md-2 col-form-label">Maximum aantal aanmeldingen</label>
-	<div class="col-md-10">
-		<input type="number" value="<?= ($edit_mode) ? $event->maximum : 0 ?>" id="maximum" name="maximumRegistrations" class="form-control" min="0">
-		<span class="form-text">De standaardwaarde 0 betekent dat er geen limiet is op het aantal aanmeldingen!</span>
-	</div>
+	<label for="maximumRegistrations">Maximum aantal aanmeldingen</label>
+	<input type="number" value="<?= ($edit_mode) ? $event->maximumRegistrations : 0 ?>" id="maximumRegistrations" name="maximumRegistrations" class="form-control" min="0">
+	<span class="form-text">De standaardwaarde 0 betekent dat er geen limiet is op het aantal aanmeldingen!</span>
 </div>
 <div id="nszk" class="<?= ($edit_mode && $event->kind === 'nszk') ? '' : 'd-none' ?>">
 	<div class="form-group">
-		<label for="slagen" class="col-md-2 col-form-label">Slagen</label>
-		<div class="col-md-10" id="wrapper">
+		<label for="strokes">strokes</label>
+		<div id="wrapper">
 			<?php if ($edit_mode && $event->kind === 'nszk') { ?>
 				<div id="slag">
-					<?php $slagen = json_decode($event->slagen);
-					foreach ($slagen as $slag) { ?>
-						<input type="text" class="form-control" id="slagen" name="strokes[]" value="<?= $slag ?>">
+					<?php $strokes = json_decode($event->strokes);
+					foreach ($strokes as $slag) { ?>
+						<input type="text" class="form-control" id="strokes" name="strokes[]" value="<?= $slag ?>">
 					<?php } ?>
 				</div>
 			<?php } else { ?>
 				<div id="slag">
-					<input type="text" class="form-control" id="slagen" name="strokes[]">
+					<input type="text" class="form-control" id="strokes" name="strokes[]">
 				</div>
 			<?php } ?>
 			<button type="button" class="btn btn-primary form-control" id="add_button">Slag toevoegen</button>
@@ -146,10 +113,7 @@
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-md-2 col-form-label"></label>
-	<div class="col-md-10">
-		<button class="btn btn-primary center-block btn-lg" type="submit"><?= ($edit_mode) ? 'Opslaan' : 'Toevoegen' ?></button>
-	</div>
+	<button class="btn btn-primary" type="submit"><?= ($edit_mode) ? 'Opslaan' : 'Toevoegen' ?></button>
 </div>
 <?= form_close(); ?>
 <script lang="text/javascript" src="/assets/components/agenda.js"></script>

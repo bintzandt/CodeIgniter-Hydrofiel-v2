@@ -3,7 +3,7 @@
 <?= $this->section('body') ?>
 <h3>
 	<?php
-		echo sprintf( '%s %s %s', lang('User.title'), $user->name, getEditIcon( $user->id ));
+		echo sprintf( '%s %s %s', lang('User.title'), $user->name, getEditIcon( $user->userId ));
 	?>
 </h3>
 <table class="table table-sm table-user-information">

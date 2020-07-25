@@ -49,19 +49,19 @@ class Events extends BaseController {
 		$eventData = $this->request->getPost();
 		
 		$rules = [
-			'event_id' => 'if_exist|integer',
-			'nl_naam' => 'required|string',
-			'nl_omschrijving' => 'required|string',
-			'en_naam' => 'required|string',
-			'en_omschrijving' => 'required|string',
+			'eventId' => 'if_exist|integer',
+			'nameNL' => 'required|string',
+			'descriptionNL' => 'required|string',
+			'nameEN' => 'required|string',
+			'descriptionEN' => 'required|string',
 			'kind' => 'required|in_list[nszk,algemeen,toernooi]',
 			'from' => 'required|valid_date[d-m-Y H:i]',
 			'until' => 'required|valid_date[d-m-Y H:i]',
 			'link' => 'if_exist|string',
 			'location' => 'if_exist|string',
 			'needsRegistration' => 'required|in_list[0,1]',
-			'inschrijfdeadline' => 'if_exist|valid_date[d-m-Y H:i]',
-			'afmelddeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+			'registrationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+			'cancellationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
 			'needsPayment' => 'if_exist|in_list[0,1]',
 			'maximumRegistrations' => 'if_exist|integer',
 		];
@@ -96,7 +96,7 @@ class Events extends BaseController {
 	 */
 	public function registrations(int $eventId): string {
 		$event = $this->events->find($eventId);
-		return view('admin/events/registrations', ['registrations' => $event->registrations]);
+		return view('admin/event/registrations', ['registrations' => $event->registrations]);
 	}
 
 	/**
@@ -127,13 +127,13 @@ class Events extends BaseController {
 		$registration = $registrations->getUserRegistrationForEvent($userId, $eventId);
 
 		$data = [
-			'event_id' => $event->event_id,
+			'eventId' => $event->eventId,
 			'details' => $registrationDetails->getUserDetailsForEvent($userId, $eventId),
 			'nszk' => $event->kind === 'nszk',
 			'inschrijving' => $registration,
-			'slagen' => json_decode($registration->slagen ?? '[]'),
+			'strokes' => json_decode($registration->strokes ?? '[]'),
 		];
 
-		return view('admin/events/registrationDetails', $data);
+		return view('admin/event/registrationDetails', $data);
 	}
 }

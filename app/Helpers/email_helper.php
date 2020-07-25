@@ -21,8 +21,8 @@ if (!function_exists('sendResetEmail')) {
 			[],
 			lang('Email.passwordResetSubject', [], $user),
 			view(lang('Email.passwordResetPath', [], $user), [
-				'recovery' => $user->recovery,
-				'valid' => $user->recovery_valid,
+				'recovery' => $user->recoveryToken,
+				'valid' => $user->recoveryTokenValidUntil,
 			]),
 		);
 	}

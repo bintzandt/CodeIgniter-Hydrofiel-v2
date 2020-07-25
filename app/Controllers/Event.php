@@ -102,7 +102,7 @@ class Event extends BaseController {
 		}
 
 		$event->attemptRegistration($remark, $strokes);
-		return $this->displayDetailsForm($event->event_id);
+		return $this->displayDetailsForm($event->eventId);
 	}
 
 	/**

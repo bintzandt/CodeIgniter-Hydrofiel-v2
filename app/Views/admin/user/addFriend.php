@@ -5,7 +5,7 @@
 <?= \Config\Services::validation()->listErrors() ?>
 <?= form_open(); ?>
 <div class="form-group">
-	<label for="naam">Naam</label>
+	<label for="name">Naam</label>
 	<input class="form-control" placeholder="volledige naam" id="name" name="name" value="<?= old('name') ?>" />
 </div>
 <div class="form-group">

@@ -1,23 +1,29 @@
+/**
+ * Function to hide all additional registrations.
+ */
 function hideAll(){
-    $('.inschrijving').addClass('d-none');
-    $('#show_all').removeClass('d-none');
-    $('#hide_all').addClass('d-none');
+	document.querySelectorAll('.inschrijving').forEach( registration => registration.classList.add('d-none'));
+	document.getElementById('showAll').classList.remove('d-none');
+	document.getElementById('hideAll').classList.add('d-none');
 }
 
+/**
+ * Function to show all registrations.
+ */
 function showAll(){
-    $('.inschrijving').toggleClass('d-none', false);
-    $('#show_all').toggleClass('d-none', true);
-    $('#hide_all').toggleClass('d-none', false);
+	document.querySelectorAll('.inschrijving').forEach( registration => registration.classList.remove('d-none'));
+	document.getElementById('showAll').classList.add('d-none');
+	document.getElementById('hideAll').classList.remove('d-none');
 }
 
 function toggleInschrijf(val){
 	if (val==="1") {
-		$('#inschrijfdeadline').toggleClass('d-none', false);
-		$('#afmelddeadline').toggleClass('d-none', false);
+		$('#registrationDeadline').toggleClass('d-none', false);
+		$('#cancellationDeadline').toggleClass('d-none', false);
 	}
 	else {
-		$('#afmelddeadline').toggleClass('d-none', true);
-		$('#inschrijfdeadline').toggleClass('d-none', true);
+		$('#cancellationDeadline').toggleClass('d-none', true);
+		$('#registrationDeadline').toggleClass('d-none', true);
 	}
 }
 

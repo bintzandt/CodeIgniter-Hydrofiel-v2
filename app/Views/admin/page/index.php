@@ -3,11 +3,11 @@
 <?php
 function get_status($bereikbaar, $zichtbaar, $ingelogd) {
 	$status = '';
-	if ($bereikbaar == 'nee') {
+	if (!$bereikbaar) {
 		return '<i class="fa fa-exclamation-circle">';
 	}
 
-	if ($zichtbaar == 'ja') {
+	if ($zichtbaar) {
 		$status .= '<i class="fa fa-check">';
 	} else {
 		$status .= '<i class="fa fa-eye-slash">';
@@ -33,26 +33,22 @@ function get_status($bereikbaar, $zichtbaar, $ingelogd) {
 	<tbody>
 		<?php foreach ($pages as $hoofd) { ?>
 			<tr>
-				<td class="clickable-row" data-href="/admin/pages/edit/<?= $hoofd->id ?>" style="padding-right: 0;"><?= $hoofd->naam ?></td>
-				<td class="d-xs-none"><?= get_status($hoofd->bereikbaar, $hoofd->zichtbaar, $hoofd->ingelogd) ?></td>
+				<td class="clickable-row" data-href="/admin/pages/edit/<?= $hoofd->pageId ?>" style="padding-right: 0;"><?= $hoofd->nameNL ?></td>
+				<td class="d-xs-none"><?= get_status($hoofd->isAccessible, $hoofd->isVisible, $hoofd->requiresLogIn) ?></td>
 				<td><?= form_open(''); ?>
-					<!-- <a href="/admin/pages/up/<?= $hoofd->id ?>"><i class="fa fa-arrow-up"></i></a> -->
-					<!-- <a href="/admin/pages/down/<?= $hoofd->id ?>"><i class="fa fa-arrow-down"></i></a> -->
-					<a href="/admin/pages/edit/<?= $hoofd->id ?>"><i class="fa fa-pencil-alt"></i></a>
-					<button type="button" class="delete button--icon" data-pageName="<?= $hoofd->naam ?>" data-pageId="<?= $hoofd->id ?>"><i class="fa fa-trash"></i></button>
+					<a href="/admin/pages/edit/<?= $hoofd->pageId ?>"><i class="fa fa-pencil-alt"></i></a>
+					<button type="button" class="delete button--icon" data-pageName="<?= $hoofd->nameNL ?>" data-pageId="<?= $hoofd->pageId ?>"><i class="fa fa-trash"></i></button>
 					<?= form_close() ?>
 				</td>
 			</tr>
 			<?php if ($hoofd->subPages !== null) {
 				foreach ($hoofd->subPages as $sub) { ?>
 					<tr>
-						<td class="clickable-row pl-4" data-href="/admin/pages/edit/<?= $sub->id ?>"><?= $sub->naam ?></td>
-						<td class="d-xs-none"><?= get_status($sub->bereikbaar, $sub->zichtbaar, $sub->ingelogd) ?></td>
+						<td class="clickable-row pl-4" data-href="/admin/pages/edit/<?= $sub->pageId ?>"><?= $sub->nameNL ?></td>
+						<td class="d-xs-none"><?= get_status($sub->isAccessible, $sub->isVisible, $sub->requiresLogIn) ?></td>
 						<td><?= form_open(''); ?>
-							<!-- <a href="/admin/pages/up/<?= $sub->id ?>"><i class="fa fa-arrow-up"></i></a> -->
-							<!-- <a href="/admin/pages/down/<?= $sub->id ?>"><i class="fa fa-arrow-down"></i></a> -->
-							<a href="/admin/pages/edit/<?= $sub->id ?>"><i class="fa fa-pencil-alt"></i></a>
-							<button type="button" class="delete button--icon" data-pageName="<?= $sub->naam ?>" data-pageId="<?= $sub->id ?>"><i class="fa fa-trash"></i></button>
+							<a href="/admin/pages/edit/<?= $sub->pageId ?>"><i class="fa fa-pencil-alt"></i></a>
+							<button type="button" class="delete button--icon" data-pageName="<?= $sub->nameNL ?>" data-pageId="<?= $sub->pageId ?>"><i class="fa fa-trash"></i></button>
 							<?= form_close(); ?>
 						</td>
 					</tr>

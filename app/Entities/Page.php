@@ -4,15 +4,16 @@ namespace App\Entities;
 use CodeIgniter\Entity;
 
 class Page extends Entity {
-	protected $dataMap = [
-		'requiresLogIn' => 'ingelogd',
-	];
-
 	protected $casts = [
-		'ingelogd' => 'boolean',
+		'requiresLogIn' => 'boolean',
+		'isVisible' => 'boolean',
+		'isAccessible' => 'boolean',
+		'isCMSPage' => 'boolean',
+		'parentPageId' => '?integer',
+		'pageId' => 'integer',
 	];
 
 	public function getText(): string {
-		return isEnglish() ? $this->engels : $this->tekst;
+		return isEnglish() ? $this->contentEN : $this->contentNL;
 	}
 }

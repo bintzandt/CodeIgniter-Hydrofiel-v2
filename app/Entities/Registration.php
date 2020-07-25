@@ -9,11 +9,7 @@ class Registration extends Entity {
 	protected UserModel $users;
 	protected ?User $userData = null;
 
-	protected $datamap = [
-		'remark' => 'opmerking',
-	];
-
-	protected $dates = ['datum'];
+	protected $dates = ['registrationDate'];
 
 	public function __construct()
 	{
@@ -22,7 +18,7 @@ class Registration extends Entity {
 
 	public function getUser(){
 		if (! $this->userData){
-			$this->userData = $this->users->find($this->member_id);
+			$this->userData = $this->users->find($this->userId);
 		}
 		return $this->userData;
 	}
@@ -31,6 +27,6 @@ class Registration extends Entity {
 	 * Get the name of the user who registered.
 	 */
 	public function getName(): string {
-		return $this->user->name;
+		return $this->user->name ?? '';
 	}
 }

@@ -13,7 +13,7 @@
 						Lieve <?= $user->name ?>,<br>
 						<br>
 						Ik heb zojuist je inschrijving verwerkt en je bent vanaf vandaag officieel lid! Dit betekent dat je
-						toegang hebt tot de Hydrofiel website. Met <a href="<?= site_url('/reset-password' ) . '?token=' . $user->recovery ?>">deze</a> link kun je een account
+						toegang hebt tot de Hydrofiel website. Met <a href="<?= site_url('/reset-password' ) . '?token=' . $user->recoveryToken ?>">deze</a> link kun je een account
 						aanmaken op <a href="<?= site_url('') ?>">www.hydrofiel.nl</a>. Op de website zie je onder andere
 						de agenda en kan je jezelf inschrijven voor activiteiten/toernooien/wedstrijden. Tevens vind je daar
 						het HR en de statuten en andere nuttige informatie.<br>
@@ -31,8 +31,8 @@
 							<b>Aankomende evenementen:</b><br>
 							<ul>
 								<?php foreach ($events as $event) { ?>
-									<li><a href="<?= site_url('event/' . $event->event_id) ?>"><?= $event->nl_naam ?>
-											op <?= $event->van->format('d-m-Y H:i') ?></a></li>
+									<li><a href="<?= site_url('event/' . $event->eventId) ?>"><?= $event->nameNL ?>
+											op <?= $event->from->format('d-m-Y H:i') ?></a></li>
 								<?php
 								} ?>
 							</ul>

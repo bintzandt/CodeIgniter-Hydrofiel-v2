@@ -6,33 +6,33 @@ use App\Entities\Registration;
 use CodeIgniter\Model;
 
 class RegistrationModel extends Model {
-	protected $table = 'inschrijvingen';
-	protected $primaryKey = 'event_id';
+	protected $table = 'registrations';
+	protected $primaryKey = 'eventId';
 
 	protected $returnType = 'App\Entities\Registration';
 	protected $useTimeStamps = true;
-	protected $createdFields = 'datum';
+	protected $createdFields = 'registrationDate';
 
-	protected $allowedFields = ['event_id', 'member_id', 'opmerking', 'slagen'];
+	protected $allowedFields = ['eventId', 'userId', 'remark', 'strokes'];
 
 	public function isUserRegisteredForEvent(int $userId, int $eventId): bool {
-		return sizeof($this->where('event_id', $eventId)->where('member_id', $userId)->find()) === 1;
+		return sizeof($this->where('eventId', $eventId)->where('userId', $userId)->find()) === 1;
 	}
 
 	public function registerUserForEvent(int $userId, int $eventId, ?string $remark = null, ?string $strokes): void {
 		$this->insert([
-			'event_id' => $eventId,
-			'member_id' => $userId,
-			'opmerking' => $remark,
-			'slagen' => $strokes,
+			'eventId' => $eventId,
+			'userId' => $userId,
+			'remark' => $remark,
+			'strokes' => $strokes,
 		]);
 	}
 
 	public function cancelUserForEvent(int $userId, int $eventId): void {
-		$this->where('event_id', $eventId)->where('member_id', $userId)->delete();
+		$this->where('eventId', $eventId)->where('userId', $userId)->delete();
 	}
 
 	public function getUserRegistrationForEvent(int $userId, int $eventId): Registration {
-		return $this->where('event_id', $eventId)->where('member_id', $userId)->first();
+		return $this->where('eventId', $eventId)->where('userId', $userId)->first();
 	}
 }

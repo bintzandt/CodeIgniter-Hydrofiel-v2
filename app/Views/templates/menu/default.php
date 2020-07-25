@@ -31,18 +31,18 @@ function generate_icon($name)
             <div class="collapse navbar-collapse justify-content-end" id="hydrofiel-nav">
                 <ul class="navbar-nav">
                 <?php foreach ($hoofdmenus as $hoofdmenu) {
-                        if ($hoofdmenu->submenu !== null) { ?>
+                        if (! empty($hoofdmenu->submenu)) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="<?= generate_icon( $hoofdmenu->naam ) ?>"></span>
+                                    <span class="<?= generate_icon( $hoofdmenu->nameNL ) ?>"></span>
                                     <?= $hoofdmenu->name ?>
                                     <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu hydrofiel-dropdown">
-                                    <a class="dropdown-item" href="/page/<?= $hoofdmenu->id ?>"><?= $hoofdmenu->name ?></a>
+                                    <a class="dropdown-item" href="/page/<?= $hoofdmenu->pageId ?>"><?= $hoofdmenu->name ?></a>
                                     <?php foreach ($hoofdmenu->submenu as $submenu) {
                                         if (!$submenu->ingelogd || isLoggedIn()) { ?>
-                                                <a class="dropdown-item" href="/page/<?= $submenu->id ?>"><?= $submenu->name ?></a>
+                                                <a class="dropdown-item" href="/page/<?= $submenu->pageId ?>"><?= $submenu->name ?></a>
                                         <?php }
                                     } ?>
                                 </div>
@@ -50,8 +50,8 @@ function generate_icon($name)
                             <?php
                         } else { ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/page/<?= $hoofdmenu->id ?>">
-                                    <span class="<?= generate_icon( $hoofdmenu->naam ) ?>"></span>
+                                <a class="nav-link" href="/page/<?= $hoofdmenu->pageId ?>">
+                                    <span class="<?= generate_icon( $hoofdmenu->nameNL ) ?>"></span>
                                     <?= $hoofdmenu->name ?>
                                 </a>
                             </li>
