@@ -74,7 +74,7 @@ class Users extends BaseController {
 			array_push($ids, $id);
 
 			$user = new User([
-				'id' => $id,
+				'userId' => $id,
 				'name' => User::createName($row[self::FIRST_NAME], $row[self::MIDDLE_NAME], $row[self::LAST_NAME]),
 				'email' => $row[self::EMAIL],
 				'birthday' => $row[self::BIRTHDAY],
