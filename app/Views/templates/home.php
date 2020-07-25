@@ -2,7 +2,6 @@
 <?= $this->section('body') ?>
 <div class="row">
 	<div class="col-md-2 d-none d-md-block">
-		<p>YEEEET</p>
 		<a href="https://www.sponsorkliks.com/winkels.php?club=8634" target="_blank" rel="noopener"><img class="rounded" style="margin: 0 auto;" src="/images/sponsorkliks.gif" alt="SponsorKliks, gratis sponsoren!" title="SponsorKliks, sponsor jouw sponsordoel gratis!" Border="0"></a>
 	</div>
 	<!--

@@ -20,7 +20,7 @@ jobs:
         port: ${{ secrets.PORT }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          cd public_html
+          cd test.hydrofiel.nl
           git pull
           yarn install --check-files
           composer install --no-dev
