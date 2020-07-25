@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
@@ -9,16 +10,17 @@ use CodeIgniter\Filters\FilterInterface;
  * Filter to check if the current user is an admin.
  */
 class IsAdmin implements FilterInterface {
-	public function before(RequestInterface $request){
+	public function before(RequestInterface $request,  $arguments = NULL) {
 		// Load the auth_helper if this function is not available.
-		if (! function_exists('isAdmin')){
+		if (!function_exists('isAdmin')) {
 			helper('auth');
 		}
 
-		if (! isAdmin()){
+		if (!isAdmin()) {
 			throw new \RuntimeException(lang('Auth.notEnoughRights'));
 		}
 	}
-	
-	public function after(RequestInterface $request, ResponseInterface $response){}
+
+	public function after(RequestInterface $request, ResponseInterface $response, $arguments = NULL) {
+	}
 }

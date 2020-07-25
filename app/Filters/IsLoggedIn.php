@@ -10,7 +10,7 @@ use Config\Services;
  * Filter to make sure that a user is signed in.
  */
 class IsLoggedIn implements FilterInterface {
-	public function before(RequestInterface $request){
+	public function before(RequestInterface $request, $arguments = NULL){
 		if (! function_exists('isLoggedIn')){
 			helper('auth');
 		}
@@ -21,5 +21,5 @@ class IsLoggedIn implements FilterInterface {
 		}
 	}
 
-	public function after(RequestInterface $request, ResponseInterface $response){}
+	public function after(RequestInterface $request, ResponseInterface $response, $arguments = NULL){}
 }

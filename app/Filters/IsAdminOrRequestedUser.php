@@ -9,7 +9,7 @@ use CodeIgniter\Filters\FilterInterface;
  * Filter to check if the current user is an admin.
  */
 class IsAdminOrRequestedUser implements FilterInterface {
-	public function before(RequestInterface $request){
+	public function before(RequestInterface $request, $arguments = NULL){
 		// Load the auth_helper if this function is not available.
 		if (! function_exists('isAdmin')){
 			helper('auth');
@@ -32,5 +32,5 @@ class IsAdminOrRequestedUser implements FilterInterface {
 		}
 	}
 	
-	public function after(RequestInterface $request, ResponseInterface $response){}
+	public function after(RequestInterface $request, ResponseInterface $response, $arguments = NULL){}
 }
