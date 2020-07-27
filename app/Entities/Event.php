@@ -154,7 +154,7 @@ class Event extends Entity {
 	 * @return array The registrations.
 	 */
 	public function getRegistrations(): array {
-		return $this->registrationModel->where('eventId', $this->eventId)->orderBy('registrationDate')->findAll();
+		return $this->registrationModel->where('eventId', $this->eventId)->orderBy('registrationDate', 'DESC')->findAll();
 	}
 
 	/**
