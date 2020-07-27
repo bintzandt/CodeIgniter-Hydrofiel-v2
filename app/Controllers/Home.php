@@ -35,6 +35,10 @@ class Home extends BaseController {
 		return redirect()->back();
 	}
 
-	//--------------------------------------------------------------------
-
+	/**
+	 * Overwrite the default 404 route.
+	 */
+	public function notFound() {
+		echo view('errors/notFound');
+	}
 }
