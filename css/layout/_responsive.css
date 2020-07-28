@@ -45,13 +45,13 @@
 	}
 }
 @media (max-width: 480px) {
-	.fa-facebook, .fa-snapchat-ghost, .fa-envelope, .fa-instagram {
+	.fa-facebook, .fa-snapchat-ghost, i .fa-envelope, .fa-instagram {
 		height: 30px;
 		width: 30px;
 		line-height: 30px;
 	}
 	
-	.fa-facebook:hover, .fa-snapchat-ghost:hover, .fa-envelope:hover, .fa-instagram:hover {
+	.fa-facebook:hover, .fa-snapchat-ghost:hover, i .fa-envelope:hover, .fa-instagram:hover {
 		height: 30px;
 		width: 30px;
 		line-height: 30px;
