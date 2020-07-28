@@ -44,7 +44,7 @@ class Mail {
 	 * Gets recipients based on an array of selected userIds.
 	 */
 	public function getSelectedRecipients(array $userIds, bool $english, array &$recipients): void {
-		$result = $this->users->whereIn('id', $userIds)->where('preferEnglish', $english)->findAll();
+		$result = $this->users->whereIn('userId', $userIds)->where('preferEnglish', $english)->findAll();
 		$recipients = array_merge($recipients, array_map([$this, 'getEmailFromUser'], $result));
 	}
 
