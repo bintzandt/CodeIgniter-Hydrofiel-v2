@@ -2,23 +2,23 @@
 
 <?= $this->section('body') ?>
 <h1><?= lang('Event.title') ?></h1>
-<table class="table table-striped">
+<table class="table table-striped table-responsive-sm">
 	<thead>
 		<tr>
-			<th><?= lang('Event.name') ?></th>
-			<th><?= lang('Event.date') ?></th>
-			<th><?= lang('Event.nrRegistrations') ?></th>
-			<th><?= lang('Event.type') ?></th>
+			<th scope="col"><?= lang('Event.name') ?></th>
+			<th scope="col"><?= lang('Event.date') ?></th>
+			<th class="d-none d-sm-block" scope="col"><?= lang('Event.nrRegistrations') ?></th>
+			<th class="d-none d-sm-block" scope="col"><?= lang('Event.type') ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($events as $event) {
 			$eventUrl = sprintf('/event/%s', $event->eventId ); ?>
-			<tr class="clickable-row" data-href="<?= $eventUrl ?>">
+			<tr scope="row" class="clickable-row" data-href="<?= $eventUrl ?>">
 				<td><?= $event->name ?></td>
 				<td><?= $event->from->format('d-m-Y H:i') ?></td>
-				<td><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
-				<td><?= ucwords($event->kind) ?></td>
+				<td class="d-none d-sm-block"><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
+				<td class="d-none d-sm-block"><?= ucwords($event->kind) ?></td>
 			</tr>
 		<?php } ?>
 	</tbody>
