@@ -40,12 +40,7 @@ class Auth extends BaseController {
 	 * Attempts to verify the user's credentials through a POST request.
 	 */
 	public function attemptLogin(){
-		$rules = [
-			'email' => 'required',
-			'password' => 'required',
-		];
-
-		if (!$this->validate($rules)){
+		if (!$this->validate('login')){
 			return redirect()->back()->withInput();
 		}
 
@@ -123,14 +118,7 @@ class Auth extends BaseController {
 	 * Verifies the token with the email and saves the new password.
 	 */
 	public function attemptReset(){
-		$rules = [
-			'token' => 'required',
-			'email' => 'required|valid_email',
-			'password' => 'required',
-			'pass_confirm' => 'required|matches[password]',
-		];
-
-		if (!$this->validate($rules)){
+		if (!$this->validate('reset')){
 			return redirect()->back()->withInput();
 		}
 

@@ -16,7 +16,10 @@ class Registration extends Entity {
 		$this->users = new UserModel();
 	}
 
-	public function getUser(){
+	/**
+	 * Get the user belonging to this registration.
+	 */
+	public function getUser(): User {
 		if (! $this->userData){
 			$this->userData = $this->users->find($this->userId);
 		}

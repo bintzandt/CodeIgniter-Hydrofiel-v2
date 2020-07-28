@@ -60,12 +60,7 @@ class User extends BaseController {
 	public function save(int $id): RedirectResponse {
 		$data = $this->request->getPost();
 
-		$rules = [
-			'email' => 'required|valid_email',
-			'password2' => 'matches[password1]',
-		];
-
-		if (!$this->validate($rules)) {
+		if (!$this->validate('saveUser')) {
 			return redirect()->back()->withInput();
 		}
 

@@ -33,4 +33,50 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
+	public $saveEvent = [
+		'eventId' => 'if_exist|integer',
+		'nameNL' => 'required|string',
+		'descriptionNL' => 'required|string',
+		'nameEN' => 'required|string',
+		'descriptionEN' => 'required|string',
+		'kind' => 'required|in_list[nszk,algemeen,toernooi]',
+		'from' => 'required|valid_date[d-m-Y H:i]',
+		'until' => 'required|valid_date[d-m-Y H:i]',
+		'link' => 'if_exist|string',
+		'location' => 'if_exist|string',
+		'needsRegistration' => 'required|in_list[0,1]',
+		'registrationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+		'cancellationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
+		'needsPayment' => 'if_exist|in_list[0,1]',
+		'maximumRegistrations' => 'if_exist|integer',
+	];
+	
+	/**
+	 * Validates that the following are true:
+	 * - 'email' is required and must be a valid email address
+	 * - 'name' is requred and must be a string
+	 * - If 'preferEnglish' is present, it must be equal to 'Ja'
+	 */
+	public $addFriend = [
+		'email' => 'required|valid_email',
+		'name'	=> 'required|string',
+		'preferEnglish' => 'if_exist|in_list[Ja]'
+	];
+
+	public $login = [
+		'email' => 'required',
+		'password' => 'required',
+	];
+
+	public $reset = [
+		'token' => 'required',
+		'email' => 'required|valid_email',
+		'password' => 'required',
+		'pass_confirm' => 'required|matches[password]',
+	];
+
+	public $saveUser = [
+		'email' => 'required|valid_email',
+		'password2' => 'matches[password1]',
+	];
 }

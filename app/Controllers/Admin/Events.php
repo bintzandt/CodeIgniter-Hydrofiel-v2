@@ -48,25 +48,7 @@ class Events extends BaseController {
 	public function saveEvent(): RedirectResponse {
 		$eventData = $this->request->getPost();
 		
-		$rules = [
-			'eventId' => 'if_exist|integer',
-			'nameNL' => 'required|string',
-			'descriptionNL' => 'required|string',
-			'nameEN' => 'required|string',
-			'descriptionEN' => 'required|string',
-			'kind' => 'required|in_list[nszk,algemeen,toernooi]',
-			'from' => 'required|valid_date[d-m-Y H:i]',
-			'until' => 'required|valid_date[d-m-Y H:i]',
-			'link' => 'if_exist|string',
-			'location' => 'if_exist|string',
-			'needsRegistration' => 'required|in_list[0,1]',
-			'registrationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
-			'cancellationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
-			'needsPayment' => 'if_exist|in_list[0,1]',
-			'maximumRegistrations' => 'if_exist|integer',
-		];
-		
-		if (!$this->validate($rules)) {
+		if (!$this->validate('saveEvent')) {
 			return redirect()->back()->withInput();
 		}
 

@@ -5,13 +5,18 @@ namespace App\Libraries;
 use App\Entities\Event as EventEntity;
 
 class Event {
+	/**
+	 * Display a list of registrations.
+	 * 
+	 * Checks if the event requires registrations and whether the registrations are empty.
+	 */
 	public function displayRegistration(EventEntity $event): string {
 		if (!$event->needsRegistration) {
-			return sprintf('<tr><td>%s</td></tr>', lang('Event.noRegistrationNeeded'));
+			return lang('Event.noRegistrationNeeded');
 		}
 
 		if (empty($event->registrations)) {
-			return sprintf('<tr><td>%s</td></tr>', lang('Event.noRegistrations'));
+			return lang('Event.noRegistrations');
 		}
 
 		return view('event/partials/registrationList', ['registrations' => $event->registrations]);

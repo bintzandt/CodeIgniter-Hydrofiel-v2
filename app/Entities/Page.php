@@ -13,6 +13,9 @@ class Page extends Entity {
 		'pageId' => 'integer',
 	];
 
+	/**
+	 * Automatically returns a different text based on whether the current user is English.
+	 */
 	public function getText(): string {
 		return isEnglish() ? $this->contentEN : $this->contentNL;
 	}

@@ -17,6 +17,9 @@ class User extends Entity {
 
 	protected $dates = ['recoveryTokenValidUntil', 'birthday'];
 
+	/**
+	 * Set the ID of a user.
+	 */
 	public function setUserId(string $id): User {
 		$this->attributes['userId'] = intval(preg_replace('/[^0-9]/', '', $id));
 		return $this;
@@ -58,21 +61,35 @@ class User extends Entity {
 		}
 	}
 
+	/**
+	 * Convert a readable membership string to a database representation.
+	 */
 	public function setMembership(string $membership): User {
 		$this->attributes['membership'] = $this->convertMembership($membership);
 
 		return $this;
 	}
 
+	/**
+	 * Convert a datestring to a Time object.
+	 */
 	public function setBirthday(string $birthday): User {
 		$this->attributes['birthday'] = new Time($birthday);
 		return $this;
 	}
 
+	/**
+	 * Get the locale for the current user.
+	 * 
+	 * Currently only checks the preferEnglish attribute.
+	 */
 	public function getLocale(): string {
 		return $this->attributes['preferEnglish'] ? 'en' : 'nl';
 	}
 
+	/**
+	 * Function to create a name using a firstname, middlename and lastname.
+	 */
 	public static function createName(string $firstName, string $middleName, string $lastName): string {
 		if ($middleName === '') {
 			return implode(' ', [$firstName, $lastName]);
@@ -139,6 +156,9 @@ class User extends Entity {
 		return $this;
 	}
 
+	/**
+	 * Converts a membership from Conscribo to a membership in our database.
+	 */
 	private function convertMembership(string $membership): string {
 		switch ($membership) {
 			case 'Waterpolo - wedstrijd':

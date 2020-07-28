@@ -15,10 +15,16 @@ class RegistrationModel extends Model {
 
 	protected $allowedFields = ['eventId', 'userId', 'remark', 'strokes'];
 
+	/**
+	 * Returns true if the provided user is registered for the event, false othterwise.
+	 */
 	public function isUserRegisteredForEvent(int $userId, int $eventId): bool {
 		return sizeof($this->where('eventId', $eventId)->where('userId', $userId)->find()) === 1;
 	}
 
+	/**
+	 * Registers a user for an event.
+	 */
 	public function registerUserForEvent(int $userId, int $eventId, ?string $remark = null, ?string $strokes): void {
 		$this->insert([
 			'eventId' => $eventId,
@@ -28,10 +34,16 @@ class RegistrationModel extends Model {
 		]);
 	}
 
+	/**
+	 * Cancels a user's registration for an event.
+	 */
 	public function cancelUserForEvent(int $userId, int $eventId): void {
 		$this->where('eventId', $eventId)->where('userId', $userId)->delete();
 	}
 
+	/**
+	 * Gets the registration for a user and an event.
+	 */
 	public function getUserRegistrationForEvent(int $userId, int $eventId): Registration {
 		return $this->where('eventId', $eventId)->where('userId', $userId)->first();
 	}

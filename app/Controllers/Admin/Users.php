@@ -134,19 +134,7 @@ class Users extends BaseController {
 	 * - Sends a welcome email
 	 */
 	public function handleAddFriend(){
-		/**
-		 * Validates that the following are true:
-		 * - 'email' is required and must be a valid email address
-		 * - 'name' is requred and must be a string
-		 * - If 'preferEnglish' is present, it must be equal to 'Ja'
-		 */
-		$rules = [
-			'email' => 'required|valid_email',
-			'name'	=> 'required|string',
-			'preferEnglish' => 'if_exist|in_list[Ja]'
-		];
-		
-		if (! $this->validate($rules) ){
+		if (! $this->validate('addFriend') ){
 			return redirect()->back()->withInput();
 		}
 
