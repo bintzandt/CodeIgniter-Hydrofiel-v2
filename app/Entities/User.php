@@ -47,7 +47,7 @@ class User extends Entity {
 	 */
 	public function getMembership(): string {
 		switch ($this->attributes['membership']) {
-			case 'waterpolo_competition':
+			case 'waterpolo_competitie':
 				return lang('User.waterpoloCompetition');
 			case 'waterpolo_recreatief':
 				return lang('User.waterpoloRecreation');
