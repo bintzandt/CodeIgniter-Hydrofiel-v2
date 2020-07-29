@@ -41,7 +41,7 @@ class Page extends BaseController {
 			return redirect()->route('login');
 		}
 
-		if ($page->naam === 'Wedstrijden'){
+		if ($page->nameNL === 'Wedstrijden'){
 			return view('templates/matches');
 		}
 
