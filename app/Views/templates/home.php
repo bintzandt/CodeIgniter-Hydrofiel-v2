@@ -43,7 +43,7 @@
 				</div>
 			<?php } ?>
 		<?php else : ?>
-			<span class="fa fa-birthday-cake"></span> <?= lang('Home.homeLogin'); ?>
+			<span class="fa fa-birthday-cake"></span> <a href="<?= route_to('login')?> "><?= lang('Home.homeLogin'); ?></a>
 		<?php endif; ?>
 	</div>
 </div>
