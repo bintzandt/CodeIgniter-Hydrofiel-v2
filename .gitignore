@@ -127,9 +127,9 @@ nb-configuration.xml
 .codeigniter.env
 docker/database_data
 writable/
-public/fotos/
-public/images/
-public/uploads/
-public/assets/
+public_html/fotos/
+public_html/images/
+public_html/uploads/
+public_html/assets/
 node_modules/
 yarn-error.log

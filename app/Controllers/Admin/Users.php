@@ -67,6 +67,9 @@ class Users extends BaseController {
 
 		// Loop over all the rows in the file.
 		while (($row = fgetcsv($fileHandle, 0, ';')) !== false) {
+			// Clean data
+			$row = $this->cleanData($row);
+
 			// Get the ID.
 			$id = $row[self::ID];
 
@@ -102,25 +105,25 @@ class Users extends BaseController {
 	public function delete(int $id) {
 		$user = $this->users->find($id);
 
-		if (! $user){
+		if (!$user) {
 			return redirect()->back()->with('error', 'Gebruiker bestaat niet');
 		}
 
-		if ($user->membership !== lang('User.friend')){
+		if ($user->membership !== lang('User.friend')) {
 			return redirect()->back()->with('error', 'Gebruiker dient verwijdert te worden via conscribo');
 		}
 
 		if ($this->users->delete($id)) {
 			return redirect()->back()->with('success', 'Gebruiker is verwijderd');
 		}
-		
+
 		return redirect()->back()->with('error', 'Gebruiker is niet verwijderd');
 	}
 
 	/**
 	 * Displays a form for adding a new friend of Hydrofiel.
 	 */
-	public function addFriend(){
+	public function addFriend() {
 		return view('admin/user/addFriend');
 	}
 
@@ -133,8 +136,8 @@ class Users extends BaseController {
 	 * - Saves the user to the DB
 	 * - Sends a welcome email
 	 */
-	public function handleAddFriend(){
-		if (! $this->validate('addFriend') ){
+	public function handleAddFriend() {
+		if (!$this->validate('addFriend')) {
 			return redirect()->back()->withInput();
 		}
 
@@ -172,5 +175,20 @@ class Users extends BaseController {
 			// Notify the user
 			sendWelcomeEmail($user, $events);
 		}
+	}
+
+	/**
+	 * Removes all additional ' from the data array.
+	 *
+	 * @param string[] $data An array of strings that will be cleaned.
+	 *
+	 * @return string[] An array with cleaned data.
+	 */
+	private function cleanData(array $data): array {
+		foreach ($data as $key => $value) {
+			$val          = str_replace('\'', '', $value);
+			$data[$key] = $val;
+		}
+		return $data;
 	}
 }

@@ -8,7 +8,7 @@ grunt.initConfig({
   cssmin: {
     sitecss: {
       files: {
-        'public/assets/hydrofiel.css': [
+        'public_html/assets/hydrofiel.css': [
           'css/hydrofiel.css',
         ],
       }
@@ -20,7 +20,7 @@ grunt.initConfig({
         expand: true,
         cwd: 'js',
         src: '**/*.js',
-        dest: 'public/assets'
+        dest: 'public_html/assets'
       }]
     }
   },
