@@ -18,8 +18,8 @@ class Home extends BaseController {
 		$posts = new PostModel();
 
 		$data = [
-			'upcomingEvents' => $events->getUpcomingEvents(5),
-			'upcomingBirthdays' => $users->getUpcomingBirthdays(5),
+			'upcomingEvents' => $events->getUpcomingEvents(3),
+			'upcomingBirthdays' => $users->getUpcomingBirthdays(3),
 			'recentPosts' => $posts->orderBy('timestamp', 'DESC')->findAll(5),
 		];
 		return view('templates/home', $data);
