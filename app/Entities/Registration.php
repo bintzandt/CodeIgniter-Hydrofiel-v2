@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entities;
 
 use App\Models\UserModel;
@@ -11,16 +12,15 @@ class Registration extends Entity {
 
 	protected $dates = ['registrationDate'];
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->users = new UserModel();
 	}
 
 	/**
 	 * Get the user belonging to this registration.
 	 */
-	public function getUser(): User {
-		if (! $this->userData){
+	public function getUser(): ?User {
+		if (!$this->userData) {
 			$this->userData = $this->users->find($this->userId);
 		}
 		return $this->userData;
