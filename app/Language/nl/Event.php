@@ -20,7 +20,7 @@ return [
 	'sleep' => 'Ik zou graag op de volgende dagen blijven slapen',
 	'travelTo' => 'Ik zou graag met de groep heen willen reizen',
 	'travelFrom' => 'Ik zou graag met de groep terug willen reizen',
-	'wishes' => 'Heb je nog speciale wensen (dieet, vegetarisch..) waarover het bestuur contact moet opnemen?',
+	'wishes' => 'Heb je nog speciale wensen (dieet, vegetarisch..) die het bestuur moet weten?',
 	'yesFriday' => 'Ja, met een groep op vrijdag',
 	'yesSaturday' => 'Ja, met een groep op zaterdag',
 	'yesSunday' => 'Ja, met een groep op zondag',

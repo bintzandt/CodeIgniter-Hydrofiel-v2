@@ -72,7 +72,7 @@ class Event extends BaseController {
 	 * - It creates a list of stroke / time entries that are saved in the DB as well.
 	 * - At the end, it displays a form where additional details can be entered.
 	 */
-	private function handleNSZKSubmission(\App\Entities\Event $event, string $remark) {
+	private function handleNSZKSubmission(\App\Entities\Event $event, ?string $remark) {
 		// Get a list of all strokes and times that are available.
 		$possibleStrokes = $this->request->getPost('slag');
 		$possibleTimes = $this->request->getPost('tijd');

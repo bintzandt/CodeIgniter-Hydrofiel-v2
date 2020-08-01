@@ -20,7 +20,7 @@ return [
 	'sleep' => 'I would like to have a place to sleep on the following days',
 	'travelTo' => 'I would like to travel to the destination with the group',
 	'travelFrom' => 'I would like to travel together to Nijmegen',
-	'wishes' => 'Are there any special wishes (diet, vegetarian, ...) about which the board should contact you?',
+	'wishes' => 'Are there any special wishes (diet, vegetarian, ...) the board should know?',
 	'yesFriday' => 'Yes, with a group on friday',
 	'yesSaturday' => 'Yes, with a group on saturday',
 	'yesSunday' => 'Yes, with a group on sunday',

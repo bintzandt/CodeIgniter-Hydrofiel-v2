@@ -7,8 +7,8 @@
 		<tr>
 			<th scope="col"><?= lang('Event.name') ?></th>
 			<th scope="col"><?= lang('Event.date') ?></th>
-			<th class="d-none d-sm-block" scope="col"><?= lang('Event.nrRegistrations') ?></th>
-			<th class="d-none d-sm-block" scope="col"><?= lang('Event.type') ?></th>
+			<th class="d-none d-sm-table-cell" scope="col"><?= lang('Event.nrRegistrations') ?></th>
+			<th class="d-none d-sm-table-cell" scope="col"><?= lang('Event.type') ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,8 +17,8 @@
 			<tr scope="row" class="clickable-row" data-href="<?= $eventUrl ?>">
 				<td><?= $event->name ?></td>
 				<td><?= $event->from->format('d-m-Y H:i') ?></td>
-				<td class="d-none d-sm-block"><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
-				<td class="d-none d-sm-block"><?= ucwords($event->kind) ?></td>
+				<td class="d-none d-sm-table-cell"><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
+				<td class="d-none d-sm-table-cell"><?= ucwords($event->kind) ?></td>
 			</tr>
 		<?php } ?>
 	</tbody>

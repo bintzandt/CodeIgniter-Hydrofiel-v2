@@ -26,6 +26,7 @@ class RegistrationDetailsModel extends Model {
 		'attendOutboundJourney',
 		'attendHomeboundJourney',
 		'requiresContactByBoard',
+		'additionalComment',
 	];
 
 	/**
