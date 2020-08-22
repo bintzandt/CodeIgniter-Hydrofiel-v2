@@ -13,6 +13,11 @@
 .banner-info {
 	text-align: center;
 	margin-top: 5em;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: 3em;
 }
 
 .banner-info p {
