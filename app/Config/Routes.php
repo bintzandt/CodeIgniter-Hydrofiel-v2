@@ -63,6 +63,7 @@ $routes->post('event/(:num)', 'Event::handleFormSubmission/$1');
 $routes->post('admin/mail/', 'Admin\Mail::handleEmailFormSubmission');
 $routes->post('admin/posts', 'Admin\Posts::createPost');
 $routes->post('admin/events', 'Admin\Events::saveEvent');
+$routes->get('admin/training', 'Admin\Events::training');
 
 $routes->post('admin/users/import', 'Admin\Users::handleImport');
 $routes->post('admin/users/addFriend', 'Admin\Users::handleAddFriend');
@@ -73,6 +74,8 @@ $routes->get('admin/pages/edit/(:num)', 'Admin\Pages::addOrEdit/$1');
 $routes->post('admin/pages', 'Admin\Pages::save');
 
 $routes->post('admin/uploads', 'Admin\Uploads::handleUpload');
+
+$routes->get('training', 'Event::displayTrainingOverview');
 
 /**
  * --------------------------------------------------------------------

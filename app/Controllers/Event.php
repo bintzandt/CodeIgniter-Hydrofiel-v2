@@ -36,6 +36,19 @@ class Event extends BaseController {
 		return view('event/id', ['event' => $event]);
 	}
 
+	public function displayTrainingOverview() {
+		$upcomingTrainings = $this->events->getUpcomingTrainings();
+
+		$waterpoloTrainings = array_filter($upcomingTrainings, function ($training) {
+			return stripos($training->nameNL, 'waterpolo') !== false;
+		});
+		$swimTrainings = array_filter($upcomingTrainings, function ($training) {
+			return stripos($training->nameNL, 'zwemmen') !== false;
+		});
+
+		return view('event/trainingOverview', ['swimTrainings' => $swimTrainings, 'waterpoloTrainings' => $waterpoloTrainings]);
+	}
+
 	public function handleFormSubmission(int $eventId) {
 		/**
 		 * @var \App\Entities\Event $event

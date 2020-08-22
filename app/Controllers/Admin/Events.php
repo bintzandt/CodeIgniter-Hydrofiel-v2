@@ -47,7 +47,7 @@ class Events extends BaseController {
 	 */
 	public function saveEvent(): RedirectResponse {
 		$eventData = $this->request->getPost();
-		
+
 		if (!$this->validate('saveEvent')) {
 			return redirect()->back()->withInput();
 		}
@@ -117,5 +117,14 @@ class Events extends BaseController {
 		];
 
 		return view('admin/event/registrationDetails', $data);
+	}
+
+	/**
+	 * Display an overview of all past trainings.
+	 */
+	public function training() {
+		$pastTrainings = $this->events->getPassedTrainings();
+
+		return view('admin/event/trainingOverview', ['trainings' => $pastTrainings]);
 	}
 }

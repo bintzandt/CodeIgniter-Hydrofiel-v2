@@ -35,6 +35,9 @@
                     <li class="nav-item">
                         <a href="/admin/events" class="nav-link">Agenda</a>
                     </li>
+					<li class="nav-item">
+                        <a href="/admin/training" class="nav-link">Trainingen</a>
+                    </li>
                     <li class="nav-item">
                         <a href="/admin/mail" class="nav-link">Mail</a>
                     </li>
