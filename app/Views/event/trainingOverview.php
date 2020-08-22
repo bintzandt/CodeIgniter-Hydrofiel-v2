@@ -5,7 +5,7 @@
 <p><?= lang('Training.registrationHelp') ?></p>
 <p><?= lang('Training.concerns') ?><b><?= lang('Training.cancel') ?></b></p>
 <p><?= lang('Training.dataNotice') ?></p>
-<h2><?= lang('Training.register' ) ?></h2>
+<h2><?= lang('Training.swim' ) ?></h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -27,7 +27,7 @@
 		<?php } ?>
 	</tbody>
 </table>
-<h2>Waterpolo trainingen</h2>
+<h2><?= lang( 'Training.waterpolo' ) ?></h2>
 <table class="table table-striped">
 	<thead>
 		<tr>

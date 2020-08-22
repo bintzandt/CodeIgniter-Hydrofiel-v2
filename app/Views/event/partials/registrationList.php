@@ -1,4 +1,4 @@
-<table>
+<table class="table table-borderless">
 	<?php
 	$i = 0;
 	foreach ($registrations as $registration) {

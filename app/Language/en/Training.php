@@ -7,4 +7,6 @@ return [
 	'concerns' => 'If you get sick, ',
 	'cancel' => 'cancel your registration please!',
 	'dataNotice' => 'We have to keep the registrations for at least 4 weeks after the end of the training.',
+	'swim' => 'Swimming',
+	'waterpolo' => 'Water polo',
 ];

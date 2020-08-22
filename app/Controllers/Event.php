@@ -63,7 +63,7 @@ class Event extends BaseController {
 				return redirect()->back()->with('success', lang('Event.cancelSuccess'));
 			}
 
-			$remark = $this->request->getPost('opmerking');
+			$remark = $this->request->getPost('remark');
 
 			// Handle NSZK registration.
 			if ($event->kind === 'nszk') {
