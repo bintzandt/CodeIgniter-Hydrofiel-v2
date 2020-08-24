@@ -10,7 +10,7 @@
 	</div>
 	<div class="col-md-6">
 		<h4>Details</h4>
-		<table>
+		<table class="table table-borderless table-sm">
 			<tr>
 				<td><b><?= lang('Event.from') ?></b></td>
 				<td><?= $event->from->format('d-m-Y H:i') ?></td>
