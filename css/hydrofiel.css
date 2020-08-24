@@ -26,6 +26,6 @@
 		--secondary-color: white;
 		--background-color: #424b54;
 		--footer-color: #011627;
-		--transparant-secondary-color: #424b54E5;
+		--transparant-secondary-color: rgba(55,64,73, 0.98);
 	}
 }
