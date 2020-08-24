@@ -5,6 +5,8 @@ namespace App\Models;
 use CodeIgniter\Model;
 use CodeIgniter\I18n\Time;
 
+const TRAINING_TYPES = ['training', 'swim_training', 'waterpolo_training'];
+
 class EventModel extends Model {
 	protected $table = 'events';
 	protected $primaryKey = 'eventId';
@@ -38,7 +40,7 @@ class EventModel extends Model {
 	public function getUpcomingEvents(?int $limit = null): array {
 		return $this
 			->where('from >=', Time::now())
-			->where('kind !=', 'training')
+			->whereNotIn('kind', TRAINING_TYPES)
 			->limit($limit)
 			->orderBy('from', 'ASC')
 			->find();
@@ -52,7 +54,7 @@ class EventModel extends Model {
 	public function getPassedEvents(?int $limit = null) {
 		return $this
 			->where('from <', Time::now())
-			->where('kind !=', 'training')
+			->whereNotIn('kind', TRAINING_TYPES)
 			->limit($limit)
 			->orderBy('from', 'DESC')
 			->find();
@@ -61,7 +63,7 @@ class EventModel extends Model {
 	public function getUpcomingTrainings() {
 		return $this
 			->where('from <', new Time('saturday + 1 weeks'))
-			->where('kind', 'training')
+			->whereIn('kind', TRAINING_TYPES)
 			->orderBy('from', 'ASC')
 			->find();
 	}
@@ -72,7 +74,7 @@ class EventModel extends Model {
 	public function getPassedTrainings() {
 		return $this
 			->where('from <', Time::now())
-			->where('kind', 'training')
+			->whereIn('kind', TRAINING_TYPES)
 			->orderBy('from', 'DESC')
 			->find();
 	}
