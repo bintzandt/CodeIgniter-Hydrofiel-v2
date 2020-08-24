@@ -40,10 +40,10 @@ class Event extends BaseController {
 		$upcomingTrainings = $this->events->getUpcomingTrainings();
 
 		$waterpoloTrainings = array_filter($upcomingTrainings, function ($training) {
-			return stripos($training->nameNL, 'waterpolo') !== false;
+			return $training->kind === 'waterpolo_training';
 		});
 		$swimTrainings = array_filter($upcomingTrainings, function ($training) {
-			return stripos($training->nameNL, 'zwemmen') !== false;
+			return $training->kind === 'swim_training';
 		});
 
 		return view('event/trainingOverview', ['swimTrainings' => $swimTrainings, 'waterpoloTrainings' => $waterpoloTrainings]);
