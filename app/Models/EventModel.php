@@ -63,6 +63,7 @@ class EventModel extends Model {
 	public function getUpcomingTrainings() {
 		return $this
 			->where('from <', new Time('saturday + 1 weeks'))
+			->where('from >=', Time::now())
 			->whereIn('kind', TRAINING_TYPES)
 			->orderBy('from', 'ASC')
 			->find();
