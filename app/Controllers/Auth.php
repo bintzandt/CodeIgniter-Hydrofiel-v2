@@ -53,6 +53,10 @@ class Auth extends BaseController {
 			return redirect()->back()->withInput()->with('error', lang('Auth.errorLogInDataIncorrect'));
 		}
 
+		$this->session->set('english', $user->preferEnglish);
+		$this->session->set('loggedIn', true);
+		$this->session->set('userId',$user->userId);
+
 		$redirectURL = session('redirectURL') ?? '/';
 		$this->session->remove('redirectURL');
 

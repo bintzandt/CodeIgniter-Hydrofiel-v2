@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity;
-use Config\Services;
 use CodeIgniter\I18n\Time;
 
 class User extends Entity {
@@ -121,12 +120,6 @@ class User extends Entity {
 		if (password_needs_rehash($this->passwordHash, PASSWORD_DEFAULT)) {
 			$this->setPasswordHash($plaintextPassword);
 		}
-
-		// Save details to the session.
-		$session = Services::session();
-		$session->set('english', $this->preferEnglish);
-		$session->set('loggedIn', true);
-		$session->set('userId', $this->userId);
 
 		// Unset recovery options
 		$this->attributes['recoveryToken'] = null;
