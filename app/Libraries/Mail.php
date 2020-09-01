@@ -36,8 +36,15 @@ class Mail {
 	/**
 	 * Gets recipients based on the group to which they belong.
 	 */
-	public function getGroupRecipients(string $group, bool $english, array &$recipients): void {
-		$recipients = array_merge($recipients, array_map([$this, 'getEmailFromUser'], $this->users->getGroupRecipients($group, $english)));
+	public function getGroupRecipients($group, bool $english, array &$recipients): void {
+		if (!is_array($group)) {
+			$recipients = array_merge($recipients, array_map([$this, 'getEmailFromUser'], $this->users->getGroupRecipients($group, $english)));
+			return;
+		}
+
+		foreach( $group as $groupName ) {
+			$recipients = array_merge($recipients, array_map([$this, 'getEmailFromUser'], $this->users->getGroupRecipients($groupName, $english)));
+		}
 	}
 
 	/**

@@ -47,10 +47,6 @@ class UserModel extends Model {
 	 */
 	public function getGroupRecipients(string $group, bool $english): array {
 		switch ($group) {
-			case 'waterpolo':
-				// This group consists of both recreative and competition players.
-				$this->whereIn('membership', ['waterpolo_competitie', 'waterpolo_recreatief']);
-				break;
 			case 'nieuwsbrief':
 				// This group consists of everyone that wants to receive the newsletter.
 				$this->where('receiveNewsletter', true);
@@ -58,8 +54,9 @@ class UserModel extends Model {
 				// This group consists of the board, i.e. everyone with role 2.
 				$this->where('role', 2);
 				break;
-			case 'iedereen':
-				// This group consists of everyone, i.e. no constraints.
+			case 'vrienden':
+				// This group consists of all the friends of Hydrofiel
+				$this->where('membership', 'vriend');
 				break;
 			case 'leden':
 				// This group consits of all the members, i.e. no friends of Hydrofiel

@@ -51,8 +51,11 @@ function showModal(){
 	var email = "";
 	var names = "";
 	var str = "";
+
+	const selectedArray = Array.from($('#aan option:selected')).map( option => option.text );
+
 	if ($('#aan option:selected').val()!=='select'){
-		aan = "De mail wordt naar de groep " + $('#aan option:selected').text() + ' gestuurd.<br><br>';
+		aan = "De mail wordt naar de groep " + selectedArray.join(", ") + ' gestuurd.<br><br>';
 	}
 	if ($('#email').val() !== ""){
 		email = "De mail wordt ook naar de volgende adressen gestuurd:<br>" + $('#email').val() + ".<br><br>";

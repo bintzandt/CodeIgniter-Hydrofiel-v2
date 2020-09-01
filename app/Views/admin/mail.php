@@ -5,19 +5,18 @@
 <?= \Config\Services::validation()->listErrors() ?>
 <div class="form-group">
 	<label for="aan">Aan</label>
-	<select class="selectpicker form-control" id="aan" name="aan">
+	<select class="form-control" id="aan" name="aan[]" multiple size="9">
 		<option value="bestuur" <?php echo set_select('aan', 'bestuur', true); ?>>Bestuur</option>
-		<option value="leden" <?php echo set_select('aan', 'leden'); ?>>Leden (excl. Vrienden van Hydrofiel)</option>
+		<option value="leden" <?php echo set_select('aan', 'leden'); ?>>Leden</option>
 		<option value="nieuwsbrief" <?php echo set_select('aan', 'nieuwsbrief'); ?>>Nieuwsbrief</option>
 		<option value="zwemmer" <?php echo set_select('aan', 'zwemmer'); ?>>Zwemmers</option>
-		<option value="waterpolo" <?php echo set_select('aan', 'waterpolo'); ?>>Waterpolo</option>
 		<option value="waterpolo_competitie" <?php echo set_select('aan', 'waterpolo_competitie'); ?>>Waterpolo
 			(competitie)
 		</option>
 		<option value="waterpolo_recreatief" <?php echo set_select('aan', 'waterpolo_recreatief'); ?>>Waterpolo
 			(recreatief)
 		</option>
-		<option value="iedereen" <?php echo set_select('aan', 'iedereen'); ?>>Iedereen (incl. Vrienden van Hydrofiel)</option>
+		<option value="vrienden" <?php echo set_select('aan', 'vrienden'); ?>>Vrienden van Hydrofiel</option>
 		<option value="trainer" <?php echo set_select('aan', 'trainer'); ?>>Trainers</option>
 		<option value="select" <?php echo set_select('aan', 'select'); ?>>Losse personen</option>
 	</select>

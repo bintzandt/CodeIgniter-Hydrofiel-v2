@@ -54,7 +54,7 @@ class Mail extends BaseController {
 				'engels' => true
 			]
 		);
-
+		dd($dutchRecipients, $englishRecipients);
 		if (
 			sendEmail($from, 'no-reply@hydrofiel.nl', $dutchRecipients, $dutchSubject, $dutchMessage, $dutchAttachments) &&
 			sendEmail($from, 'no-reply@hydrofiel.nl', $englishRecipients, $englishSubject, $englishMessage, $englishAttachments)
@@ -88,6 +88,7 @@ class Mail extends BaseController {
 			$this->mailHelper->getSelectedRecipients($data['los'], $english, $recipients);
 		}
 
-		return $recipients;
+		// Only return unqiue values.
+		return array_unique($recipients);
 	}
 }
