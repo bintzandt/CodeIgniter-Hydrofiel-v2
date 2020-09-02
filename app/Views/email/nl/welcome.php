@@ -12,11 +12,11 @@
 			padding: 0;
 			margin: 0 auto;
 			color: #2B4078;
+			font-family: liberation-sans, sans-serif;
 		}
 
 		header {
 			background: #FFAB3A;
-			height: 120px;
 			padding: 7px;
 		}
 
@@ -68,7 +68,7 @@
 
 <body>
 	<header>
-		<img src="<?= site_url('/images/logomail.png') ?>" alt="Logo" height="100" style="float:left;">
+		<img src="<?= site_url('/images/logomail.png') ?>" alt="Logo" style="width: 100%; margin: 0; padding: 0;">
 	</header>
 	<p>Lieve <?= $user->name ?>,</p>
 	<p>

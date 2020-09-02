@@ -83,7 +83,7 @@ class User extends Entity {
 	 * Currently only checks the preferEnglish attribute.
 	 */
 	public function getLocale(): string {
-		return $this->attributes['preferEnglish'] ? 'en' : 'nl';
+		return $this->preferEnglish ? 'en' : 'nl';
 	}
 
 	/**
