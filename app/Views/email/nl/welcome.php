@@ -13,7 +13,7 @@
 						Lieve <?= $user->name ?>,<br>
 						<br>
 						Ik heb zojuist je inschrijving verwerkt en je bent vanaf vandaag officieel lid! Dit betekent dat je
-						toegang hebt tot de Hydrofiel website. Met <a href="<?= site_url('/reset-password' ) . '?token=' . $user->recoveryToken ?>">deze</a> link kun je een account
+						toegang hebt tot de Hydrofiel website. Met <a href="<?= site_url('/reset-password') . '?token=' . $user->recoveryToken ?>">deze</a> link kun je een account
 						aanmaken op <a href="<?= site_url('') ?>">www.hydrofiel.nl</a>. Op de website zie je onder andere
 						de agenda en kan je jezelf inschrijven voor activiteiten/toernooien/wedstrijden. Tevens vind je daar
 						het HR en de statuten en andere nuttige informatie.<br>
@@ -21,11 +21,43 @@
 						Ook krijg je voortaan de nieuwsbrief, andere belangrijke mails en blijf je op de hoogte van alle
 						gebeurtenissen!<br>
 						<br>
-						De trainingen zijn op dinsdag- en donderdagavond en zijn als volgt verdeeld:<br>
-						<ul>
-							<li>20.00-21.00 uur: Zwemmen</li>
-							<li>21.00-22.30 uur: Waterpolo</li>
-						</ul>
+						<p>De trainingen zijn als volgt verdeeld:</p>
+						<table style="width: 100%; text-align: left;">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Maandag</th>
+									<th>Dinsdag</th>
+									<th>Donderdag</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Zwemmen</th>
+									<th>-</th>
+									<th>20:00-21:00</th>
+									<th>20:00-21:00</th>
+								</tr>
+								<tr>
+									<th>Waterpolo Dames</th>
+									<th>21:30-22:30</th>
+									<th>-</th>
+									<th>21:00-22:30</th>
+								</tr>
+								<tr>
+									<th>Waterpolo Heren 1 & 2</th>
+									<th>-</th>
+									<th>21:00-22:30</th>
+									<th>21:30-22:30</th>
+								</tr>
+								<tr>
+									<th>Waterpolo Heren 3 & recreatief</th>
+									<th>-</th>
+									<th>21:00-22:00</th>
+									<th>21:00-22:00</th>
+								</tr>
+							</tbody>
+						</table>
 						<?php if (!empty($events)) { ?>
 							<br>
 							<b>Aankomende evenementen:</b><br>

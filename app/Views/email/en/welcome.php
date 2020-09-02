@@ -25,11 +25,43 @@
 						From now, you will also receive the newsletter and any other important e-mails, and you'll be kept
 						up-to-date with everything going on.<br>
 						<br>
-						Practice sessions are on Tuesday and Thursday evening, and they're split accordingly:<br>
-						<ul>
-							<li>20.00-21.00h: Swimming</li>
-							<li>21.00-22.30h: Water polo</li>
-						</ul>
+						The practice sessions are split as follows:<br>
+						<table style="width: 100%; text-align: left;">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Monday</th>
+									<th>Tuesday</th>
+									<th>Thursday</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Swimming</th>
+									<th>-</th>
+									<th>20:00-21:00</th>
+									<th>20:00-21:00</th>
+								</tr>
+								<tr>
+									<th>Water polo Ladies</th>
+									<th>21:30-22:30</th>
+									<th>-</th>
+									<th>21:00-22:30</th>
+								</tr>
+								<tr>
+									<th>Water polo Gents 1 & 2</th>
+									<th>-</th>
+									<th>21:00-22:30</th>
+									<th>21:30-22:30</th>
+								</tr>
+								<tr>
+									<th>Water polo Gents 3 & recreational</th>
+									<th>-</th>
+									<th>21:00-22:00</th>
+									<th>21:00-22:00</th>
+								</tr>
+							</tbody>
+						</table>
 						<?php if (!empty($events)) { ?>
 							<br>
 							<b>Upcoming events:</b><br>
