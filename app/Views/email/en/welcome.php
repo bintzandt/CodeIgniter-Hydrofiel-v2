@@ -146,8 +146,8 @@
 		With Hard and Wet greetings,
 	</p>
 	<p>
-		Meike Tacken<br>
-		<i>Secretary 2019-2020<br>
+		Iris Harmsen<br>
+		<i>Secretary 2020-2021<br>
 			N.S.Z.&W.V. Hydrofiel</i>
 	</p>
 	<footer></footer>

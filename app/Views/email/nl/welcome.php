@@ -142,9 +142,9 @@
 		Met Harde en Natte groet,
 	</p>
 	<p>
-		Meike Tacken<br>
+		Iris Harmsen<br>
 		<i>
-			Secretaris 2019-2020<br>
+			Secretaris 2020-2021<br>
 			N.S.Z.&W.V. Hydrofiel
 		</i>
 	</p>
