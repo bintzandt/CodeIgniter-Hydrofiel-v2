@@ -45,10 +45,8 @@ class Validation
 		'link' => 'if_exist|string',
 		'location' => 'if_exist|string',
 		'needsRegistration' => 'required|in_list[0,1]',
-		'registrationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
-		'cancellationDeadline' => 'if_exist|valid_date[d-m-Y H:i]',
 		'needsPayment' => 'if_exist|in_list[0,1]',
-		'maximumRegistrations' => 'if_exist|integer',
+		'maximumRegistrations' => 'integer',
 	];
 	
 	/**
