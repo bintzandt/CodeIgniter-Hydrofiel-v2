@@ -29,7 +29,7 @@
                             <?= $punt->from->format('d-m-Y H:i') ?>
                         </div><br/>
 
-                    <?php
+                        <?php
                     }
                 } ?></td>
         </tr>
