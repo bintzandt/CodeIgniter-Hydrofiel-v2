@@ -1,6 +1,6 @@
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
-<div class="navigation-link"><a href="/admin/events"><b>Terug</b></a></div>
+<div class="navigation-link"><a href="<?= previous_url() ?>"><b>Terug</b></a></div>
 <table class="table table-striped">
 	<thead>
 		<tr>

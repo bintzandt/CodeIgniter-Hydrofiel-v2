@@ -125,6 +125,13 @@ class Events extends BaseController {
 	public function training() {
 		$pastTrainings = $this->events->getPassedTrainings();
 
-		return view('admin/event/trainingOverview', ['trainings' => $pastTrainings]);
+		$waterpoloTrainings = array_filter( $pastTrainings, function ( $training ){
+			return $training->kind === 'waterpolo_training';
+		} );
+
+		$swimTrainings = array_filter( $pastTrainings, function ( $training ){
+			return $training->kind === 'swim_training';
+		} );
+		return view('admin/event/trainingOverview', ['waterpoloTrainings' => $waterpoloTrainings, 'swimTrainings' => $swimTrainings]);
 	}
 }
