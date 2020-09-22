@@ -4,24 +4,18 @@ function generate_icon($name) {
 	switch (strtolower($name)) {
 		case 'home':
 			return 'fa fa-home';
-			break;
 		case 'zwemmen':
 			return 'fa fa-swimmer';
-			break;
 		case 'waterpolo':
 			return 'fa fa-volleyball-ball';
-			break;
 		case 'vereniging':
 			return 'fa fa-users';
-			break;
 		case 'coronaregels':
-			return 'fas fa-virus'
+			return 'fas fa-virus';
 		default:
 			return 'fa fa-phone';
-			break;
 	}
 }
-
 ?>
 <div class="banner">
 	<div class="header">
