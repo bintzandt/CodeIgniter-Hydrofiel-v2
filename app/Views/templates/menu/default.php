@@ -14,6 +14,8 @@ function generate_icon($name) {
 		case 'vereniging':
 			return 'fa fa-users';
 			break;
+		case 'coronaregels':
+			return 'fas fa-virus'
 		default:
 			return 'fa fa-phone';
 			break;
