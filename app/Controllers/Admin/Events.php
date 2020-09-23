@@ -91,7 +91,6 @@ class Events extends BaseController {
 	 */
 	public function registrations(int $eventId): string {
 		$event = $this->events->find($eventId);
-
 		// Make it possible to display different registration overviews based on the event type.
 		switch ($event->kind){
 			case 'social': return view('admin/event/registrations/social', [ 'registrations' => $event->registrations ] );

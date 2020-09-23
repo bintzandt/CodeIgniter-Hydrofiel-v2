@@ -109,7 +109,7 @@ class Users extends BaseController {
 			return redirect()->back()->with('error', 'Gebruiker bestaat niet');
 		}
 
-		if ($user->membership !== lang('User.friend')) {
+		if ($user->membership !== 'vriend') {
 			return redirect()->back()->with('error', 'Gebruiker dient verwijdert te worden via conscribo');
 		}
 

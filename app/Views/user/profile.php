@@ -49,7 +49,7 @@
             </strong>
         </td>
         <td>
-            <?= $user->membership ?>
+            <?= $user->localizedMembership ?>
         </td>
     </tr>
     </tbody>

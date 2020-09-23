@@ -44,7 +44,7 @@ class User extends Entity {
 	 * 
 	 * @return string Localised membership string.
 	 */
-	public function getMembership(): string {
+	public function getLocalizedMembership(): string {
 		switch ($this->attributes['membership']) {
 			case 'waterpolo_competitie':
 				return lang('User.waterpoloCompetition');

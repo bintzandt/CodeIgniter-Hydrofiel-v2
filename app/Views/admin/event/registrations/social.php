@@ -6,7 +6,7 @@ use App\Entities\Registration;
 
  // Split out the registrations per group
  $waterpolo = array_filter( $registrations, function( Registration $registration ){
-	return in_array( $registration->user->membership, ['waterpolo_recreatief', 'waterpolo_competitief'] );
+	return in_array( $registration->user->membership, ['waterpolo_recreatief', 'waterpolo_competitie'] );
  } );
  $swimmer = array_filter( $registrations, function( Registration $registration ){
 	return $registration->user->membership === 'zwemmer';
