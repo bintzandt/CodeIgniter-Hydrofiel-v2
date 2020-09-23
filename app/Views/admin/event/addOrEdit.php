@@ -20,7 +20,7 @@
 <div class="navigation-link"><a href="/admin/events"><b>Terug</b></a></div>
 <?= \Config\Services::validation()->listErrors() ?>
 <?= form_open_multipart('/admin/events') ?>
-<?php if ($edit_mode) { ?>
+<?php if ($edit_mode && $event->eventId) { ?>
 	<input type="hidden" name="eventId" value="<?= $event->eventId ?>">
 <?php } ?>
 <div class="form-group">

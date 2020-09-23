@@ -41,6 +41,19 @@ class Events extends BaseController {
 	}
 
 	/**
+	 * Duplicate an existing event.
+	 */
+	public function duplicate(int $eventId): string {
+		$event = $this->events->find($eventId);
+		unset($event->eventId);
+		$data = [
+			'edit_mode' => !!$event,
+			'event' => $event,
+		];
+		return view('admin/event/addOrEdit', $data);
+	}
+
+	/**
 	 * Either updates or creates an Event in the DB.
 	 * 
 	 * Redirects back to the event overview page.
