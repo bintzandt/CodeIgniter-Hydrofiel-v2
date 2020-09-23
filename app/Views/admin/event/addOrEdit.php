@@ -25,19 +25,19 @@
 <?php } ?>
 <div class="form-group">
 	<label for="nameNL">Naam (Nederlands)</label>
-	<input type="text" class="form-control" name="nameNL" id="nameNL" placeholder="Naam" value="<?= ($edit_mode) ? $event->nameNL : '' ?>">
+	<input type="text" class="form-control" name="nameNL" id="nameNL" required placeholder="Naam" value="<?= old('nameNL', $edit_mode ? $event->nameNL : '' ) ?>">
 </div>
 <div class="form-group">
 	<label for="summernote">Omschrijving (Nederlands)</label>
-	<textarea class="input-block-level" id="summernote" name="descriptionNL" required><?= ($edit_mode) ? $event->descriptionNL : '' ?></textarea>
+	<textarea class="form-control input-block-level" id="summernote" name="descriptionNL"><?= old('descriptionNL', $edit_mode ? $event->descriptionNL : '' )?></textarea>
 </div>
 <div class="form-group">
 	<label for="nameEN">Naam (Engels)</label>
-	<input type="text" class="form-control" name="nameEN" id="nameEN" placeholder="Vul een naam in voor onze Engelstalige gebruikers" value="<?= ($edit_mode) ? $event->nameEN : '' ?>">
+	<input type="text" class="form-control" name="nameEN" id="nameEN" required placeholder="Vul een naam in voor onze Engelstalige gebruikers" value="<?= old('nameEN', $edit_mode ? $event->nameEN : '' )?>">
 </div>
 <div class="form-group">
 	<label for="engels">Omschrijving (Engels)</label>
-	<textarea class="input-block-level" id="engels" name="descriptionEN" required><?= ($edit_mode) ? $event->descriptionEN : '' ?></textarea>
+	<textarea class="form-control input-block-level" id="engels" name="descriptionEN"><?= old('descriptionEN', $edit_mode ? $event->descriptionEN : '' )?></textarea>
 </div>
 <div class="form-group">
 	<label for="kind">Soort</label>
@@ -53,18 +53,18 @@
 <div class="form-group">
 	<label for="from">Van/Tot</label>
 	<div class="input-daterange input-group" id="datepicker">
-		<input type="text" class="form-control-sm form-control flatpickr" name="from" id="from" value="<?= ($edit_mode) ? $event->from->format('d-m-Y H:i') : '' ?>" />
-		<span class="input-group-addon">until</span>
-		<input type="text" class="form-control-sm form-control flatpickr" name="until" id="until" value="<?= ($edit_mode) ? $event->until->format('d-m-Y H:i') : '' ?>" />
+		<input type="text" class="form-control-sm form-control flatpickr" name="from" id="from" value="<?= old('from', $edit_mode ? $event->from->format('d-m-Y H:i') : '' )?>" />
+		<span class="input-group-addon">&nbsp;-&nbsp;</span>
+		<input type="text" class="form-control-sm form-control flatpickr" name="until" id="until" value="<?= old('until', $edit_mode ? $event->until->format('d-m-Y H:i') : '' )?>" />
 	</div>
 </div>
 <div class="form-group">
 	<label for="link">Link</label>
-	<input type="text" class="form-control" name="link" id="link" placeholder="Link naar het Facebook-evenement of website" value="<?= ($edit_mode) ? $event->link : '' ?>">
+	<input type="text" class="form-control" name="link" id="link" placeholder="Link naar het Facebook-evenement of website" value="<?= old('link', $edit_mode ? $event->link : '' )?>">
 </div>
 <div class="form-group">
 	<label for="location">Locatie</label>
-	<input type="text" class="form-control" name="location" id="location" placeholder="location" value="<?= ($edit_mode) ? $event->location : '' ?>">
+	<input type="text" class="form-control" name="location" id="location" placeholder="Locatie waar het evenement plaats gaat vinden" value="<?= old('location', $edit_mode ? $event->location : '' ) ?>">
 </div>
 <div class="form-group">
 	<label for="inschrijven">Inschrijven mogelijk</label>
@@ -74,13 +74,13 @@
 <div class="form-group <?= ($edit_mode && $event->needsRegistration) ? '' : 'd-none' ?>" id="registrationDeadline">
 	<label for="registrationDeadline">Aanmelddeadline</label>
 	<div class="input-group date">
-		<input type="text" class="form-control flatpickr" name="registrationDeadline" id="inschrijf" value="<?= ($edit_mode && $event->needsRegistration) ? $event->registrationDeadline->format('d-m-Y H:i') : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		<input type="text" class="form-control flatpickr" name="registrationDeadline" id="inschrijf" value="<?= old('registrationDeadline', ($edit_mode && $event->needsRegistration) ? $event->registrationDeadline->format('d-m-Y H:i') : '' )?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 	</div>
 </div>
 <div class="form-group <?= ($edit_mode && $event->needsRegistration) ? '' : 'd-none' ?>" id="cancellationDeadline">
 	<label for="cancellationDeadline">Afmelddeadline</label>
 	<div class="input-group date">
-		<input type="text" class="form-control flatpickr" name="cancellationDeadline" id="afmeld" value="<?= ($edit_mode && $event->needsRegistration && $event->cancellationDeadline) ? $event->cancellationDeadline->format('d-m-Y H:i') : '' ?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		<input type="text" class="form-control flatpickr" name="cancellationDeadline" id="afmeld" value="<?= old('cancellationDeadline', ($edit_mode && $event->needsRegistration && $event->cancellationDeadline) ? $event->cancellationDeadline->format('d-m-Y H:i') : '' )?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 	</div>
 </div>
 <div class="form-group">
@@ -90,7 +90,7 @@
 </div>
 <div class="form-group">
 	<label for="maximumRegistrations">Maximum aantal aanmeldingen</label>
-	<input type="number" value="<?= ($edit_mode) ? $event->maximumRegistrations : 0 ?>" id="maximumRegistrations" name="maximumRegistrations" class="form-control" min="0">
+	<input type="number" value="<?= old('maximumRegistrations', $edit_mode ? $event->maximumRegistrations : 0 )?>" id="maximumRegistrations" name="maximumRegistrations" class="form-control" min="0">
 	<span class="form-text">De standaardwaarde 0 betekent dat er geen limiet is op het aantal aanmeldingen!</span>
 </div>
 <div id="nszk" class="<?= ($edit_mode && $event->kind === 'nszk') ? '' : 'd-none' ?>">

@@ -36,7 +36,12 @@ class Validation
 	public $saveEvent = [
 		'eventId' => 'if_exist|integer',
 		'nameNL' => 'required|string',
-		'descriptionNL' => 'required|string',
+		'descriptionNL' => [
+			'rules' => 'required|string',
+			'errors' => [
+				'required' => 'Vul a.u.b. een Nederlandse omschrijving in. Als deze niet ingevuld wordt, dan is het evenement niet zichtbaar op het Nederlandse deel van de site.'
+			],
+		],
 		'nameEN' => [
 			'rules' => 'required|string',
 			'errors' => [
