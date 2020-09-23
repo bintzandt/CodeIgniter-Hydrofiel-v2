@@ -39,7 +39,7 @@ class Validation
 		'descriptionNL' => 'required|string',
 		'nameEN' => 'required|string',
 		'descriptionEN' => 'required|string',
-		'kind' => 'required|in_list[nszk,algemeen,toernooi]',
+		'kind' => 'required|in_list[nszk,algemeen,toernooi,social]',
 		'from' => 'required|valid_date[d-m-Y H:i]',
 		'until' => 'required|valid_date[d-m-Y H:i]',
 		'link' => 'if_exist|string',
