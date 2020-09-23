@@ -91,7 +91,12 @@ class Events extends BaseController {
 	 */
 	public function registrations(int $eventId): string {
 		$event = $this->events->find($eventId);
-		return view('admin/event/registrations', ['registrations' => $event->registrations]);
+
+		// Make it possible to display different registration overviews based on the event type.
+		switch ($event->kind){
+			case 'social': return view('admin/event/registrations/social', [ 'registrations' => $event->registrations ] );
+			default: return view('admin/event/registrations/default', ['registrations' => $event->registrations]);
+		}
 	}
 
 	/**
@@ -129,7 +134,7 @@ class Events extends BaseController {
 			'strokes' => json_decode($registration->strokes ?? '[]'),
 		];
 
-		return view('admin/event/registrationDetails', $data);
+		return view('admin/event/registrations/registrationDetails', $data);
 	}
 
 	/**
