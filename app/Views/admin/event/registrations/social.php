@@ -51,7 +51,7 @@ $other = array_filter( $registrations, function( Registration $registration ){
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($waterplo as $registration) { ?>
+		<?php foreach ($waterpolo as $registration) { ?>
 			<tr>
 				<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->eventId ?>/<?= $registration->userId ?>"><?= $registration->name ?></td>
 				<td class="clickable-row" data-href="/admin/events/registrationDetails/<?= $registration->eventId ?>/<?= $registration->userId ?>"><?= $registration->registrationDate->format('d-m-Y H:i') ?></td>
