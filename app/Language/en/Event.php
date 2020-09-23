@@ -46,4 +46,8 @@ return [
 	'remark' => 'Additional comment',
 	'addToCalendar' => 'Add to Google',
 	'registrationNotOpen' => 'The registrations are not open yet for this training.',
+	'social' => 'Social',
+	'algemeen' => 'General',
+	'toernooi' => 'Tournament',
+	'nszk' => 'NSZK',
 ];

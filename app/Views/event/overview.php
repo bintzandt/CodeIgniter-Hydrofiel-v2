@@ -18,7 +18,7 @@
 				<td><?= $event->name ?></td>
 				<td><?= $event->from->format('d-m-Y H:i') ?></td>
 				<td class="d-none d-sm-table-cell"><?= $event->nrOfRegistrations . (($event->maximumRegistrations > 0) ? '/' . $event->maximumRegistrations : '') ?></td>
-				<td class="d-none d-sm-table-cell"><?= ucwords($event->kind) ?></td>
+				<td class="d-none d-sm-table-cell"><?= lang( sprintf('Event.%s', $event->kind ) ) ?></td>
 			</tr>
 		<?php } ?>
 	</tbody>
