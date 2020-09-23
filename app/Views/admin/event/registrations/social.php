@@ -11,7 +11,9 @@ use App\Entities\Registration;
  $swimmer = array_filter( $registrations, function( Registration $registration ){
 	return $registration->user->membership === 'zwemmer';
  } );
-$other = array_diff( $registrations, $waterpolo, $swimmer );
+$other = array_filter( $registrations, function( Registration $registration ){
+	return in_array( $registration->user->membership, ['trainer', 'overig', 'vriend'] );
+ } );
 ?>
 <?= $this->extend('templates/admin') ?>
 <?= $this->section('body') ?>
