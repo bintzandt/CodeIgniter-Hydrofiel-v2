@@ -47,6 +47,7 @@
 		<option value="toernooi" <?= ($edit_mode && $event->kind === "toernooi") ? 'selected' : '' ?>>Toernooi
 		</option>
 		<option value="nszk" <?= ($edit_mode && $event->kind === "nszk") ? 'selected' : '' ?>>NSZK</option>
+		<option value="social" <?= ($edit_mode && $event->kind === "social") ? 'selected' : '' ?>>Borrel</option>
 	</select>
 </div>
 <div class="form-group">
