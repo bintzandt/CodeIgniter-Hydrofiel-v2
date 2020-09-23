@@ -37,8 +37,18 @@ class Validation
 		'eventId' => 'if_exist|integer',
 		'nameNL' => 'required|string',
 		'descriptionNL' => 'required|string',
-		'nameEN' => 'required|string',
-		'descriptionEN' => 'required|string',
+		'nameEN' => [
+			'rules' => 'required|string',
+			'errors' => [
+				'required' => 'Vul a.u.b. een Engelse titel in. Als deze niet ingevuld wordt, dan is het evenement niet zichtbaar op het Engelse deel van de site.'
+			],
+		],
+		'descriptionEN' => [
+			'rules' => 'required|string',
+			'errors' => [
+				'required' => 'Vul a.u.b. een Engelse omschrijving in. Als deze niet ingevuld wordt, dan is het evenement niet zichtbaar op het Engelse deel van de site.'
+			],
+		],
 		'kind' => 'required|in_list[nszk,algemeen,toernooi,social]',
 		'from' => 'required|valid_date[d-m-Y H:i]',
 		'until' => 'required|valid_date[d-m-Y H:i]',

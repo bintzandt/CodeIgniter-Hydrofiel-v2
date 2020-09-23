@@ -4,7 +4,8 @@ jQuery(document).ready(function($) {
             // unfortunately you can only rewrite
             // all the toolbar contents, on the bright side
             // you can place uploadcare button wherever you want
-            height: 350,
+			height: 350,
+			placeholder: 'Vul een omschrijving in voor onze Nederlandstalige gebruikers',
             toolbar: [
                 ['font', ['bold', 'italic', 'underline', 'clear']],
                 ['color', ['color']],
@@ -21,7 +22,8 @@ jQuery(document).ready(function($) {
             // unfortunately you can only rewrite
             // all the toolbar contents, on the bright side
             // you can place uploadcare button wherever you want
-            height: 350,
+			height: 350,
+			placeholder: 'Vul een omschrijving in voor onze Engelstalige gebruikers',
             toolbar: [
                 ['font', ['bold', 'italic', 'underline', 'clear']],
                 ['color', ['color']],

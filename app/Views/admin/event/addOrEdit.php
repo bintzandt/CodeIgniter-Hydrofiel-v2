@@ -24,19 +24,19 @@
 	<input type="hidden" name="eventId" value="<?= $event->eventId ?>">
 <?php } ?>
 <div class="form-group">
-	<label for="nameNL">Naam (NL)</label>
+	<label for="nameNL">Naam (Nederlands)</label>
 	<input type="text" class="form-control" name="nameNL" id="nameNL" placeholder="Naam" value="<?= ($edit_mode) ? $event->nameNL : '' ?>">
 </div>
 <div class="form-group">
-	<label for="summernote">Omschrijving (NL)</label>
+	<label for="summernote">Omschrijving (Nederlands)</label>
 	<textarea class="input-block-level" id="summernote" name="descriptionNL" required><?= ($edit_mode) ? $event->descriptionNL : '' ?></textarea>
 </div>
 <div class="form-group">
-	<label for="nameEN">Naam (EN)</label>
-	<input type="text" class="form-control" name="nameEN" id="nameEN" placeholder="Naam" value="<?= ($edit_mode) ? $event->nameEN : '' ?>">
+	<label for="nameEN">Naam (Engels)</label>
+	<input type="text" class="form-control" name="nameEN" id="nameEN" placeholder="Vul een naam in voor onze Engelstalige gebruikers" value="<?= ($edit_mode) ? $event->nameEN : '' ?>">
 </div>
 <div class="form-group">
-	<label for="engels">Omschrijving (EN)</label>
+	<label for="engels">Omschrijving (Engels)</label>
 	<textarea class="input-block-level" id="engels" name="descriptionEN" required><?= ($edit_mode) ? $event->descriptionEN : '' ?></textarea>
 </div>
 <div class="form-group">
