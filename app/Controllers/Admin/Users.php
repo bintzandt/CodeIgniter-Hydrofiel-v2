@@ -94,7 +94,7 @@ class Users extends BaseController {
 		$this->createNewUsers($newUsers);
 
 		// Remove old users.
-		$this->users->where('membership !=', 'friend')->whereNotIn('userId', $ids)->delete();
+		$this->users->where('membership !=', 'vriend')->whereNotIn('userId', $ids)->delete();
 
 		return redirect()->to('/admin/users')->with('success', 'De leden zijn bijgewerkt');
 	}
