@@ -173,7 +173,7 @@ class Users extends BaseController {
 			$this->users->insert($user);
 
 			// Notify the user
-			sendWelcomeEmail($user, $events);
+			// sendWelcomeEmail($user, $events);
 		}
 	}
 
