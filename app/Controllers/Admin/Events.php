@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use \App\Controllers\BaseController;
 use \App\Models\EventModel;
+use \App\Models\TrainingModel;
 use \App\Entities\Event;
 use App\Models\RegistrationDetailsModel;
 use App\Models\RegistrationModel;
@@ -15,6 +16,7 @@ class Events extends BaseController {
 	public function __construct() {
 		helper(['form']);
 		$this->events = new EventModel();
+		$this->trainings = new TrainingModel();
 	}
 
 	/**
@@ -140,7 +142,7 @@ class Events extends BaseController {
 	 * Display an overview of all past trainings.
 	 */
 	public function training() {
-		$pastTrainings = $this->events->getPassedTrainings();
+		$pastTrainings = $this->trainings->getPassedTrainings();
 
 		$waterpoloTrainings = array_filter( $pastTrainings, function ( $training ){
 			return $training->kind === 'waterpolo_training';

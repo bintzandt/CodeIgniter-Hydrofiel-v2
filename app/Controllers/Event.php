@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\EventModel;
+use App\Models\TrainingModel;
 use App\Models\RegistrationDetailsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -18,6 +19,7 @@ class Event extends BaseController {
 
 	public function __construct() {
 		$this->events = new EventModel();
+		$this->trainings = new TrainingModel();
 		helper(['form', 'notification']);
 	}
 
@@ -37,7 +39,7 @@ class Event extends BaseController {
 	}
 
 	public function displayTrainingOverview() {
-		$upcomingTrainings = $this->events->getUpcomingTrainings();
+		$upcomingTrainings = $this->trainings->getUpcomingTrainings();
 
 		$waterpoloTrainings = array_filter($upcomingTrainings, function ($training) {
 			return $training->kind === 'waterpolo_training';
@@ -68,6 +70,11 @@ class Event extends BaseController {
 			// Handle NSZK registration.
 			if ($event->kind === 'nszk') {
 				return $this->handleNSZKSubmission($event, $remark);
+			}
+
+			// It's an Training, fetch the correct class.
+			if (in_array($event->kind, EventModel::TRAINING_TYPES)){
+				$event = model('App\Models\TrainingModel')->find($eventId);
 			}
 
 			// Handle normal registration.

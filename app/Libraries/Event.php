@@ -12,7 +12,7 @@ class Event {
 	 */
 	public function displayRegistration(EventEntity $event): string {
 		if (!$event->needsRegistration) {
-			return lang('Event.noRegistrationNeeded');
+			return lang('Event.noRegistrationsNeeded');
 		}
 
 		if (empty($event->registrations)) {
