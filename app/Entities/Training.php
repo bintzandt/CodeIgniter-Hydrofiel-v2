@@ -42,7 +42,11 @@ class Training extends Event {
 			throw new Error(lang('Training.registrationNotOpen'));
 		}
 
-		if ($this->isUserRegisteredForOtherTraining()){
+		// Calculate the difference in time from now.
+		$diff = $this->from->difference(Time::now());
+
+		// One training per week does not apply if the training starts in less than 3 hours.
+		if ($diff->hours > 3 && $this->isUserRegisteredForOtherTraining()){
 			throw new Error(lang('Training.maximumNumber'));
 		}
 
