@@ -13,7 +13,7 @@ class Training extends Event {
 	 * - Start time of event should be after previous saturday 9 am.
 	 */
 	public function isRegistrationOpen(): bool {
-		return $this->from < new Time('next saturday 9am') && $this->from >= new Time('saturday 9am');
+		return $this->from < new Time('next saturday 9am') && $this->from >= Time::now();
 	}
 
 	/**
