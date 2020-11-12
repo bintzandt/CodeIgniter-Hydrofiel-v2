@@ -1,4 +1,5 @@
-FROM php:7.4.1-apache-buster
+FROM php:7.4.3-apache-buster
+
 RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ libmagickwand-dev imagemagick
 RUN pecl install imagick
 RUN docker-php-ext-configure intl
