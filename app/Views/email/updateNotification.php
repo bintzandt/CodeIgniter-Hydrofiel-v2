@@ -9,7 +9,7 @@
             Beste secretaris,<br>
             <br>
             <b><?= $naam ?></b> heeft de volgende gegevens aangepast:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<b>Email</b>:&nbsp;<?= $email ?> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b>Email</b>:&nbsp;<?= $email ?> <br>
             <br>
             Het is wellicht handig om deze wijzigingen ook in Conscribo door te voeren.<br>
             <br>

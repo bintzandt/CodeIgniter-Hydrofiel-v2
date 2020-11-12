@@ -17,7 +17,8 @@
         </tr>
         <tr>
             <td style="color:#FFFFFF; background:#315265; padding: 5px;" valign="top">
-                <?php if (!empty($events)) {
+                <?php
+                if ( ! empty($events)) {
                     foreach ($events as $event) { ?>
                         <div>
 							<span><a href="<?= site_url('/event/' . $event->eventId) ?>" style="color: #FFF;"><img
@@ -28,7 +29,8 @@
                             <?= $punt->from->format('d-m-Y H:i') ?>
                         </div><br/>
 
-                    <?php }
+                    <?php
+                    }
                 } ?></td>
         </tr>
         <tr>

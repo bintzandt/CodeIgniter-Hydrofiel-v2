@@ -1,4 +1,5 @@
 <?php
+
 $date = $valid->toDateTime();
 ?>
 <!DOCTYPE HTML>
@@ -15,7 +16,7 @@ $date = $valid->toDateTime();
                     Beste,<br>
                     <br>
                     Je hebt aangegeven je wachtwoord niet meer te weten. Met <a
-                            href="<?= site_url([ route_to('reset-password'), '?token=' . $recovery]) ?>">deze</a>
+                            href="<?= site_url([route_to('reset-password'), '?token=' . $recovery]) ?>">deze</a>
                     link kun je je wachtwoord opnieuw instellen.<br>
                     <br>
                     <b>Let op: Deze link vervalt automatisch op <?= $date->format('d-m-Y') ?>

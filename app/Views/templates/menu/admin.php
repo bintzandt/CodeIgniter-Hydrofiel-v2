@@ -7,7 +7,7 @@
 
 <!--  Default HTML does not contain a multiselect, include one -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-multiselect@0.9.15/dist/js/bootstrap-multiselect.min.js"
-            integrity="sha256-NNTJMfCjKMElj34Oh2XgoYhoaN6UzMjeTtEXo2c2TZc=" crossorigin="anonymous"></script>
+        integrity="sha256-NNTJMfCjKMElj34Oh2XgoYhoaN6UzMjeTtEXo2c2TZc=" crossorigin="anonymous"></script>
 
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
@@ -18,7 +18,8 @@
 <div class="banner">
     <div class="header">
         <nav class="navbar navbar-expand-xl navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hydrofiel-nav" aria-controls="hydrofiel-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hydrofiel-nav"
+                    aria-controls="hydrofiel-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="hydrofiel-nav">
@@ -35,7 +36,7 @@
                     <li class="nav-item">
                         <a href="/admin/events" class="nav-link">Agenda</a>
                     </li>
-					<li class="nav-item">
+                    <li class="nav-item">
                         <a href="/admin/training" class="nav-link">Trainingen</a>
                     </li>
                     <li class="nav-item">
@@ -57,12 +58,15 @@
     </div>
 </div>
 <div class="container pt-3">
-    <?php if (session('success')) { ?>
+    <?php
+    if (session('success')) { ?>
         <div class="alert alert-success">
             <strong><?= session('success') ?></strong>
         </div>
-    <?php } elseif (session('error')) { ?>
+    <?php
+    } elseif (session('error')) { ?>
         <div class="alert alert-danger">
             <strong><?= session('error') ?></strong>
         </div>
-    <?php } ?>
+    <?php
+    } ?>

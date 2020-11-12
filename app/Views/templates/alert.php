@@ -1,4 +1,5 @@
-<?php ?>
+<?php
+?>
 <div class="alert alert-<?= $type ?>">
-	<strong><?= $text ?></strong>
+    <strong><?= $text ?></strong>
 </div>

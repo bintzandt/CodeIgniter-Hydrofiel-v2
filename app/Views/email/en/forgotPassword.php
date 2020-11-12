@@ -1,4 +1,5 @@
 <?php
+
 $date = $valid->toDateTime();
 ?>
 <!DOCTYPE HTML>
@@ -14,7 +15,8 @@ $date = $valid->toDateTime();
                 <p>
                     Dear member,<br>
                     <br>
-                    With <a href="<?= site_url([route_to('reset-password'), '?token=' . $recovery]) ?>">this</a> url you can reset your
+                    With <a href="<?= site_url([route_to('reset-password'), '?token=' . $recovery]) ?>">this</a> url you
+                    can reset your
                     password.<br>
                     <br>
                     <b>Be careful: this link will expire on <?= $date->format('d-m-Y') ?>

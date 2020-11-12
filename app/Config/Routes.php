@@ -2,16 +2,13 @@
 
 namespace Config;
 
-use App\Models\EventModel;
-use App\Models\PageModel;
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
-	require SYSTEMPATH . 'Config/Routes.php';
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -40,18 +37,21 @@ $routes->get('switchLanguage', 'Home::switchLanguage', ['as' => 'switchLanguage'
 /**
  * Authentication routes
  */
-$routes->group('', function ($routes) {
-	// Login / logout
-	$routes->get('login', 'Auth::login', ['as' => 'login']);
-	$routes->post('login', 'Auth::attemptLogin');
-	$routes->get('logout', 'Auth::logout', ['as' => 'logout']);
+$routes->group(
+    '',
+    function ($routes) {
+        // Login / logout
+        $routes->get('login', 'Auth::login', ['as' => 'login']);
+        $routes->post('login', 'Auth::attemptLogin');
+        $routes->get('logout', 'Auth::logout', ['as' => 'logout']);
 
-	// Reset password
-	$routes->get('forgot', 'Auth::forgotPassword', ['as' => 'forgot']);
-	$routes->post('forgot', 'Auth::attemptForgot');
-	$routes->get('reset-password', 'Auth::resetPassword', ['as' => 'reset-password']);
-	$routes->post('reset-password', 'Auth::attemptReset');
-});
+        // Reset password
+        $routes->get('forgot', 'Auth::forgotPassword', ['as' => 'forgot']);
+        $routes->post('forgot', 'Auth::attemptForgot');
+        $routes->get('reset-password', 'Auth::resetPassword', ['as' => 'reset-password']);
+        $routes->post('reset-password', 'Auth::attemptReset');
+    }
+);
 
 $routes->get('page/(:num)', 'Page::index/$1');
 $routes->get('user/(:num)', 'User::index/$1');
@@ -91,5 +91,5 @@ $routes->get('training', 'Event::displayTrainingOverview');
  * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
