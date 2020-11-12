@@ -1,9 +1,11 @@
 <?php
-
 use Config\Services;
-
 ?>
 <?= $this->extend('templates/default'); ?>
+
+<?= $this->section('title') ?>
+<?= lang('Home.homeEvent') . ' - ' . $event->name ?>
+<?= $this->endSection() ?>
 
 <?= $this->section('body') ?>
 <?= Services::validation()->listErrors() ?>

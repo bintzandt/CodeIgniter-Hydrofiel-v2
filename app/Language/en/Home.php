@@ -8,6 +8,7 @@ return [
 							Besides biweekly training and the weekly social on thursdaynight in Cafe de Kroon we offer monthly activities ranging from tournament and matches to drinks, a cantus, a BBQ, lasergaming, diner rouler and lots more.
 						",
 	'homeEvents' => "Events",
+    'homeEvent' => "Event",
 	'homeNoEvents' => "There are no upcoming events.",
 	'homeBirthdays' => "Birthdays",
 	'homeLogin' => "Sign in to see the birthdays",

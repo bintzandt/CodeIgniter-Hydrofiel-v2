@@ -8,6 +8,7 @@ return [
 						Naast de trainingen die twee keer per week plaatsvinden en de wekelijkse borrel op donderdagavond in Cafe de Kroon zijn er maandelijks activiteiten die uiteenlopen van toernooien, wedstrijden tot borrels, een cantus, een barbeque, lasergamen, diner rouler en nog veel meer.
 					',
 	'homeEvents' => 'Evenementen',
+    'homeEvent' => "Evenement",
 	'homeNoEvents' => 'Er zijn geen aankomende evenementen.',
 	'homeBirthdays' => 'Verjaardagen',
 	'homeLogin' => 'Log in om de verjaardagen te zien.',

@@ -1,4 +1,9 @@
 <?= $this->extend('templates/default'); ?>
+
+<?= $this->section('title') ?>
+Home
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
     <div class="row">
         <div class="col-md-2 d-none d-md-block">

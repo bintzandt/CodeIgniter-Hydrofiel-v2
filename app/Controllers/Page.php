@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\RedirectResponse;
 class Page extends BaseController {
 	/**
 	 * The pageModel.
-	 * 
+	 *
 	 * @var PageModel $pages
 	 */
 	protected PageModel $pages;
@@ -21,9 +21,9 @@ class Page extends BaseController {
 
 	/**
 	 * Display the requested page.
-	 * 
+	 *
 	 * If no ID is provided, we redirect back to the home page.
-	 * 
+	 *
 	 * @return string|RedirectResponse The HTML response or a redirect.
 	 */
 	public function index( int $id = null ) {
@@ -45,6 +45,6 @@ class Page extends BaseController {
 			return view('templates/matches');
 		}
 
-		return view('templates/page', ['text' => $page->text]);
+		return view('templates/page', ['page' => $page]);
 	}
 }

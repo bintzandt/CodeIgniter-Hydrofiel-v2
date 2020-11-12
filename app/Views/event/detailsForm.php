@@ -5,10 +5,14 @@ use Config\Services;
 ?>
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= $event->name . ' - ' . 'details'?>
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
 <?= Services::validation()->listErrors() ?>
     <h3><?= lang('Event.furtherInformation') ?></h3>
-<?= form_open('event/handleDetailsForm/' . $eventId) ?>
+<?= form_open('event/handleDetailsForm/' . $event->eventId) ?>
     <div class="form-group">
         <label for="attendPredrink"><?= lang('Event.preborrel') ?></label><br>
         <div class="form-check form-check-inline">

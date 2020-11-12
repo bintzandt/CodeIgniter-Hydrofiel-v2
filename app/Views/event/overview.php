@@ -1,5 +1,9 @@
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= lang('Event.title'); ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
     <h1><?= lang('Event.title') ?></h1>
     <table class="table table-striped table-responsive-sm">

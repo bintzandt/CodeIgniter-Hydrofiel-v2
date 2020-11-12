@@ -7,4 +7,5 @@ return [
 	'generalSignIn' => 'Inloggen',
 	'generalLanguage' => 'English',
 	'generalInfo' => 'Zwem & Waterpolovereniging',
+    'hydrofiel' => 'Dé studenten zwem- en waterpolovereniging'
 ];

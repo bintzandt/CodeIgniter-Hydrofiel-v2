@@ -5,6 +5,10 @@ use Config\Services;
 ?>
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= lang('Auth.changePassword'); ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
 <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6">

@@ -1,5 +1,9 @@
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= lang('Training.register') ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
     <h1><?= lang('Training.register') ?></h1>
     <p><?= lang('Training.registrationHelp') ?></p>

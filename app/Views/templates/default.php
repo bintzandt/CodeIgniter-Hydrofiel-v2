@@ -3,7 +3,9 @@
 <head>
     <base href="<?= base_url() ?>">
 
-    <title>N.S.Z.&W.V. Hydrofiel</title>
+    <title>
+        Hydrofiel.nl - <?= $this->renderSection('title') ?>
+    </title>
 
     <!--    meta tags-->
     <meta name="keywords"

@@ -152,10 +152,11 @@ class Event extends BaseController
     {
         $registrationDetailsModel = new RegistrationDetailsModel();
         $details = $registrationDetailsModel->getUserDetailsForEvent(currentUserId(), $eventId);
+        $event = $this->events->find($eventId);
         return view(
             'event/detailsForm',
             [
-                'eventId' => $eventId,
+                'event' => $event,
                 'edit_mode' => !!$details,
                 'details' => $details,
             ]

@@ -5,6 +5,10 @@ use Config\Services;
 ?>
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= lang('Auth.logIn'); ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('body') ?>
     <div class="row justify-content-center">
         <div class="col-sm-7 col-lg-4">

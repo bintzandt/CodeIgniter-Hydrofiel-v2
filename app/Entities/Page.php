@@ -19,4 +19,8 @@ class Page extends Entity {
 	public function getText(): string {
 		return isEnglish() ? $this->contentEN : $this->contentNL;
 	}
+
+	public function getName(): string {
+	    return isEnglish() ? $this->nameEN : $this->nameNL;
+    }
 }

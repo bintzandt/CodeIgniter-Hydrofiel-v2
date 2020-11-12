@@ -1,5 +1,9 @@
 <?= $this->extend('templates/default'); ?>
 
+<?= $this->section('title') ?>
+<?= $page->name ?>
+<?= $this->endSection(); ?>
+
 <?= $this->section('body') ?>
-<?= $text ?>
+<?= $page->text ?>
 <?= $this->endSection() ?>
