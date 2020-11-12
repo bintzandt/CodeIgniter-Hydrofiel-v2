@@ -18,7 +18,7 @@
         <tr>
             <td style="color:#FFFFFF; background:#315265; padding: 5px;" valign="top">
                 <?php
-                if ( ! empty($events)) {
+                if (! empty($events)) {
                     foreach ($events as $event) { ?>
                         <div>
 							<span><a href="<?= site_url('/event/' . $event->eventId) ?>" style="color: #FFF;"><img
@@ -26,7 +26,7 @@
                                             src="<?= site_url(
                                                 '/images/mail/calendar.png'
                                             ) ?>"><?= $engels ? $event->nameEN : $event->nameNL ?></a></span><br/>
-                            <?= $punt->from->format('d-m-Y H:i') ?>
+                            <?= $event->from->format('d-m-Y H:i') ?>
                         </div><br/>
 
                         <?php
