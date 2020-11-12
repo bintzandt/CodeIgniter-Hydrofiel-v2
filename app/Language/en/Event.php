@@ -12,7 +12,7 @@ return [
 	'cancel' => 'Unregister',
 	'name' => 'Name',
 	'date' => 'Date',
-	'nrRregistrations' => 'Number of registrations',
+	'nrRegistrations' => 'Number of registrations',
 	'furtherInformation' => 'Additional information NSZK',
 	'preborrel' => 'I join the predrinks',
 	'dinner' => 'I join dinner on saturday',
