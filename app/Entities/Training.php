@@ -6,14 +6,19 @@ use Error;
 use CodeIgniter\I18n\Time;
 
 class Training extends Event {
-	
+
 	/**
 	 * Is the registration open for this event?
 	 * - Start time of event should be before next saturday 9 am.
 	 * - Start time of event should be after previous saturday 9 am.
 	 */
 	public function isRegistrationOpen(): bool {
-		return $this->from < new Time('next saturday 9am') && $this->from >= Time::now();
+	    // Today is a saturday...
+	    if (Time::now()->getDayOfWeek() == 7){
+	        return $this->from < new Time('next saturday 9am') && $this->from >= new Time('saturday 9am');
+        }
+
+        return $this->from < new Time('next saturday 9am') && $this->from >= new Time('last saturday 9am');
 	}
 
 	/**
@@ -34,7 +39,7 @@ class Training extends Event {
 	 * Extends the Event registration function with two additional checks:
 	 * - Are the registrations still closed?
 	 * - Is the user already registered for another training this week?
-	 * 
+	 *
 	 * @throws Error Error If one of the scenario's above is true, we throw an Error.
 	 */
 	public function attemptRegistration(?string $remark = null, ?string $strokes = null): void {

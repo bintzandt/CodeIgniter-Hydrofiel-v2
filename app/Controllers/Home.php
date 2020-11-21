@@ -27,7 +27,7 @@ class Home extends BaseController {
 
 	/**
 	 * Switch the language from the current session. Does not save anything to the user object.
-	 * 
+	 *
 	 * @return RedirectResponse Redirects to the previous page.
 	 */
 	public function switchLanguage(): RedirectResponse {
